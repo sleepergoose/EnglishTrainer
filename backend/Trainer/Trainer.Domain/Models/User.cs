@@ -4,7 +4,7 @@ using Trainer.Domain.Enums;
 
 namespace Trainer.Domain.Models
 {
-    public sealed class User
+    public sealed class User : BaseEntity
     {
         public string Email { get; set; }
         public string Name { get; set; }
