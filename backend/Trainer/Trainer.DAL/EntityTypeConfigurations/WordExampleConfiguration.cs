@@ -15,6 +15,9 @@ namespace Trainer.DAL.EntityTypeConfigurations
             builder.Property(p => p.Translation)
                 .HasMaxLength(4000)
                 .IsRequired();
+
+            builder.Property(p => p.WordId)
+                .IsRequired();
         }
     }
 }
