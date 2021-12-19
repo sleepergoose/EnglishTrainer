@@ -10,6 +10,9 @@ namespace Trainer.DAL.EntityTypeConfigurations
         {
             builder
                 .HasMany(wt => wt.Words);
+
+            builder.Property(p => p.AuthorId)
+                .IsRequired();
         }
     }
 }

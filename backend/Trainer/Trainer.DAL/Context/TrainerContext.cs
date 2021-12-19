@@ -30,6 +30,7 @@ namespace Trainer.DAL.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configure();
+            modelBuilder.Seed();
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

@@ -10,6 +10,9 @@ namespace Trainer.DAL.EntityTypeConfigurations
         {
             builder
                 .HasMany(tr => tr.PhrasalVerbs);
+
+            builder.Property(p => p.AuthorId)
+                .IsRequired();
         }
     }
 }
