@@ -1,6 +1,8 @@
-﻿namespace Trainer.Domain.Models
+﻿using Trainer.Domain.Abstract;
+
+namespace Trainer.Domain.Models
 {
-    public sealed class PvToTrack
+    public sealed class PvToTrack : BaseEntity
     {
         public int PhrasalVerbId { get; set; }
         public int PvTrackId { get; set; }
