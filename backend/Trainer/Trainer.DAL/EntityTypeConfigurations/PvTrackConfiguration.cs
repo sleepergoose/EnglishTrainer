@@ -8,6 +8,8 @@ namespace Trainer.DAL.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<PvTrack> builder)
         {
+            builder.ToTable("PvTracks");
+
             builder
                 .HasMany(tr => tr.PhrasalVerbs);
 

@@ -67,7 +67,7 @@ namespace Trainer.BL.Services
             return _mapper.Map<WordExampleDTO>(updatedExample);
         }
 
-        public async Task<int> DeleteWordExampleVerbAsync(int id)
+        public async Task<int> DeleteWordExampleAsync(int id)
         {
             var deletedExample = await _context.WordExamples.FirstOrDefaultAsync(we => we.Id == id);
 

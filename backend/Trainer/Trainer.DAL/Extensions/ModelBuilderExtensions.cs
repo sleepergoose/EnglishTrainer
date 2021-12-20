@@ -35,7 +35,7 @@ namespace Trainer.DAL.Extensions
         {
             return new List<WordTrack>()
             {
-                new WordTrack { Id = 1, AuthorId = 1, Level = KnowledgeLevel.Beginer, Description = "My first track", CreatedAt = DateTimeOffset.Now }
+                new WordTrack { Id = 1, AuthorId = 1, Name = "100 most important words", Level = KnowledgeLevel.Beginer, Description = "My first track", CreatedAt = DateTimeOffset.Now }
             };
         }
 

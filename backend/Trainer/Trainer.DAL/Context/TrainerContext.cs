@@ -30,6 +30,7 @@ namespace Trainer.DAL.Context
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Configure();
+            modelBuilder.Ignore<Track>();
             modelBuilder.Seed();
         }
 

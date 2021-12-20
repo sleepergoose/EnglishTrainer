@@ -44,7 +44,7 @@ namespace Trainer.API.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteEntityAsync(int id)
         {
-            return Ok(await _weService.DeleteWordExampleVerbAsync(id));
+            return Ok(await _weService.DeleteWordExampleAsync(id));
         }
     }
 }

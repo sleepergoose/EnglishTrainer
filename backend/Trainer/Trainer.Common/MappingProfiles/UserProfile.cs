@@ -1,0 +1,14 @@
+﻿using AutoMapper;
+using Trainer.Common.DTO.UserDTO;
+using Trainer.Domain.Models;
+
+namespace Trainer.Common.MappingProfiles
+{
+    public sealed class UserProfile : Profile
+    {
+        public UserProfile()
+        {
+            CreateMap<User, UserReadDTO>().ReverseMap();
+        }
+    }
+}

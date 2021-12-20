@@ -12,6 +12,7 @@ namespace Trainer.BL.Extensions
             services.AddScoped<PhrasalVerbsService>();
             services.AddScoped<WordExamplesService>();
             services.AddScoped<PvExamplesService>();
+            services.AddScoped<WordTracksService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)
@@ -21,6 +22,8 @@ namespace Trainer.BL.Extensions
                 cfg.AddProfile<PhrasalVerbProfile>();
                 cfg.AddProfile<WordExampleProfile>();
                 cfg.AddProfile<PvExampleProfile>();
+                cfg.AddProfile<UserProfile>();
+                cfg.AddProfile<WordTrackProfile>();
             });
         }
     }
