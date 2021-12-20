@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Trainer.Common\Trainer.Common.csproj" />
+    <ProjectReference Include="..\Trainer.DAL\Trainer.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
