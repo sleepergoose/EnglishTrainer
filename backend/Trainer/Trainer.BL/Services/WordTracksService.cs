@@ -24,13 +24,17 @@ namespace Trainer.BL.Services
 
         public async Task<WordTrackReadDTO> GetWordTrackAsync(int id)
         {
-            var track = await _context.WordTracks.FirstOrDefaultAsync(t => t.Id == id);
+            var track = await _context.WordTracks
+                .Include(wt => wt.Author)
+                .FirstOrDefaultAsync(t => t.Id == id);
             return _mapper.Map<WordTrackReadDTO>(track);
         }
 
         public async Task<ICollection<WordTrackReadDTO>> GetWordTracksAsync()
         {
-            var tracks = await _context.WordTracks.ToListAsync();
+            var tracks = await _context.WordTracks
+                .Include(wt => wt.Author)
+                .ToListAsync();
             return _mapper.Map<ICollection<WordTrackReadDTO>>(tracks);
         }
 

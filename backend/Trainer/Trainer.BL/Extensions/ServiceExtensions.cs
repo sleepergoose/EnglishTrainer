@@ -13,6 +13,7 @@ namespace Trainer.BL.Extensions
             services.AddScoped<WordExamplesService>();
             services.AddScoped<PvExamplesService>();
             services.AddScoped<WordTracksService>();
+            services.AddScoped<PvTracksService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)
@@ -24,6 +25,7 @@ namespace Trainer.BL.Extensions
                 cfg.AddProfile<PvExampleProfile>();
                 cfg.AddProfile<UserProfile>();
                 cfg.AddProfile<WordTrackProfile>();
+                cfg.AddProfile<PvTrackProfile>();
             });
         }
     }
