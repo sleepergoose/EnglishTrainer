@@ -8,7 +8,7 @@ namespace Trainer.Common.MappingProfiles
     {
         public WordProfile()
         {
-            CreateMap<Word, WordDTO>();
+            CreateMap<Word, WordDTO>().ReverseMap();
         }
     }
 }
