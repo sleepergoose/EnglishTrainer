@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Trainer.DAL\Trainer.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
