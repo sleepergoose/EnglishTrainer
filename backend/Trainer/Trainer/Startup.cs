@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Trainer.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Trainer.BL.Extensions;
 
 namespace Trainer
 {
@@ -29,6 +30,11 @@ namespace Trainer
             services.AddDbContext<TrainerContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:TrainerDbConnection"],
                     opt => opt.MigrationsAssembly(migrationAssembly)));
+
+            services.RegisterAutoMapper();
+            services.RegisterCustomServices();
+
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,13 +46,7 @@ namespace Trainer
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
