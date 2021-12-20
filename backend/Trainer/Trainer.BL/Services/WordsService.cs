@@ -55,7 +55,7 @@ namespace Trainer.BL.Services
             var updatedWord = await _context.Words.FirstOrDefaultAsync(w => w.Text == dto.Text);
 
             if (updatedWord == null)
-                return _mapper.Map<WordDTO>(updatedWord);
+                return _mapper.Map<WordDTO>(null);
 
             if (!string.IsNullOrEmpty(dto.Text.Trim()))
                 updatedWord.Text =  dto.Text;

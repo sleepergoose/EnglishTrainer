@@ -56,7 +56,7 @@ namespace Trainer.BL.Services
             var updatedPV = await _context.PhrasalVerbs.FirstOrDefaultAsync(pv => pv.Text == dto.Text);
 
             if (updatedPV == null)
-                return _mapper.Map<PhrasalVerbDTO>(updatedPV);
+                return _mapper.Map<PhrasalVerbDTO>(null);
 
             if (!string.IsNullOrEmpty(dto.Text.Trim()))
                 updatedPV.Text = dto.Text;

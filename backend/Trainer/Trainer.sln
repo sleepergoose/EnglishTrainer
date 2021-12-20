@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer", "Trainer\Trainer.csproj", "{D352F6B5-9004-4F8D-990D-449D4E353FD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer.API", "Trainer\Trainer.API.csproj", "{D352F6B5-9004-4F8D-990D-449D4E353FD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer.DAL", "Trainer.DAL\Trainer.DAL.csproj", "{101FC090-978D-4139-B216-BCE63274FA35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer.DAL", "Trainer.DAL\Trainer.DAL.csproj", "{101FC090-978D-4139-B216-BCE63274FA35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer.Domain", "Trainer.Domain\Trainer.Domain.csproj", "{86585051-A1D9-4615-B1C0-E4D6993C04AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer.Domain", "Trainer.Domain\Trainer.Domain.csproj", "{86585051-A1D9-4615-B1C0-E4D6993C04AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer.BL", "Trainer.BL\Trainer.BL.csproj", "{2D18014D-3C96-47BD-9999-4ACDCD1651D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer.BL", "Trainer.BL\Trainer.BL.csproj", "{2D18014D-3C96-47BD-9999-4ACDCD1651D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trainer.Common", "Trainer.Common\Trainer.Common.csproj", "{D981997C-1ED8-4392-8052-5053FADF50B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trainer.Common", "Trainer.Common\Trainer.Common.csproj", "{D981997C-1ED8-4392-8052-5053FADF50B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

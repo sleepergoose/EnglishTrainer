@@ -10,6 +10,7 @@ namespace Trainer.BL.Extensions
         {
             services.AddScoped<WordsService>();
             services.AddScoped<PhrasalVerbsService>();
+            services.AddScoped<WordExamplesService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)
@@ -17,6 +18,7 @@ namespace Trainer.BL.Extensions
             services.AddAutoMapper(cfg => {
                 cfg.AddProfile<WordProfile>();
                 cfg.AddProfile<PhrasalVerbProfile>();
+                cfg.AddProfile<WordExampleProfile>();
             });
         }
     }
