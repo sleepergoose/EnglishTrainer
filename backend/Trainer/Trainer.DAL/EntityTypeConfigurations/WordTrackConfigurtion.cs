@@ -8,6 +8,8 @@ namespace Trainer.DAL.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<WordTrack> builder)
         {
+            builder.ToTable("WordTracks");
+
             builder
                 .HasMany(wt => wt.Words);
 
