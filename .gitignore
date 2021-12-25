@@ -403,3 +403,5 @@ baseline.json
 
 # Husky
 .husky/_
+
+frontend/package-lock.json
