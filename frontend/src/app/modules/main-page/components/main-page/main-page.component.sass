@@ -1,0 +1,56 @@
+@import 'src/styles.sass'
+  
+.main-container
+  background: $drk-gray !important
+  width: 100wh
+  height: 100vh
+  display: grid
+  grid-template-columns: 250px auto
+  grid-template-rows: 100vh
+  .leftside-menu
+    grid-column: 1
+    grid-row: 1
+    width: 100%
+    height: 100%
+    padding: 10px
+    border-right: 1px solid $borders
+    .logo
+      width: 100%
+      height: $logo-height
+      color: $text-common
+      font-size: 42px
+      font-weight: bold
+      padding: 10px 0px 0px 20px
+    .menu
+      border-bottom: 1px solid $borders
+      height:  190px
+      .menu-item
+        display: block
+        color: $text-common
+        font-size: 1.2rem
+        font-weight: 600
+        padding: 7px 10px 7px 20px
+        &:hover
+          background: #505050
+          color: darken($text-common, 10)
+    .my-tracks
+      margin-top: 10px
+      p
+        color: $text-common
+        font-size: 1.5rem
+        font-weight: 600
+        padding: 7px 10px 7px 20px
+      .track-list
+
+.main-contant
+  grid-column: 2
+  grid-row: 1
+  width: 100%
+  height: 100%
+  overflow: auto
+  .header
+    height: $header-height
+    width: 100%
+    border-bottom: 1px solid $borders
+    background: linear-gradient
+  .page
