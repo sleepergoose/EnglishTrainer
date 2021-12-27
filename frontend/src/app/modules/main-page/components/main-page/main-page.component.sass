@@ -1,6 +1,7 @@
 @import 'src/styles.sass'
   
 .main-container
+  font-family: $font
   background: $drk-gray !important
   width: 100wh
   height: 100vh
@@ -40,7 +41,6 @@
         font-size: 1.5rem
         font-weight: 600
         padding: 7px 10px 7px 20px
-      .track-list
 
 .main-contant
   grid-column: 2
@@ -54,3 +54,22 @@
     border-bottom: 1px solid $borders
     background: linear-gradient
   .page
+    display: grid
+    grid-template-columns: 100%
+    grid-template-rows: auto
+    gap: 20px
+    .card-container
+      p
+        color: $text-common
+        font-size: 1.5rem
+        font-weight: bold
+        padding: 15px 0px 0px 15px
+      .cards
+        display: grid
+        grid-template-columns: repeat(auto-fill, 230px)
+        grid-template-rows: 250px
+        max-height: 265px
+        padding: 5px 5px 5px 15px
+        gap: 20px 0px
+        overflow: hidden
+
