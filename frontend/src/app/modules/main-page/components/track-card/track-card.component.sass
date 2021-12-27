@@ -1,0 +1,68 @@
+@import 'src/styles.sass'
+
+.example-card
+  max-width: 200px
+
+
+.card
+  height: 250px
+  width: 200px
+  position: relative
+  left: 100px
+  top: 20px
+  padding: 5px
+  border-radius: 7px
+  background: $light-gray !important
+  box-shadow: 0px 3px 8px 1px black
+  cursor: pointer
+  .name
+    color: #ff9d00
+    font-size: 1.4rem
+    font-weight: bold
+    padding: 20px 5px 10px 10px
+    text-shadow: 1px 1px 6px black
+    width: 180px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    margin-bottom: 7px
+  .item
+    color: #999999
+    font-size: 0.8rem
+    padding: 3px 5px 1px 10px
+    text-overflow: ellipsis
+    span
+      color: $text-common
+      font-size: 0.8rem
+      text-overflow: ellipsis
+      &:hover
+        color: #ffd900
+  .description
+    margin-top: 10px
+    color: $text-common
+    font-size: 0.8rem
+    padding: 5px 5px 5px 10px
+    height: 47px
+    max-height: 47px
+    width: 190px
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+  .heart
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 100%
+    justify-items: center
+    padding: 3px 5px 3px 10px
+    button
+      grid-column: 1
+      grid-row: 1
+    .icon
+      grid-column: 2
+      grid-row: 1
+      color: #ff9d00
+      font-size: 2rem
+      text-shadow: 0px 1px 15px black
+      &:hover
+        color: #ffad10
+        transform: scale(1.1)
