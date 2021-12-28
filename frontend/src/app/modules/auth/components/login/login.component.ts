@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginData } from 'src/app/models/auth/login-data';
 
 @Component({
   selector: 'app-login',
@@ -6,6 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent {
+  loginData = {} as LoginData;
+  hide = true;
 
   constructor() { }
+
+  onSubmit() {
+  }
 }
