@@ -1,18 +1,41 @@
 <div class="main-container">
   <!-- Left side menu section -->
   <div class="leftside-menu">
-    <div class="logo">Trainer</div>
+    <div class="logo" routerLink="/">Trainer</div>
     <div class="menu">
-      <div><a class="menu-item" href="">Library</a></div>
-      <div><a class="menu-item" href="">Train now</a></div>
-      <div><a class="menu-item" href="">Chat</a></div>
-      <div><a class="menu-item" href="">Reading</a></div>
+      <div>
+        <a class="menu-item" href="">
+          <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
+          <span>Library</span>
+        </a>
+      </div>
+      <div>
+        <a class="menu-item" href="">
+          <mat-icon class="icon" aria-hidden="false">play_circle_filled</mat-icon>
+          <span>Train now</span>
+        </a>
+      </div>
+      <div>
+        <a class="menu-item" href="">
+          <mat-icon class="icon" aria-hidden="false">chat</mat-icon>
+          <span>Chat</span>
+        </a>
+      </div>
+      <div>
+        <a class="menu-item" href="">
+          <mat-icon class="icon" aria-hidden="false">library_books</mat-icon>
+          <span>Reading</span>
+        </a>
+      </div>
     </div>
 
     <!-- My tracks section -->
     <div class="my-tracks">
-      <p>My tracks</p>
-      <div class="track-list">
+      <div class="create-track-button">
+        <button mat-raised-button color="primary">Create Track</button>
+      </div>
+      <p *ngIf="isMyTrackContainerShown">My tracks</p>
+      <div class="track-list" *ngIf="isMyTrackContainerShown">
 
       </div>
     </div>

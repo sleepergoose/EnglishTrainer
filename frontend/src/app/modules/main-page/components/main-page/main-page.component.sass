@@ -18,27 +18,38 @@
     .logo
       width: 100%
       height: $logo-height
-      color: $text-common
-      font-size: 42px
+      color: $primary
+      font-size: 45px
       font-weight: bold
-      padding: 10px 0px 0px 20px
+      padding: 25px 0px 0px 20px
+      cursor: pointer
     .menu
       border-bottom: 1px solid $borders
       height:  190px
       .menu-item
-        display: block
+        display: grid
+        grid-template-columns: max-content auto
+        align-content: center
+        align-items: center
         color: $text-common
-        font-size: 1.2rem
+        font-size: 1.1rem
         font-weight: 600
-        padding: 7px 10px 7px 20px
+        padding: 10px 12px 10px 22px
+        span
+          padding-left: 7px
         &:hover
-          background: #505050
-          color: darken($text-common, 10)
+          color: $primary
     .my-tracks
       margin-top: 10px
+      .create-track-button
+        text-align: center
+        padding: 5px 5px 10px 5px
+        button
+          width: 70%
+          border-radius: 15px
       p
         color: $text-common
-        font-size: 1.5rem
+        font-size: 1.1rem
         font-weight: 600
         padding: 7px 10px 7px 20px
 
