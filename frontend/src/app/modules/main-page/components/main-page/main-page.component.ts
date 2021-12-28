@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-page.component.sass']
 })
 export class MainPageComponent {
+  isMyTrackContainerShown: boolean = false;
 
   constructor() { }
 }
