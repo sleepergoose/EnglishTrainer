@@ -24,8 +24,8 @@
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="email.invalid && email.errors?.['required']">This is required field!</mat-error>
-        <mat-error *ngIf="email.invalid && email.errors?.['pattern']">It must be email in this field!</mat-error>
+        <mat-error *ngIf="password.invalid && password.errors?.['required']">This is required field!</mat-error>
+        <mat-error *ngIf="password.invalid && password.errors?.['pattern']">It must be email in this field!</mat-error>
       </mat-form-field>
     </div>
 
