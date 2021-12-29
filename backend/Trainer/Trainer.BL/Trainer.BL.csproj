@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
+    <PackageReference Include="OneOf" Version="3.0.205" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Trainer.Common\Trainer.Common.csproj" />
     <ProjectReference Include="..\Trainer.DAL\Trainer.DAL.csproj" />
   </ItemGroup>
