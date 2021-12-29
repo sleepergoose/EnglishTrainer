@@ -16,7 +16,7 @@ namespace Trainer.BL.Extensions
             services.AddScoped<PvTracksService>();
             services.AddScoped<FirebaseService>();
             services.AddScoped<AuthService>();
-            services.AddScoped<UserService>();
+            services.AddScoped<UsersService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)

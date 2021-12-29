@@ -22,9 +22,18 @@ namespace Trainer.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDataDTO dto)
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterDataDTO dto)
         {
-            return (await _authService.Register(dto)).Match<IActionResult>(
+            return (await _authService.RegisterAsync(dto)).Match<IActionResult>(
+                success => Ok(),
+                error => BadRequest()
+            );
+        }
+
+        [HttpGet("login")]
+        public async Task<IActionResult> LoginAsync([FromBody] UserLoginDTO dto)
+        {
+            return (await _authService.LoginAsync(dto)).Match<IActionResult>(
                 success => Ok(),
                 error => BadRequest()
             );

@@ -17,6 +17,9 @@ namespace Trainer.Common.MappingProfiles
 
             CreateMap<UserLoginDTO, User>()
                 .ForMember(p => p.Role, opt => opt.MapFrom(c => Role.User))
+                .ForMember(p => p.Tracks, opt => opt.Ignore()); 
+
+            CreateMap<UserWriteDTO, User>()
                 .ForMember(p => p.Tracks, opt => opt.Ignore());
         }
     }

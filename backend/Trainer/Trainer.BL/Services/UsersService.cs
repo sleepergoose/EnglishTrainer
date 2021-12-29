@@ -2,16 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Trainer.Common.DTO.Auth;
+using Trainer.Common.DTO.UserDTO;
 using Trainer.DAL.Context;
 using Trainer.Domain.Models;
 
 namespace Trainer.BL.Services
 {
-    public sealed class UserService
+    public sealed class UsersService
     {
         private readonly TrainerContext _context;
         private readonly IMapper _mapper;
-        public UserService(TrainerContext context, IMapper mapper)
+        public UsersService(TrainerContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -27,7 +28,7 @@ namespace Trainer.BL.Services
             return await _context.Users.FirstOrDefaultAsync(user => user.FirebaseId == firebaseId);
         }
 
-        public async Task<User> CreateUsersAsync(UserLoginDTO dto)
+        public async Task<User> CreateUserAsync(UserWriteDTO dto)
         {
             var userEntity = await _context.Users.AddAsync(_mapper.Map<User>(dto));
             await _context.SaveChangesAsync();
