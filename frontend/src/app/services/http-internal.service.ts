@@ -24,6 +24,10 @@ export class HttpInternalService {
     return this._http.post<T>(this.buildUrl(url), payload, { headers: this.getHeaders() });
   }
 
+  public postFullRequest<T>(url: string, payload: object): Observable<HttpResponse<T>> {
+    return this._http.post<T>(this.buildUrl(url), payload, { headers: this.getHeaders(), observe: 'response' });
+  }
+
   public putRequest<T>(url: string, payload: object): Observable<T> {
     return this._http.put<T>(this.buildUrl(url), payload, { headers: this.getHeaders() });
   }

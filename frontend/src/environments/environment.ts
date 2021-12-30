@@ -2,9 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { firebaseKeys } from "./fb-keys";
+
 export const environment = {
+  firebase: firebaseKeys,
   production: false,
-  apiUrl: 'http:\\localhost:4200'
+  apiUrl: 'https://localhost:5001' 
 };
 
 /*

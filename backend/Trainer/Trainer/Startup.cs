@@ -44,6 +44,12 @@ namespace Trainer
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials());
+
             app.UseRouting();
 
             app.UseMvcWithDefaultRoute();

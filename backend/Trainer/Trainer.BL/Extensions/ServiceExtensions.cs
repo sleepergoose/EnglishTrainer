@@ -14,7 +14,7 @@ namespace Trainer.BL.Extensions
             services.AddScoped<PvExamplesService>();
             services.AddScoped<WordTracksService>();
             services.AddScoped<PvTracksService>();
-            services.AddScoped<FirebaseService>();
+            services.AddSingleton<FirebaseService>();
             services.AddScoped<AuthService>();
             services.AddScoped<UsersService>();
         }

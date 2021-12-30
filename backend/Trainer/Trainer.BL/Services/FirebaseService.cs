@@ -1,6 +1,7 @@
 ﻿using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 using Google.Apis.Auth.OAuth2;
+using System;
 
 namespace Trainer.BL.Services
 {
@@ -12,7 +13,7 @@ namespace Trainer.BL.Services
         {
             var app = FirebaseApp.Create(new AppOptions()
             {
-                Credential = GoogleCredential.FromFile(@"../trainer-app.json")
+                Credential = GoogleCredential.FromFile(Environment.CurrentDirectory + @"\bin\Debug\net5.0\trainer-app.json")
             });
 
             AuthApp = FirebaseAuth.GetAuth(app);
