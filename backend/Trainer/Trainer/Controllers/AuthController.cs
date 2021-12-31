@@ -30,7 +30,7 @@ namespace Trainer.API.Controllers
             );
         }
 
-        [HttpGet("login")]
+        [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] UserLoginDTO dto)
         {
             return (await _authService.LoginAsync(dto)).Match<IActionResult>(

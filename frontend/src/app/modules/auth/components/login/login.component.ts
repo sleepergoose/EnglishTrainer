@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginData } from 'src/app/models/auth/login-data';
+import { EmailPasswordData } from 'src/app/models/auth/email-password-data';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,12 +8,15 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent {
-  loginData = {} as LoginData;
+  emailPasswordData = {
+    email: 'bigman@server.com',
+    password: ''
+  } as EmailPasswordData;
   hide = true;
 
   constructor(private _auth: AuthService) { }
 
   onSubmit() {
-    this._auth.signInWithEmail(this.loginData.email, this.loginData.password);
+    this._auth.signInWithEmail(this.emailPasswordData.email, this.emailPasswordData.password);
   }
 }

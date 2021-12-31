@@ -1,4 +1,6 @@
 export interface LoginData {
   email: string,
-  password: string
+  name: string,
+  accessToken: string
+  firebaseId: string
 }
