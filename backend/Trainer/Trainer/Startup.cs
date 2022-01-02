@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Trainer.BL.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Trainer.Common.ExceptionsHandler.Filters;
 
 namespace Trainer
 {
@@ -46,7 +47,9 @@ namespace Trainer
 
             services.AddHttpClient();
 
-            services.AddControllers();
+            services.AddControllers(opt => {
+                opt.Filters.Add(new CustomExceptionFilterAttribute());
+            });
 
             services.AddAuth(Configuration);
         }

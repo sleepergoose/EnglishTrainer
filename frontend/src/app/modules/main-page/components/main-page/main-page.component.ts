@@ -16,7 +16,7 @@ export class MainPageComponent {
   go() {
     this._http.getRequest('/api/Words/1')
       .pipe(take(1))
-      .subscribe((word) => {
+      .subscribe((word: any) => {
         console.log(word);
       });
   }
