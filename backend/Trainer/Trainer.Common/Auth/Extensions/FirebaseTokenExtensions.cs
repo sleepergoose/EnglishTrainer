@@ -1,6 +1,6 @@
 ﻿using FirebaseAdmin.Auth;
 using System;
-using Trainer.Domain.Constants;
+using Trainer.Common.Auth.Constants;
 
 namespace Trainer.BL.Extensions
 {

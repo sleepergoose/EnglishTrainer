@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (!this._auth.getAuthState()) {
       return next.handle(request);
     }
-
+   
     return this._auth.getCurrentTokenObservable().pipe(
       take(1),
       mergeMap((token) => {

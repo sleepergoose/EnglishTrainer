@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Trainer.BL.Services;
 using Trainer.Common.DTO;
+using Trainer.Common.Auth.Constants;
 
 namespace Trainer.Controllers
 {
@@ -17,6 +19,7 @@ namespace Trainer.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = Policies.IsUser)]
         public async Task<IActionResult> GetEntityAsync(int id)
         {
             return Ok(await _wordsService.GetWordAsync(id));

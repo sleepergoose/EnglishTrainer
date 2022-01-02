@@ -9,7 +9,7 @@ using Trainer.BL.Extensions;
 using Trainer.Domain.Models;
 using Trainer.Common.DTO.UserDTO;
 using Trainer.Domain.Enums;
-using Trainer.Domain.Constants;
+using Trainer.Common.Auth.Constants;
 using System.Collections.Generic;
 
 namespace Trainer.BL.Services

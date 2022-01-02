@@ -25,8 +25,6 @@ import { AuthGuard } from './guards/auth.guard';
     provideAuth(() => getAuth())
   ],
   providers: [
-    AuthService,
-    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

@@ -1,4 +1,4 @@
-﻿namespace Trainer.Domain.Constants
+﻿namespace Trainer.Common.Auth.Constants
 {
     public static class Claims
     {

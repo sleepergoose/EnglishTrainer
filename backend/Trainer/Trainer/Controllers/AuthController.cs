@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OneOf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Trainer.BL.Services;
 using Trainer.Common.DTO.Auth;
+using Trainer.Common.Auth.Constants;
 
 namespace Trainer.API.Controllers
 {
@@ -22,6 +20,7 @@ namespace Trainer.API.Controllers
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterDataDTO dto)
         {
             return (await _authService.RegisterAsync(dto)).Match<IActionResult>(
@@ -31,6 +30,7 @@ namespace Trainer.API.Controllers
         }
 
         [HttpPost("login")]
+        [Authorize]
         public async Task<IActionResult> LoginAsync([FromBody] UserLoginDTO dto)
         {
             return (await _authService.LoginAsync(dto)).Match<IActionResult>(

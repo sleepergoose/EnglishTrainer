@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, SkipSelf } from '@angular/core';
+import { take } from 'rxjs';
+import { HttpInternalService } from 'src/app/services/http-internal.service';
 
 @Component({
   selector: 'app-main-page',
@@ -8,5 +10,14 @@ import { Component } from '@angular/core';
 export class MainPageComponent {
   isMyTrackContainerShown: boolean = false;
 
-  constructor() { }
+  constructor(@SkipSelf() private _http: HttpInternalService) { }
+
+  // The method below is just for test
+  go() {
+    this._http.getRequest('/api/Words/1')
+      .pipe(take(1))
+      .subscribe((word) => {
+        console.log(word);
+      });
+  }
 }

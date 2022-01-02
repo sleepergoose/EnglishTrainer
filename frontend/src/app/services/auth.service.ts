@@ -43,7 +43,16 @@ export class AuthService {
     private _http: HttpInternalService,
     private _auth: Auth,
     private _router: Router) {
-      this._user$ = new Observable((observer: any) => onAuthStateChanged(this._auth, observer));
+      this._user$ = authState(this._auth);
+      
+      onAuthStateChanged(this._auth, (user) => {
+        if (user) {
+          this._setAuthState(true);
+        }
+        else {
+          this._setAuthState(false);
+        }
+      });
       // this._tokenId$ = new Observable((observer: any) => this._auth.onIdTokenChanged(observer));
   }
 
