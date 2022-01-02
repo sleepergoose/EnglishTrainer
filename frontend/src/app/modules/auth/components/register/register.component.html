@@ -9,8 +9,8 @@
         <mat-label>Enter your name</mat-label>
         <input matInput maxlength="100" [(ngModel)]="registerData.name" #name="ngModel" required
           name="name" pattern="[^<>^@]*">
-        <mat-error *ngIf="email.invalid && email.errors?.['required']">This is required field!</mat-error>
-        <mat-error *ngIf="email.invalid && email.errors?.['pattern']">Symbols '< > ^ @' are prohibited</mat-error>
+        <mat-error *ngIf="name.invalid && name.errors?.['required']">This is required field!</mat-error>
+        <mat-error *ngIf="name.invalid && name.errors?.['pattern']">Symbols '< > ^ @' are prohibited</mat-error>
       </mat-form-field>
     </div>
 
@@ -34,8 +34,8 @@
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="email.invalid && email.errors?.['required']">This is required field!</mat-error>
-        <mat-error *ngIf="email.invalid && email.errors?.['pattern']">It must be email in this field!</mat-error>
+        <mat-error *ngIf="password.invalid && password.errors?.['required']">This is required field!</mat-error>
+        <mat-error *ngIf="password.invalid && password.errors?.['pattern']">It must be email in this field!</mat-error>
       </mat-form-field>
     </div>
 

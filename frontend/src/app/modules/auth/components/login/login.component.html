@@ -8,7 +8,7 @@
     <div class="form-control">
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="user@example.com" maxlength="50" [(ngModel)]="loginData.email" #email="ngModel" required
+        <input matInput placeholder="user@example.com" maxlength="50" [(ngModel)]="emailPasswordData.email" #email="ngModel" required
           name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
         <mat-error *ngIf="email.invalid && email.errors?.['required']">This is required field!</mat-error>
         <mat-error *ngIf="email.invalid && email.errors?.['pattern']">It must be email in this field!</mat-error>
@@ -19,20 +19,20 @@
     <div class="form-control">
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
-        <input matInput  maxlength="50" [(ngModel)]="loginData.password" #password="ngModel" required
+        <input matInput  maxlength="50" [(ngModel)]="emailPasswordData.password" #password="ngModel" required
           name="password" pattern="[^<>^@]*" [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="email.invalid && email.errors?.['required']">This is required field!</mat-error>
-        <mat-error *ngIf="email.invalid && email.errors?.['pattern']">It must be email in this field!</mat-error>
+        <mat-error *ngIf="password.invalid && password.errors?.['required']">This is required field!</mat-error>
+        <mat-error *ngIf="password.invalid && password.errors?.['pattern']">It must be email in this field!</mat-error>
       </mat-form-field>
     </div>
 
     <!-- Controls -->
     <div class="form-control">
         <button type="reset" class="btn-cancel" mat-raised-button color="accent">Cancel</button>
-        <button type="submit" [disabled]="form.form.invalid" class="btn-submit" mat-raised-button color="primary">Register</button>
+        <button type="submit" [disabled]="form.form.invalid" class="btn-submit" mat-raised-button color="primary">Login</button>
     </div>
   </form>
 </div>

@@ -4,7 +4,7 @@
     <div class="logo" routerLink="/">Trainer</div>
     <div class="menu">
       <div>
-        <a class="menu-item" href="">
+        <a class="menu-item" (click)="go()">
           <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
           <span>Library</span>
         </a>
@@ -93,3 +93,5 @@
     </div>
   </div>
 </div>
+
+<app-profile-menu class="profile-menu"></app-profile-menu>

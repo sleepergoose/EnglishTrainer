@@ -1,0 +1,24 @@
+<div class="profile-menu">
+  <button  mat-button [matMenuTriggerFor]="menu">
+    <img src="https://www.svgrepo.com/show/2176/man.svg" alt="">
+    <span>{{userName}}</span>
+  </button>
+  <mat-menu #menu="matMenu" class="customize">
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>label_important</mat-icon>
+      <span>Trainer Studio</span>
+    </button>
+    <button mat-menu-item (click)="signOut()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Log out</span>
+    </button>
+  </mat-menu>
+</div>

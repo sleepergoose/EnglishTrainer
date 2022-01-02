@@ -5,12 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="trainer-app.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="trainer-app.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="OneOf" Version="3.0.205" />
   </ItemGroup>
 
   <ItemGroup>

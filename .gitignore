@@ -404,3 +404,6 @@ baseline.json
 # Husky
 .husky/_
 
+/backend/Trainer/Trainer.BL/trainer-app.json
+frontend/src/environments/fb-keys.ts
+/backend/Trainer/Trainer/trainer-app.json

@@ -11,6 +11,7 @@ using Trainer.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Trainer.BL.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Trainer
 {
@@ -18,9 +19,17 @@ namespace Trainer
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostEnvironment env)
         {
             Configuration = configuration;
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("trainer-app.json");
+
+            builder.AddConfiguration(configuration);
+
+            Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -32,9 +41,14 @@ namespace Trainer
                     opt => opt.MigrationsAssembly(migrationAssembly)));
 
             services.RegisterAutoMapper();
+
             services.RegisterCustomServices();
 
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddHttpClient();
+
+            services.AddControllers();
+
+            services.AddAuth(Configuration);
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -44,9 +58,24 @@ namespace Trainer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseHttpsRedirection();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+            
+            app.UseCors(builder => builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials());
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
