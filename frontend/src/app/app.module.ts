@@ -9,8 +9,6 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [

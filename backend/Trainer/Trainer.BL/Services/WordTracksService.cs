@@ -30,6 +30,17 @@ namespace Trainer.BL.Services
             return _mapper.Map<WordTrackReadDTO>(track);
         }
 
+        public async Task<ICollection<WordDTO>> GetWordsByTrackIdAsync(int id)
+        {
+            var words = await _context.WordToTracks
+                .Where(wt => wt.WordTrackId == id)
+                .Include(wt => wt.Word)
+                .Select(w => w.Word)
+                .ToListAsync();
+
+            return _mapper.Map<ICollection<WordDTO>>(words);
+        }
+
         public async Task<ICollection<WordTrackReadDTO>> GetWordTracksAsync()
         {
             var tracks = await _context.WordTracks

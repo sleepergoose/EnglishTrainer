@@ -16,7 +16,7 @@ const routes: Routes = [
         component: MainPageComponent,
       },
       {
-        path: 'trackview',
+        path: 'trackview/:id',
         component: TrackViewComponent
       }
     ]

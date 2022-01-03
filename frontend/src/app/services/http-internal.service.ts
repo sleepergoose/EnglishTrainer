@@ -12,10 +12,6 @@ export class HttpInternalService {
 
   constructor(private _http: HttpClient) { }
 
-  public getHeaders(): HttpHeaders {
-    return this._headers;
-  }
-
   public getRequest<T>(url: string, httpParams?: any): Observable<T> {
     return this._http.get<T>(this.buildUrl(url), { headers: this.getHeaders(), params: httpParams });
   }
@@ -41,5 +37,9 @@ export class HttpInternalService {
       return url;
     }
     return this._basicUrl + url;
+  }
+
+  private getHeaders(): HttpHeaders {
+    return this._headers;
   }
 }

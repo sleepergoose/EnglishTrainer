@@ -22,6 +22,12 @@ namespace Trainer.API.Controllers
             return Ok(await _wtService.GetWordTrackAsync(id));
         }
 
+        [HttpGet("words/{id}")]
+        public async Task<IActionResult> GetWordsByTrackIdAsync(int id)
+        {
+            return Ok(await _wtService.GetWordsByTrackIdAsync(id));
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetEntitiesAsync()
         {
