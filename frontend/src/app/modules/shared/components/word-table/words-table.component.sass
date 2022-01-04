@@ -1,0 +1,61 @@
+@import 'src/styles.sass'
+
+.mat-form-field 
+  font-size: 14px
+  width: 100%
+  input
+    color: $text-common
+    caret-color: $text-common !important
+    &::placeholder
+      color: red
+
+table
+  width: 100%
+  background: $drk-gray
+  td, th 
+    button
+      background: transparent
+      border-radius: 20px
+      padding: 0px 10px 0px 10px !important
+      color: #999999
+      &:hover
+        color: $primary !important
+  .mat-column-index, .mat-column-word, .mat-column-transcription, .mat-column-translation,
+  .mat-column-controls
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+  .mat-column-index
+    width: 7%
+  .mat-column-word
+    width: 20%
+    a
+      color: $text-common !important
+      &:hover
+        text-decoration: underline
+  .mat-column-transcription
+    width: 20%
+  .mat-column-translation
+    width: 43%
+  .mat-column-controls
+    width: 10%
+
+
+mat-paginator
+  background: $drk-gray
+
+::ng-deep .mat-focused .mat-form-field-label
+  /*change color of label*/
+  color: $primary !important
+  
+::ng-deep .mat-form-field-label
+  /*change color of label*/
+  color: #777777
+
+::ng-deep.mat-form-field-underline 
+  /*change color of underline*/
+  background-color: #999999 !important
+
+::ng-deep.mat-form-field-ripple 
+ /*change color of underline when focused*/
+ background-color: #999999 !important

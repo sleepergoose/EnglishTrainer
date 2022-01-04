@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Trainer.BL.Services;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.WordTrackDTO;
 
 namespace Trainer.API.Controllers
 {
@@ -22,6 +23,12 @@ namespace Trainer.API.Controllers
             return Ok(await _wtService.GetWordTrackAsync(id));
         }
 
+        [HttpGet("words/{id}")]
+        public async Task<IActionResult> GetWordsByTrackIdAsync(int id)
+        {
+            return Ok(await _wtService.GetWordsByTrackIdAsync(id));
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetEntitiesAsync()
         {
@@ -34,6 +41,12 @@ namespace Trainer.API.Controllers
             return Ok(await _wtService.CreateWordTrackAsync(dto));
         }
 
+        [HttpPost("addWordToTrack")]
+        public async Task<IActionResult> AddWordToTrackAsync([FromBody] WordToTrackWriteDTO dto)
+        {
+            return Ok(await _wtService.AddWordToTrackAsync(dto));
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateEntiyAsync([FromBody] WordTrackWriteDTO dto)
         {
@@ -44,6 +57,12 @@ namespace Trainer.API.Controllers
         public async Task<IActionResult> DeleteEntityAsync(int id)
         {
             return Ok(await _wtService.DeleteWordTrackAsync(id));
+        }
+
+        [HttpPost("removeWord")]
+        public async Task<IActionResult> RemoveWordFromTrackAsync(WordToTrackWriteDTO dto)
+        {
+            return Ok(await _wtService.RemoveWordFromTrackAsync(dto));
         }
     }
 }

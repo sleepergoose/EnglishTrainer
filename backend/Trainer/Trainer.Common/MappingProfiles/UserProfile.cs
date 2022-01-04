@@ -21,6 +21,8 @@ namespace Trainer.Common.MappingProfiles
 
             CreateMap<UserWriteDTO, User>()
                 .ForMember(p => p.Tracks, opt => opt.Ignore());
+
+            CreateMap<User, UserReadShortDTO>();
         }
     }
 }

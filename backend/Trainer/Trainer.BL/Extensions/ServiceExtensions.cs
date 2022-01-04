@@ -17,6 +17,7 @@ namespace Trainer.BL.Extensions
             services.AddSingleton<FirebaseService>();
             services.AddScoped<AuthService>();
             services.AddScoped<UsersService>();
+            services.AddScoped<SearchService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)

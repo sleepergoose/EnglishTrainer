@@ -1,0 +1,44 @@
+@import 'src/styles.sass'
+
+.container
+  height: 40px
+  width: 100%
+  display: grid
+  grid-template-columns: 3fr 3fr 8fr 2.2fr
+  grid-template-rows: 100%
+  border: 1px solid $light-gray
+  border-radius: 20px
+  margin-bottom: 5px
+  overflow: hidden
+  &:hover
+    border: 1px solid darken($text-common, 30)
+    button
+      color: $primary !important
+      border: 1px solid $primary !important
+  .text, .transcription, .translation, .controls
+    align-self: center
+    justify-self: center
+    a
+      color: #cccccc
+      cursor: pointer
+      font-size: 0.9rem
+      &:hover
+        text-decoration: underline
+    span
+      color: #cccccc
+      font-size: 0.9rem
+    button
+      border: 1px solid darken($text-common, 30)
+      border-radius: 20px
+      color: darken($text-common, 30)
+      padding: 5px 15px
+      background: transparent
+      cursor: pointer
+      &:hover
+        transform: scale(1.1)
+        font-weight: bold
+      &:active
+        font-weight: normal
+        transform: scale(1)
+
+    

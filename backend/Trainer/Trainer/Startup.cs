@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Trainer.BL.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Trainer.Common.ExceptionsHandler.Filters;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 namespace Trainer
 {
@@ -51,6 +53,11 @@ namespace Trainer
                 opt.Filters.Add(new CustomExceptionFilterAttribute());
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trainer", Version = "v1" });
+            });
+
             services.AddAuth(Configuration);
         }
         
@@ -59,6 +66,8 @@ namespace Trainer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trainer v1"));
             }
 
             app.UseHttpsRedirection();
