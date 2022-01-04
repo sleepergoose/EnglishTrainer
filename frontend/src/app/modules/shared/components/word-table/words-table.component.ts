@@ -1,10 +1,9 @@
-import { Component, ViewChild, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, switchMap, take } from 'rxjs';
 import { WordRead } from 'src/app/models/word/word-read';
-import { HttpInternalService } from 'src/app/services/http-internal.service';
 
 @Component({
   selector: 'app-words-table',
@@ -13,15 +12,15 @@ import { HttpInternalService } from 'src/app/services/http-internal.service';
 })
 export class WordsTableComponent implements OnInit {
   @Input() words$ = new Subject<Array<WordRead>>(); // [] as WordRead[];
+  @Output() clickRemove = new EventEmitter<number>();
 
-  displayedColumns: string[] = ['#', 'word', 'transcription', 'translation'];
+  displayedColumns: string[] = ['index', 'word', 'transcription', 'translation', 'controls'];
   dataSource!: MatTableDataSource<WordRead>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor() {
-    
   }
 
   ngOnInit() {
@@ -39,5 +38,9 @@ export class WordsTableComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  removeWord(id: number) {
+    this.clickRemove.emit(id);
   }
 }

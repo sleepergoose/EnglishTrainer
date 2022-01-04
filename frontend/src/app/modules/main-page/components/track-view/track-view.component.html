@@ -10,7 +10,7 @@
         <p>{{viewedTrack.name}}</p>
       </div>
       <div class="statistic">
-        <p>Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> Rank: <span>152</span> | Amount: <span>{{wordsAmount}}</span></p>
+        <p>Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> Rank: <span>152</span> | Amount: <span>{{wordsAmount$ | async}}</span></p>
       </div>
       <div class="description">
         <p>{{viewedTrack.description}}</p>
@@ -25,21 +25,22 @@
   <!-- Page -->
   <div class="words-list">
     <!-- List of track's words -->
-    <h2 class="list-header">Track's words</h2>
-    <app-words-table [words$]="words$"></app-words-table>
+    <h2 class="list-header" *ngIf="trackWords">Track's words</h2>
+    <app-words-table *ngIf="trackWords" [words$]="words$" (clickRemove)="removeWord($event)"></app-words-table>
 
     <!-- Search field -->
     <h2 class="search-header">Search new words</h2>
     <div class="search">
       <mat-form-field appearance="standard">
         <mat-label>Search</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+        <input matInput (input)="findWords()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
+        (keyup)="clearSearch($event)">
       </mat-form-field>
     </div>
 
     <!-- Search result -->
-    <div class="search-result">
-      
+    <div class="search-result" *ngIf="foundWords.length">
+      <app-word-search-row *ngFor="let word of foundWords" (clickButton)="addWordToTrack($event)" [word]="word"></app-word-search-row>
     </div>
   </div>
 </div>

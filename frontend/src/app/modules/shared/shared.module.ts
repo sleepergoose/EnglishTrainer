@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { WordsTableComponent } from './components/word-table/words-table.component';
 import { TrackCardComponent } from './components/track-card/track-card.component';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
+import { WordSearchRowComponent } from './components/word-search-row/word-search-row.component';
 
 @NgModule({
   declarations: [
     WordsTableComponent,
-    TrackCardComponent
+    TrackCardComponent,
+    WordSearchRowComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { MaterialComponentsModule } from '../material-components/material-compon
   ],
   exports: [
     TrackCardComponent,
-    WordsTableComponent
+    WordsTableComponent,
+    WordSearchRowComponent
   ]
 })
 export class SharedModule { }

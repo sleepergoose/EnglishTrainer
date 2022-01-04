@@ -9,6 +9,7 @@ import { LeftSideMenuComponent } from './components/left-side-menu/left-side-men
 import { ContainerComponent } from './components/container/container.component';
 import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     MainPageRoutingModule,
     MaterialComponentsModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class MainPageModule { }

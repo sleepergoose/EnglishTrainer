@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.WordTrackDTO;
 using Trainer.DAL.Context;
 using Trainer.Domain.Models;
 
@@ -65,6 +66,24 @@ namespace Trainer.BL.Services
 
             return _mapper.Map<WordTrackReadDTO>(track);
         }
+      
+        public async Task<WordToTrackWriteDTO> AddWordToTrackAsync(WordToTrackWriteDTO dto)
+        {
+            var track = await _context.WordTracks.FirstOrDefaultAsync(wt => wt.Id == dto.TrackId);
+            var word = await _context.Words.FirstOrDefaultAsync(w => w.Id == dto.WordId);
+
+            var wordToTrack = new WordToTrack
+            {
+                WordTrack = track,
+                Word = word
+            };
+
+            await _context.WordToTracks.AddAsync(wordToTrack);
+            await _context.SaveChangesAsync();
+
+            return dto;
+        }
+
 
         public async Task<WordTrackReadDTO> UpdateWordTrackAsync(WordTrackWriteDTO dto)
         {
@@ -99,6 +118,18 @@ namespace Trainer.BL.Services
             await _context.SaveChangesAsync();
 
             return id;
+        }
+
+        public async Task<int> RemoveWordFromTrackAsync(WordToTrackWriteDTO dto)
+        {
+            var entity = await _context.WordToTracks
+                .FirstOrDefaultAsync(wt => wt.WordTrackId == dto.TrackId
+                    && wt.WordId == dto.WordId);
+
+            _context.WordToTracks.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return entity.Id;
         }
     }
 }
