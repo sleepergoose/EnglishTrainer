@@ -10,7 +10,7 @@
         <p>{{viewedTrack.name}}</p>
       </div>
       <div class="statistic">
-        <p>Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> Rank: <span>152</span> | Amount: <span>23</span></p>
+        <p>Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> Rank: <span>152</span> | Amount: <span>{{wordsAmount}}</span></p>
       </div>
       <div class="description">
         <p>{{viewedTrack.description}}</p>
@@ -24,6 +24,22 @@
 
   <!-- Page -->
   <div class="words-list">
+    <!-- List of track's words -->
+    <h2 class="list-header">Track's words</h2>
     <app-words-table [words$]="words$"></app-words-table>
+
+    <!-- Search field -->
+    <h2 class="search-header">Search new words</h2>
+    <div class="search">
+      <mat-form-field appearance="standard">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+      </mat-form-field>
+    </div>
+
+    <!-- Search result -->
+    <div class="search-result">
+      
+    </div>
   </div>
 </div>
