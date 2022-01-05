@@ -48,7 +48,7 @@ namespace Trainer.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateEntiyAsync([FromBody] WordTrackWriteDTO dto)
+        public async Task<IActionResult> UpdateEntiyAsync([FromBody] WordTrackReadDTO dto)
         {
             return Ok(await _wtService.UpdateWordTrackAsync(dto));
         }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TrackRead } from '../models/track/track-read';
 import { WordToTrackWrite } from '../models/track/word-to-track';
 import { WordRead } from '../models/word/word-read';
 import { HttpInternalService } from './http-internal.service';
@@ -10,11 +11,23 @@ export class WordTrackService {
 
   constructor(private _http: HttpInternalService) { }
 
+  getTrack(id: number) {
+    return this._http.getRequest<TrackRead>(`/api/WordTracks/${id}`);
+  }
+
+  getWordsOfTrack(id: number) {
+    return this._http.getRequest<WordRead[]>(`/api/WordTracks/words/${id}`);
+  }
+
   addWordToTrack(data: WordToTrackWrite) {
     return this._http.postRequest('/api/WordTracks/addWordToTrack', data);
   }
 
   removeWordFromTrack(data: WordToTrackWrite) {
     return this._http.postRequest('/api/WordTracks/removeWord', data);
+  }
+
+  updateTrack(updatedTrack: TrackRead) {
+    return this._http.putRequest<TrackRead>('/api/WordTracks', updatedTrack);
   }
 }
