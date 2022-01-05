@@ -22,7 +22,7 @@ export class TrackViewComponent implements OnInit, OnDestroy {
   trackWords = [] as WordRead[];
   searchValue: string = '';
 
-  currentUserId: number = 0;
+  currentUserId: boolean = false;
 
   private _id: number = 0;
   private _searchTerms = new Subject<string>();
@@ -36,7 +36,14 @@ export class TrackViewComponent implements OnInit, OnDestroy {
     private _trackService: WordTrackService,
     private _router: Router,
     private _auth: AuthService
-  ) { }
+  ) {
+      this._auth.getUserId()
+        .then((id) => {
+          if (+id! === this.viewedTrack.author.id) {
+            this.currentUserId = true;
+          }
+        });
+   }
 
   ngOnInit() {
     this._activatedRoute.paramMap.pipe(
@@ -108,6 +115,25 @@ export class TrackViewComponent implements OnInit, OnDestroy {
     this._router.navigate([`edit`], { relativeTo: this._activatedRoute });
   }
 
+  removeTrack(id: number) {
+    this._trackService.removeTrack(id)
+      .pipe(take(1))
+      .subscribe((id) => {
+        this._router.navigate([`main`]);
+      });
+  }
+
+  
+  removeWord(id: number) {
+    this._trackService.removeWordFromTrack({ trackId: this.viewedTrack.id, wordId: id })
+    .pipe(take(1))
+    .subscribe(() => {
+      this.trackWords = this.trackWords.filter((w) => w.id !== id);
+      this.viewedTrack.words = this.trackWords;
+      this.words$.next(this.trackWords);
+    });
+  }
+
   private _setLiveSearch() {
     this._searchTerms.pipe(
       takeUntil(this._unsubscribe$),
@@ -119,15 +145,5 @@ export class TrackViewComponent implements OnInit, OnDestroy {
         this.foundWords = data;
       }
     });
-  }
-
-  removeWord(id: number) {
-    this._trackService.removeWordFromTrack({ trackId: this.viewedTrack.id, wordId: id })
-      .pipe(take(1))
-      .subscribe(() => {
-        this.trackWords = this.trackWords.filter((w) => w.id !== id);
-        this.viewedTrack.words = this.trackWords;
-        this.words$.next(this.trackWords);
-      });
   }
 }

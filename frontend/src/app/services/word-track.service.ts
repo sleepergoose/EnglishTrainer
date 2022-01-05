@@ -30,4 +30,8 @@ export class WordTrackService {
   updateTrack(updatedTrack: TrackRead) {
     return this._http.putRequest<TrackRead>('/api/WordTracks', updatedTrack);
   }
+
+  removeTrack(id: number) {
+    return this._http.deleteRequest<number>(`/api/WordTracks/${id}`);
+  }
 }
