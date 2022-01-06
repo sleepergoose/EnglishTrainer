@@ -19,7 +19,7 @@
         <button class="btn-play" mat-raised-button>Play</button>
         <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
         
-        <button *ngIf="currentUserId" class="btn-menu" [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <button *ngIf="isCurrentUser" class="btn-menu" [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="customize">

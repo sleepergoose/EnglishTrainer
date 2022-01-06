@@ -11,6 +11,7 @@ import { LeftSideMenuComponent } from './components/left-side-menu/left-side-men
 import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
 import { TrackEditComponent } from './components/track-edit/track-edit.component';
 import { SharedModule } from '../shared/shared.module';
+import { TrackCreateComponent } from './components/track-create/track-create.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
     LeftSideMenuComponent,
     ContainerComponent,
     KnowledgeLevelPipe,
-    TrackEditComponent
+    TrackEditComponent,
+    TrackCreateComponent
   ],
   imports: [
     CommonModule,

@@ -87,7 +87,7 @@ export class AuthService {
 
     await this.signInWithEmail(registerData.email, registerData.password);
 
-    this._router.navigateByUrl('/mainpage')
+    this._router.navigateByUrl('/main')
   }
 
   async signInWithEmail(email: string, password: string) {
@@ -97,7 +97,7 @@ export class AuthService {
             this._currentAuthState = true;
             this._user = userCredentials.user;
             this._updateAuthState(userCredentials.user);
-            this._router.navigateByUrl('/mainpage')
+            this._router.navigateByUrl('/main')
           }
       });
   }

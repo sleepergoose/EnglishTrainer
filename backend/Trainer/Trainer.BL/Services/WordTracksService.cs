@@ -109,7 +109,9 @@ namespace Trainer.BL.Services
 
         public async Task<int> DeleteWordTrackAsync(int id)
         {
-            var deletedTrack = await _context.WordTracks.FirstOrDefaultAsync(tr => tr.Id == id);
+            var deletedTrack = await _context.WordTracks
+                .Include(wt => wt.Words)
+                .FirstOrDefaultAsync(tr => tr.Id == id);
 
             if (deletedTrack == null)
                 return -1;

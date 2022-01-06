@@ -53,7 +53,7 @@ namespace Trainer.API.Controllers
             return Ok(await _wtService.UpdateWordTrackAsync(dto));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEntityAsync(int id)
         {
             return Ok(await _wtService.DeleteWordTrackAsync(id));

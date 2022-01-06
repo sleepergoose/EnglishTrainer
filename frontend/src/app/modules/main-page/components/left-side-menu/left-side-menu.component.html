@@ -31,7 +31,7 @@
   <!-- My tracks section -->
   <div class="my-tracks">
     <div class="create-track-button">
-      <button mat-raised-button color="primary">Create Track</button>
+      <button mat-raised-button color="primary" routerLink="trackview/create">Create Track</button>
     </div>
     <p *ngIf="isMyTrackContainerShown">My tracks</p>
     <div class="track-list" *ngIf="isMyTrackContainerShown">

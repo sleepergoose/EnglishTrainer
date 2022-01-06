@@ -22,7 +22,7 @@ export class TrackViewComponent implements OnInit, OnDestroy {
   trackWords = [] as WordRead[];
   searchValue: string = '';
 
-  currentUserId: boolean = false;
+  isCurrentUser: boolean = false;
 
   private _id: number = 0;
   private _searchTerms = new Subject<string>();
@@ -39,8 +39,8 @@ export class TrackViewComponent implements OnInit, OnDestroy {
   ) {
       this._auth.getUserId()
         .then((id) => {
-          if (+id! === this.viewedTrack.author.id) {
-            this.currentUserId = true;
+          if (+id! === this.viewedTrack?.author?.id) {
+            this.isCurrentUser = true;
           }
         });
    }
@@ -55,7 +55,12 @@ export class TrackViewComponent implements OnInit, OnDestroy {
         this._http.getRequest<TrackRead>(`/api/WordTracks/${this._id}`)
           .pipe(take(1))
           .subscribe((track) => {
-            this.viewedTrack = track;
+            if (track) {
+              this.viewedTrack = track;
+            }
+            else {
+              this._router.navigate([`main`]);
+            }
           });
 
         this._http.getRequest<WordRead[]>(`/api/WordTracks/words/${this._id}`)
@@ -111,7 +116,6 @@ export class TrackViewComponent implements OnInit, OnDestroy {
   }
 
   editTrack(id: number) {
-    
     this._router.navigate([`edit`], { relativeTo: this._activatedRoute });
   }
 

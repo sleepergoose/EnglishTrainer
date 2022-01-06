@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TrackRead } from '../models/track/track-read';
+import { TrackWrite } from '../models/track/track-write';
 import { WordToTrackWrite } from '../models/track/word-to-track';
 import { WordRead } from '../models/word/word-read';
 import { HttpInternalService } from './http-internal.service';
@@ -33,5 +34,9 @@ export class WordTrackService {
 
   removeTrack(id: number) {
     return this._http.deleteRequest<number>(`/api/WordTracks/${id}`);
+  }
+
+  createTrack(track: TrackWrite) {
+    return this._http.postRequest<TrackRead>('/api/WordTracks', track);
   }
 }
