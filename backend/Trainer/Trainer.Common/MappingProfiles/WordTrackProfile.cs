@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.WordTrackDTO;
 using Trainer.Domain.Models;
 
 namespace Trainer.Common.MappingProfiles
@@ -10,6 +11,7 @@ namespace Trainer.Common.MappingProfiles
         {
             CreateMap<WordTrack, WordTrackReadDTO>().ReverseMap();
             CreateMap<WordTrack, WordTrackWriteDTO>().ReverseMap();
+            CreateMap<WordTrack, TrackNameDTO>();
         }
     }
 }

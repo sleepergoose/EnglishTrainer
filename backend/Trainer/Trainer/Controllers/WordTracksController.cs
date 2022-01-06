@@ -64,5 +64,11 @@ namespace Trainer.API.Controllers
         {
             return Ok(await _wtService.RemoveWordFromTrackAsync(dto));
         }
+
+        [HttpGet("getByAuthorId/{authorId}")]
+        public async Task<IActionResult> GetTracksByAuthorIdAsync(int authorId)
+        {
+            return Ok(await _wtService.GetTracksByAuthorIdAsync(authorId));
+        }
     }
 }

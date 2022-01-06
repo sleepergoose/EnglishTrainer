@@ -3,7 +3,7 @@
   <div class="logo" routerLink="/">Trainer</div>
   <div class="menu">
     <div>
-      <a class="menu-item" (click)="go()">
+      <a class="menu-item">
         <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
         <span>Library</span>
       </a>
@@ -33,9 +33,9 @@
     <div class="create-track-button">
       <button mat-raised-button color="primary" routerLink="trackview/create">Create Track</button>
     </div>
-    <p *ngIf="isMyTrackContainerShown">My tracks</p>
+    <p *ngIf="isMyTrackContainerShown">Created tracks:</p>
     <div class="track-list" *ngIf="isMyTrackContainerShown">
-
+      <a [routerLink]="['trackview/', track.id]" *ngFor="let track of createdTracks">{{track.name}}</a>
     </div>
   </div>
 </div>
