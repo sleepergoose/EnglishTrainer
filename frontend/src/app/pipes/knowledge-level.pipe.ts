@@ -11,7 +11,7 @@ export class KnowledgeLevelPipe implements PipeTransform {
       case KnowledgeLevel.beginer: return 'Beginer'; 
       case KnowledgeLevel.preIntermediate: return 'PreIntermediate'; 
       case KnowledgeLevel.intermediate: return 'Intermediate'; 
-      case KnowledgeLevel.upperIntermediate: return 'UpperIntermediate'; 
+      case KnowledgeLevel.upperIntermediate: return 'Upper Intermediate'; 
       case KnowledgeLevel.advanced: return 'Advanced'; 
       case KnowledgeLevel.proficient: return 'Proficient'; 
       default: return 'Beginer';

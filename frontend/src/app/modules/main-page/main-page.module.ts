@@ -8,11 +8,9 @@ import { ContainerComponent } from './components/container/container.component';
 import { FormsModule } from '@angular/forms';
 import { TrackViewComponent } from './components/track-view/track-view.component';
 import { LeftSideMenuComponent } from './components/left-side-menu/left-side-menu.component';
-import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
 import { TrackEditComponent } from './components/track-edit/track-edit.component';
 import { SharedModule } from '../shared/shared.module';
 import { TrackCreateComponent } from './components/track-create/track-create.component';
-
 
 @NgModule({
   declarations: [
@@ -21,7 +19,6 @@ import { TrackCreateComponent } from './components/track-create/track-create.com
     TrackViewComponent,
     LeftSideMenuComponent,
     ContainerComponent,
-    KnowledgeLevelPipe,
     TrackEditComponent,
     TrackCreateComponent
   ],

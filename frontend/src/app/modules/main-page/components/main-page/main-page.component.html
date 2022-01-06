@@ -10,15 +10,8 @@
   <div class="page">
     <div class="new-releses card-container">
       <p>New Releases</p>
-      <div class="cards">
-        <app-track-card></app-track-card>
-        <app-track-card></app-track-card>
-        <app-track-card></app-track-card>
-        <app-track-card></app-track-card>
-        <app-track-card></app-track-card>
-        <app-track-card></app-track-card>
-        <app-track-card></app-track-card>
-        <app-track-card></app-track-card>
+      <div class="cards" *ngIf="newReleasesTracks.length">
+        <app-track-card *ngFor="let _track of newReleasesTracks" [track]="_track"></app-track-card>
       </div>
     </div>
     <div class="recent-tracks card-container">
