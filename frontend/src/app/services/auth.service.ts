@@ -35,16 +35,17 @@ import { AuthUser } from '../models/auth/auth-user';
 })
 export class AuthService {
   private _user$: Observable<User | null>;
-  // private _tokenId$: Observable<User | null>
   private _currentAuthState: boolean = false;
   private _user = {} as User;
+  
+  authUser = {} as AuthUser;
 
   constructor(
     private _http: HttpInternalService,
     private _auth: Auth,
     private _router: Router) {
       this._user$ = authState(this._auth);
-      
+
       onAuthStateChanged(this._auth, (user) => {
         if (user) {
           this._setAuthState(true);
@@ -56,8 +57,17 @@ export class AuthService {
       // this._tokenId$ = new Observable((observer: any) => this._auth.onIdTokenChanged(observer));
   }
 
+  async getTokenResult() {
+    return await this._auth.currentUser!.getIdTokenResult(true);
+  }
+
   async getUser(): Promise<User | null> {
     return await firstValueFrom(this._user$)
+  }
+
+  async getUserId() {
+    const token = await this.getTokenResult();
+    return token.claims['id'];
   }
 
   getAuthState(): boolean {
@@ -77,7 +87,7 @@ export class AuthService {
 
     await this.signInWithEmail(registerData.email, registerData.password);
 
-    this._router.navigateByUrl('/mainpage')
+    this._router.navigateByUrl('/main')
   }
 
   async signInWithEmail(email: string, password: string) {
@@ -87,7 +97,7 @@ export class AuthService {
             this._currentAuthState = true;
             this._user = userCredentials.user;
             this._updateAuthState(userCredentials.user);
-            this._router.navigateByUrl('/mainpage')
+            this._router.navigateByUrl('/main')
           }
       });
   }
@@ -126,7 +136,7 @@ export class AuthService {
       
     const tokenResult = await (await this._user.getIdTokenResult(true));
     
-    const authUser: AuthUser = {
+    this.authUser = {
       id: <any>tokenResult.claims['id'],
       role: <any>tokenResult.claims['role'],
       firebaseId: user.uid,

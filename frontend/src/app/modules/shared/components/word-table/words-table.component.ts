@@ -11,6 +11,7 @@ import { WordRead } from 'src/app/models/word/word-read';
   styleUrls: ['./words-table.component.sass']
 })
 export class WordsTableComponent implements OnInit {
+  @Input() isControlShown: boolean = false;
   @Input() words$ = new Subject<Array<WordRead>>(); // [] as WordRead[];
   @Output() clickRemove = new EventEmitter<number>();
 

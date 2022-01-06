@@ -1,19 +1,32 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, take, takeUntil } from 'rxjs';
+import { KnowledgeLevel } from 'src/app/models/common/knowledge-level';
 import { TrackRead } from 'src/app/models/track/track-read';
 import { WordRead } from 'src/app/models/word/word-read';
-import { AuthService } from 'src/app/services/auth.service';
 import { HttpInternalService } from 'src/app/services/http-internal.service';
 import { SearchService } from 'src/app/services/search.service';
 import { WordTrackService } from 'src/app/services/word-track.service';
 
 @Component({
-  selector: 'app-track-view',
-  templateUrl: './track-view.component.html',
-  styleUrls: ['./track-view.component.sass']
+  selector: 'app-track-edit',
+  templateUrl: './track-edit.component.html',
+  styleUrls: ['./track-edit.component.sass']
 })
-export class TrackViewComponent implements OnInit, OnDestroy {
+export class TrackEditComponent implements OnInit, OnDestroy {
+  isNameEdited: boolean = false;
+  isDescriptionEdited: boolean = false;
+  isLevelEdited: boolean = false;
+
+  levelValues: KnowledgeLevel[] = [
+    KnowledgeLevel.beginer,
+    KnowledgeLevel.preIntermediate,
+    KnowledgeLevel.intermediate,
+    KnowledgeLevel.upperIntermediate,
+    KnowledgeLevel.advanced,
+    KnowledgeLevel.proficient
+  ];
+
   words$ = new Subject<Array<WordRead>>(); 
   wordsAmount$ = new Subject<number>();
   viewedTrack = {} as TrackRead;
@@ -22,28 +35,16 @@ export class TrackViewComponent implements OnInit, OnDestroy {
   trackWords = [] as WordRead[];
   searchValue: string = '';
 
-  isCurrentUser: boolean = false;
-
   private _id: number = 0;
   private _searchTerms = new Subject<string>();
   private _unsubscribe$ = new Subject<void>();
-  
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _http: HttpInternalService,
     private _searchService: SearchService,
-    private _trackService: WordTrackService,
-    private _router: Router,
-    private _auth: AuthService
-  ) {
-      this._auth.getUserId()
-        .then((id) => {
-          if (+id! === this.viewedTrack?.author?.id) {
-            this.isCurrentUser = true;
-          }
-        });
-   }
+    private _trackService: WordTrackService
+  ) { }
 
   ngOnInit() {
     this._activatedRoute.paramMap.pipe(
@@ -52,18 +53,13 @@ export class TrackViewComponent implements OnInit, OnDestroy {
       if (data && this._id! !== +data) {
         this._id = +data;
 
-        this._http.getRequest<TrackRead>(`/api/WordTracks/${this._id}`)
+        this._trackService.getTrack(this._id)
           .pipe(take(1))
           .subscribe((track) => {
-            if (track) {
-              this.viewedTrack = track;
-            }
-            else {
-              this._router.navigate([`main`]);
-            }
+            this.viewedTrack = track;
           });
 
-        this._http.getRequest<WordRead[]>(`/api/WordTracks/words/${this._id}`)
+        this._trackService.getWordsOfTrack(this._id)
           .pipe(take(1))
           .subscribe((words) => {           
             this.viewedTrack.words = words;
@@ -115,27 +111,24 @@ export class TrackViewComponent implements OnInit, OnDestroy {
     }
   }
 
-  editTrack(id: number) {
-    this._router.navigate([`edit`], { relativeTo: this._activatedRoute });
+  clickNameEdit() {
+    this.isNameEdited = !this.isNameEdited;
   }
 
-  removeTrack(id: number) {
-    this._trackService.removeTrack(id)
+  clickDescriptionEdit() {
+    this.isDescriptionEdited = !this.isDescriptionEdited;
+  }
+
+  clickLevelEdit(){
+    this.isLevelEdited = !this.isLevelEdited;
+  }
+
+  clickSaveTrack() {
+    this._trackService.updateTrack(this.viewedTrack)
       .pipe(take(1))
-      .subscribe((id) => {
-        this._router.navigate([`main`]);
-      });
-  }
-
-  
-  removeWord(id: number) {
-    this._trackService.removeWordFromTrack({ trackId: this.viewedTrack.id, wordId: id })
-    .pipe(take(1))
-    .subscribe(() => {
-      this.trackWords = this.trackWords.filter((w) => w.id !== id);
-      this.viewedTrack.words = this.trackWords;
-      this.words$.next(this.trackWords);
-    });
+      .subscribe((updatedTrack) => {
+        this.viewedTrack = updatedTrack;
+      })
   }
 
   private _setLiveSearch() {
@@ -149,5 +142,15 @@ export class TrackViewComponent implements OnInit, OnDestroy {
         this.foundWords = data;
       }
     });
+  }
+
+  removeWord(id: number) {
+    this._trackService.removeWordFromTrack({ trackId: this.viewedTrack.id, wordId: id })
+      .pipe(take(1))
+      .subscribe(() => {
+        this.trackWords = this.trackWords.filter((w) => w.id !== id);
+        this.viewedTrack.words = this.trackWords;
+        this.words$.next(this.trackWords);
+      });
   }
 }

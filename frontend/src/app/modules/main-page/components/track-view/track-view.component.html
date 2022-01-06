@@ -16,8 +16,22 @@
         <p>{{viewedTrack.description}}</p>
       </div>
       <div class="controls">
-        <button mat-raised-button color="primary">Play</button>
+        <button class="btn-play" mat-raised-button>Play</button>
         <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
+        
+        <button *ngIf="isCurrentUser" class="btn-menu" [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="customize">
+          <button mat-menu-item (click)="editTrack(viewedTrack.id)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="removeTrack(viewedTrack.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Remove</span>
+          </button>
+        </mat-menu>
       </div>
     </div>
   </div>
@@ -26,21 +40,7 @@
   <div class="words-list">
     <!-- List of track's words -->
     <h2 class="list-header" *ngIf="trackWords">Track's words</h2>
-    <app-words-table *ngIf="trackWords" [words$]="words$" (clickRemove)="removeWord($event)"></app-words-table>
-
-    <!-- Search field -->
-    <h2 class="search-header">Search new words</h2>
-    <div class="search">
-      <mat-form-field appearance="standard">
-        <mat-label>Search</mat-label>
-        <input matInput (input)="findWords()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
-        (keyup)="clearSearch($event)">
-      </mat-form-field>
-    </div>
-
-    <!-- Search result -->
-    <div class="search-result" *ngIf="foundWords.length">
-      <app-word-search-row *ngFor="let word of foundWords" (clickButton)="addWordToTrack($event)" [word]="word"></app-word-search-row>
-    </div>
+    <app-words-table *ngIf="trackWords" [words$]="words$" (clickRemove)="removeWord($event)"
+      [isControlShown]="false"></app-words-table>
   </div>
 </div>

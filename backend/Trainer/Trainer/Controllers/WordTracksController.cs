@@ -48,12 +48,12 @@ namespace Trainer.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateEntiyAsync([FromBody] WordTrackWriteDTO dto)
+        public async Task<IActionResult> UpdateEntiyAsync([FromBody] WordTrackReadDTO dto)
         {
             return Ok(await _wtService.UpdateWordTrackAsync(dto));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEntityAsync(int id)
         {
             return Ok(await _wtService.DeleteWordTrackAsync(id));
