@@ -133,5 +133,14 @@ namespace Trainer.BL.Services
 
             return entity.Id;
         }
+
+        public async Task<ICollection<TrackNameDTO>> GetTracksByAuthorIdAsync(int id)
+        {
+            var tracks = await _context.WordTracks
+                .Where(t => t.AuthorId == id)
+                .ToListAsync();
+
+            return _mapper.Map<ICollection<TrackNameDTO>>(tracks);
+        }
     }
 }

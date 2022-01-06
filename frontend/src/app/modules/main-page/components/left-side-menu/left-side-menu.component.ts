@@ -1,23 +1,54 @@
-import { Component, SkipSelf } from '@angular/core';
-import { take } from 'rxjs';
-import { HttpInternalService } from 'src/app/services/http-internal.service';
+import { Component, OnDestroy } from '@angular/core';
+import { Subject, take, takeUntil } from 'rxjs';
+import { TrackName } from 'src/app/models/track/track-name';
+import { AuthService } from 'src/app/services/auth.service';
+import { CreatedTracksService } from 'src/app/services/created-tracks.service';
+import { WordTrackService } from 'src/app/services/word-track.service';
 
 @Component({
   selector: 'app-left-side-menu',
   templateUrl: './left-side-menu.component.html',
   styleUrls: ['./left-side-menu.component.sass']
 })
-export class LeftSideMenuComponent {
+export class LeftSideMenuComponent implements OnDestroy {
+  private _userId: number = 0;
+  
   isMyTrackContainerShown: boolean = false;
+  createdTracks = [] as TrackName[];
 
-  constructor(@SkipSelf() private _http: HttpInternalService) { }
+  private _subscription$ = new Subject<void>();
 
-  // The method below is just for test
-  go() {
-    this._http.getRequest('/api/Words/1')
+  constructor(
+    private _auth: AuthService,
+    private _trackService: WordTrackService,
+    private _createdTrackService: CreatedTracksService
+  ) {
+    this._auth.getUserId()
+      .then((id) => {
+        this._userId = +id!;
+        this.loadCreatedTracks(this._userId);
+      });
+  }
+
+  ngOnDestroy() {
+      this._subscription$.next();
+      this._subscription$.complete();
+  }
+
+  loadCreatedTracks(userId: number) {
+    this._trackService.getTracksByAuthorId(userId)
       .pipe(take(1))
-      .subscribe((word: any) => {
-        console.log(word);
+      .subscribe((tracks) => {
+        this._createdTrackService.fillCreatedTrackArray(tracks);
+        this._createdTrackService.getChachedTracks()
+          .pipe(takeUntil(this._subscription$))
+          .subscribe((tracks) => {
+            this.createdTracks = tracks;
+
+            if (this.createdTracks.length > 0) {
+              this.isMyTrackContainerShown = true;
+            }
+          }); 
       });
   }
 }

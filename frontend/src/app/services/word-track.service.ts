@@ -39,4 +39,8 @@ export class WordTrackService {
   createTrack(track: TrackWrite) {
     return this._http.postRequest<TrackRead>('/api/WordTracks', track);
   }
+
+  getTracksByAuthorId(authorId: number) {
+    return this._http.getRequest<TrackRead[]>(`/api/WordTracks/getByAuthorId/${authorId}`);
+  }
 }
