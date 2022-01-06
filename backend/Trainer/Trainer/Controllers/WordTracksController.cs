@@ -29,10 +29,10 @@ namespace Trainer.API.Controllers
             return Ok(await _wtService.GetWordsByTrackIdAsync(id));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetEntitiesAsync()
+        [HttpGet("newReleases/{amount}")]
+        public async Task<IActionResult> GetNewReleasesAsync(int amount)
         {
-            return Ok(await _wtService.GetWordTracksAsync());
+            return Ok(await _wtService.GetNewReleasesAsync(amount));
         }
 
         [HttpPost]

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { TrackCardRead } from 'src/app/models/track/track-card-read';
 
 @Component({
   selector: 'app-track-card',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./track-card.component.sass']
 })
 export class TrackCardComponent {
-  constructor() { }
+  @Input() track = {} as TrackCardRead;
+
+  constructor(private _router: Router) { }
+
+  showTrack(id: number) {
+    this._router.navigate([`main/trackview/${id}`]);
+  }
 }

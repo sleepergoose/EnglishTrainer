@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.UserDTO;
 using Trainer.Common.DTO.WordTrackDTO;
 using Trainer.DAL.Context;
 using Trainer.Domain.Models;
@@ -42,12 +43,25 @@ namespace Trainer.BL.Services
             return _mapper.Map<ICollection<WordDTO>>(words);
         }
 
-        public async Task<ICollection<WordTrackReadDTO>> GetWordTracksAsync()
+        public async Task<ICollection<WordTrackCardReadDTO>> GetNewReleasesAsync(int amount)
         {
             var tracks = await _context.WordTracks
                 .Include(wt => wt.Author)
+                .OrderByDescending(wt => wt.CreatedAt)
+                .Take(amount)
+                .Select(w => new WordTrackCardReadDTO {
+                    Id = w.Id,
+                    Name = w.Name,
+                    Description = w.Description,
+                    Level = w.Level,
+                    CreatedAt = w.CreatedAt,
+                    Author = _mapper.Map<UserReadShortDTO>(w.Author),
+                    Amount = w.Words.Count,
+                    Rate = 0
+                })
                 .ToListAsync();
-            return _mapper.Map<ICollection<WordTrackReadDTO>>(tracks);
+
+            return tracks;
         }
 
         public async Task<WordTrackReadDTO> CreateWordTrackAsync(WordTrackWriteDTO dto)

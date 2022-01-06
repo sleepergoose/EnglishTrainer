@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TrackCardRead } from '../models/track/track-card-read';
 import { TrackRead } from '../models/track/track-read';
 import { TrackWrite } from '../models/track/track-write';
 import { WordToTrackWrite } from '../models/track/word-to-track';
@@ -14,6 +15,10 @@ export class WordTrackService {
 
   getTrack(id: number) {
     return this._http.getRequest<TrackRead>(`/api/WordTracks/${id}`);
+  }
+
+  getNewReleases(amount: number) {
+    return this._http.getRequest<TrackCardRead[]>(`/api/WordTracks/newReleases/${amount}`);
   }
 
   getWordsOfTrack(id: number) {

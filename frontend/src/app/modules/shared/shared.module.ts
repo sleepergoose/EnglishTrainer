@@ -4,12 +4,14 @@ import { WordsTableComponent } from './components/word-table/words-table.compone
 import { TrackCardComponent } from './components/track-card/track-card.component';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
 import { WordSearchRowComponent } from './components/word-search-row/word-search-row.component';
+import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
 
 @NgModule({
   declarations: [
     WordsTableComponent,
     TrackCardComponent,
-    WordSearchRowComponent
+    WordSearchRowComponent,
+    KnowledgeLevelPipe
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { WordSearchRowComponent } from './components/word-search-row/word-search
   exports: [
     TrackCardComponent,
     WordsTableComponent,
-    WordSearchRowComponent
+    WordSearchRowComponent,
+    KnowledgeLevelPipe
   ]
 })
 export class SharedModule { }
