@@ -31,21 +31,34 @@
       padding: 10px 0px 10px 0px
       color: $text-common
       .name
-        font-size: 3rem
-        font-weight: 600
-        padding: 10px 0px 10px 0px
-        max-width: 600px
-        overflow: hidden
-        text-overflow: ellipsis
-        white-space: nowrap
+        max-width: 750px
+        span
+          display: inline-block
+          font-size: 3rem
+          font-weight: 600
+          color: $text-common
+          max-width: 700px
+          padding: 15px 0px 7px 0px
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+
       .statistic
+        margin-top: 15px
         color: #999999
         span
           color: $text-common
+
       .description
         max-height: 50px
-        max-width: 600px
+        max-width: 750px
+        width: 750px
+        max-height: 50px !important
+        overflow: hidden
+        padding: 7px 0px 0px 0px
+
       .controls
+        margin-top: 10px
         width: 400px
         display: grid
         grid-template-columns: 100px 40px 40px
