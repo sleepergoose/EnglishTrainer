@@ -6,15 +6,25 @@
       <img src="../../../../../assets/dictionary_2.png" alt="">
     </div>
     <div class="info-block">
+ 
       <div class="name">
-        <p>{{viewedTrack.name}}</p>
+        <span>{{viewedTrack.name}}</span>
       </div>
+
       <div class="statistic">
-        <p>Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> Rank: <span>152</span> | Amount: <span>{{wordsAmount$ | async}}</span></p>
+        <div>
+          Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> 
+          |
+          Rank: <span>152</span> 
+          | 
+          Amount: <span>{{wordsAmount$ | async}}</span>
+        </div>
       </div>
+
       <div class="description">
-        <p>{{viewedTrack.description}}</p>
+        <span>{{viewedTrack.description}}</span>
       </div>
+
       <div class="controls">
         <button class="btn-play" mat-raised-button>Play</button>
         <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
