@@ -1,10 +1,16 @@
-<div class="container">
+<div class="spinner-field" *ngIf="isSpinnerShown">
+  <mat-spinner color="accent"></mat-spinner>
+  <span>Wait... Data loading...</span>
+</div>
+
+<div class="container" *ngIf="!isSpinnerShown">
+
   <div class="track-info">
     <div class="name">{{track?.name}}</div>
     <div class="statistic">
       Level: <span>{{track?.level | knowledgeLevel}}</span> 
       |
-      Rank: <span>{{track?.rate}}</span> 
+      Rank: <span>{{track?.rank}}</span> 
       | 
       Amount: <span>{{track?.amount}}</span>
       | 
@@ -13,42 +19,55 @@
   </div>
 
   <!-- Trainer -->
-  <div class="trainer">
+  <div class="trainer" *ngIf="isTrainerShown">
 
     <div class="progress">
-      <label for="progress-bar">40%</label>
-      <mat-progress-bar name="progress-bar" mode="determinate" value="40"></mat-progress-bar>
+      <!-- <label for="progress-bar" *ngIf="progress !== 0">{{progress}}%</label> -->
+      <mat-progress-bar name="progress-bar" mode="determinate" value="{{progress}}" *ngIf="progress !== 0"></mat-progress-bar>
     </div>
 
     <div class="word">
-      <span>name</span>
+      <span>{{currentTrainerWords.text}}</span>
     </div>
 
     <div class="response">
-      <input type="text">
+      <input type="text" (keyup)="keyUp($event)" #input="ngModel" [(ngModel)]="response" name="input">
     </div>
 
     <div class="controls">
-      <button class="admit">Admit</button>
-      <button class="translate">Translate</button>
-      <button class="example-en">Example EN</button>
-      <button class="example-ru">Example RU</button>
+      <mat-slide-toggle class="lang-slider">Invert language</mat-slide-toggle>
+      <button class="admit" (click)="admit()">Admit</button>
+      <button class="translate" (click)="isTranslationShown = !isTranslationShown">Translate</button>
+      <button class="example-en" (click)="isExampleRuShown = !isExampleRuShown">Example EN</button>
+      <button class="example-ru" (click)="isExampleEnShown = !isExampleEnShown">Example RU</button>
     </div>
 
     <div class="help">
-      <div class="translation">
+      <div class="translation" *ngIf="isTranslationShown">
         <p class="caption">Translation:</p>
         <span>имя, название, называть, именовать</span>
       </div>
-      <div class="examples">
+      <div class="examples" *ngIf="currentTrainerWords.examples.length && !(isExampleRuShown && isExampleEnShown)">
         <p class="caption">Examples:</p>
-        <app-example [examples]="currentTrainerWords.examples"></app-example>
+        <app-example 
+          [examples]="currentTrainerWords.examples" 
+          [isRuHidden]="isExampleRuShown"
+          [isEnHidden]="isExampleEnShown">
+        </app-example>
       </div>
     </div>
   </div>
 
   <!-- Results -->
-  <div class="results">
+  <div class="results" *ngIf="!isTrainerShown">
 
+    <div class="summary">
+      Right answers: <span>{{rightAnswers.length}}</span> from <span>{{max}} </span>
+    </div>
+    <br>
+    <p class="wrong-answers-title">Wrong answers:</p>
+    <div class="wrong-answers">
+      <app-example [examples]="wrongAnswers"></app-example>
+    </div>
   </div>
 </div>

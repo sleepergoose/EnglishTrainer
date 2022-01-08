@@ -9,5 +9,5 @@ export interface TrackCardRead {
   description: string;
   level: KnowledgeLevel;
   amount: number;
-  rate: number;
+  rank: number;
 }

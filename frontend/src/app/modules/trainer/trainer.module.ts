@@ -5,6 +5,7 @@ import { TrainerRoutingModule } from './trainer-routing.module';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
 import { ExampleComponent } from './components/example/example.component';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
     CommonModule,
     TrainerRoutingModule,
     MaterialComponentsModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class TrainerModule { }

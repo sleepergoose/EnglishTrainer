@@ -1,7 +1,7 @@
 <div class="card" (click)="showTrack(track.id)">
   <div class="name"> {{track?.name}} </div>
   <div class="item">Level: <span>{{track?.level | knowledgeLevel}}</span></div>
-  <div class="item">Rank: <span>{{track?.rate}}</span> | Amount: <span>{{track?.amount}}</span></div>
+  <div class="item">Rank: <span>{{track?.rank}}</span> | Amount: <span>{{track?.amount}}</span></div>
   <div class="item">Author: <span>{{track?.author?.name}}</span></div>
   <div class="description">{{track?.description}}</div>
   <div class="heart">
