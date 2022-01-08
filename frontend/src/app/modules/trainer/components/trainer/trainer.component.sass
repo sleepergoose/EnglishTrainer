@@ -1,0 +1,79 @@
+
+@import 'src/styles.sass'
+
+.container
+  padding: 30px
+  padding-top: 100px
+  .trainer
+    .progress
+      visibility: visible
+      padding: 5px 0px 5px 0px
+      text-align: center
+      label
+        color: $text-common
+        font-size: 1.5rem
+        padding: 5px
+      mat-progress-bar
+        height: 10px
+        background: red !important
+    .word
+      padding: 20px 0px 10px 0px
+      span
+        color: $text-common
+        font-size: 2rem
+        font-weight: bold
+    .response
+      padding: 10px 0px 1px 0px
+      input
+        width: 100%
+        background: $light-gray
+        border: 1px solid #484848
+        border-radius: 20px
+        font-size: 1.8rem
+        color: $text-common
+        line-height: 2.5rem
+        padding: 0px 20px
+        text-align: center
+        &:focus
+          outline: none
+    .controls
+      text-align: center
+      padding: 5px 0px 5px 0px
+      button
+        border: 1px solid $text-common
+        border-radius: 20px
+        color: $text-common
+        padding: 5px 10px
+        background: $light-gray
+        width: 100px
+        margin: 1% 1%
+        cursor: pointer
+        &:hover
+          transform: scale(1.1)
+          color: $primary
+          border: 1px solid $primary
+        &:active
+          transform: scale(1)
+    .help
+      color: $text-common
+      padding: 3px 0px 10px 0px
+      .translation
+        padding: 5px 0px 
+        span
+          padding-left: 20px
+      .examples
+        padding: 25px 0px
+
+.caption
+  color: #999999
+  padding-right: 10px
+  font-weight: bold
+
+::ng-deep .mat-progress-bar-fill::after
+    background-color: $primary
+
+::ng-deep .mat-progress-bar-buffer 
+    background: $light-gray
+
+::ng-deep .mat-progress-bar
+    border-radius: 5px

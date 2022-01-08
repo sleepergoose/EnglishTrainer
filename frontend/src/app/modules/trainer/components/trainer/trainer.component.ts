@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TrainerWord } from 'src/app/models/word/trainer-word';
 
 @Component({
   selector: 'app-trainer',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./trainer.component.sass']
 })
 export class TrainerComponent {
+  currentTrainerWords = {} as TrainerWord;
 
   constructor() { }
 }
