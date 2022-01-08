@@ -14,12 +14,15 @@ table
   background: $drk-gray
   td, th 
     button
+      border: none
       background: transparent
       border-radius: 20px
-      padding: 0px 10px 0px 10px !important
+      padding: 7px 10px 7px 10px !important
       color: #999999
       &:hover
         color: $primary !important
+        cursor: pointer
+        border: 1px solid $primary
   .mat-column-index, .mat-column-word, .mat-column-transcription, .mat-column-translation,
   .mat-column-controls
     text-overflow: ellipsis

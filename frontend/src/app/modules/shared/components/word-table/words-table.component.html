@@ -34,7 +34,7 @@
     <ng-container matColumnDef="controls">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let row"> 
-        <button *ngIf="isControlShown" mat-button (click)="removeWord(row.id)">REMOVE</button>
+        <button *ngIf="isControlShown" (click)="removeWord(row.id)">REMOVE</button>
       </td>
     </ng-container>
 

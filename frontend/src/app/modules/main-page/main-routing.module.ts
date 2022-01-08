@@ -28,7 +28,12 @@ const routes: Routes = [
       {
         path: 'trackview/:id',
         component: TrackViewComponent
-      }
+      },
+      {
+        path: 'trainer',
+        loadChildren: () => import('../trainer/trainer.module').then((m) => m.TrainerModule),
+        canActivate: [AuthGuard]
+      },
     ]
   }
 ];
@@ -38,4 +43,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard]
 })
-export class MainPageRoutingModule { }
+export class MainRoutingModule { }

@@ -152,6 +152,7 @@ namespace Trainer.BL.Services
         {
             var tracks = await _context.WordTracks
                 .Where(t => t.AuthorId == id)
+                .OrderByDescending(t => t.CreatedAt)
                 .ToListAsync();
 
             return _mapper.Map<ICollection<TrackNameDTO>>(tracks);
