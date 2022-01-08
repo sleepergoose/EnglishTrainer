@@ -1,4 +1,4 @@
-export interface PvExample {
+export interface Example {
   id: number;
   phrase: string;
   translation: string;

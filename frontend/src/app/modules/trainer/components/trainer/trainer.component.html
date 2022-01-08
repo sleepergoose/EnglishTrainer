@@ -1,4 +1,17 @@
 <div class="container">
+  <div class="track-info">
+    <div class="name">{{track?.name}}</div>
+    <div class="statistic">
+      Level: <span>{{track?.level | knowledgeLevel}}</span> 
+      |
+      Rank: <span>{{track?.rate}}</span> 
+      | 
+      Amount: <span>{{track?.amount}}</span>
+      | 
+      Author: <span>{{track?.author?.name}}</span>
+    </div>
+  </div>
+
   <!-- Trainer -->
   <div class="trainer">
 
@@ -29,9 +42,7 @@
       </div>
       <div class="examples">
         <p class="caption">Examples:</p>
-        <span>She's name is Marry</span><span>Ее зовут Мария</span>
-        <span>What's his name?</span><span>Как его зовут?</span>
-        <span>I named it else</span><span>Я назвал его иначе</span>
+        <app-example [examples]="currentTrainerWords.examples"></app-example>
       </div>
     </div>
   </div>

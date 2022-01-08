@@ -3,8 +3,24 @@
 
 .container
   padding: 30px
-  padding-top: 100px
+  .track-info
+    width: 700px
+    .name
+      max-width: 700px
+      color: $text-common
+      font-size: 3rem
+      font-weight: bold
+      padding: 15px 0px 14px 0px
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: nowrap
+    .statistic
+      color: #999999
+      span
+        color: $text-common
+    
   .trainer
+    padding-top: 20px 
     .progress
       visibility: visible
       padding: 5px 0px 5px 0px
@@ -18,6 +34,7 @@
         background: red !important
     .word
       padding: 20px 0px 10px 0px
+      text-align: center
       span
         color: $text-common
         font-size: 2rem
@@ -60,6 +77,7 @@
       .translation
         padding: 5px 0px 
         span
+          font-style: italic
           padding-left: 20px
       .examples
         padding: 25px 0px
