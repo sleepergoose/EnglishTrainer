@@ -9,6 +9,17 @@ import { TrackViewComponent } from './components/track-view/track-view.component
 
 const routes: Routes = [
   {
+    path: '',
+    component: ContainerComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: MainPageComponent,
+      }
+    ]
+  },
+  {
     path: 'main',
     component: ContainerComponent,
     canActivate: [AuthGuard],

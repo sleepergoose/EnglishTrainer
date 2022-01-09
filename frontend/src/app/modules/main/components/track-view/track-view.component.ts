@@ -138,6 +138,10 @@ export class TrackViewComponent implements OnInit, OnDestroy {
     });
   }
 
+  goToTrainer(id: number) {
+    this._router.navigate([`main/trainer/${id}`]);
+  }
+
   private _setLiveSearch() {
     this._searchTerms.pipe(
       takeUntil(this._unsubscribe$),
