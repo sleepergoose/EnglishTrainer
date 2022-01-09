@@ -23,17 +23,17 @@
           Amount: <span>{{wordsAmount$ | async}}</span>
         </div>
         <mat-icon *ngIf="!isLevelEdited" (click)="clickLevelEdit()">edit</mat-icon>
-        <select *ngIf="isLevelEdited"  name="knowledgeLevel" [ngModel]="viewedTrack.level" 
+        <mat-select  *ngIf="isLevelEdited"  name="knowledgeLevel" [ngModel]="viewedTrack.level" 
           (ngModelChange)="viewedTrack.level=$event"  #knowledgeLevel="ngModel" required>
-          <option *ngFor="let level of levelValues" [ngValue]="level">{{level | knowledgeLevel}}</option>
-        </select>
+          <mat-option *ngFor="let level of levelValues" [value]="level">{{level | knowledgeLevel}}</mat-option>
+        </mat-select>
         <mat-icon *ngIf="isLevelEdited" (click)="clickLevelEdit()">save</mat-icon>
       </div>
 
       <div class="description">
         <span *ngIf="!isDescriptionEdited">{{viewedTrack.description}}</span>
         <mat-icon *ngIf="!isDescriptionEdited" (click)="clickDescriptionEdit()">edit</mat-icon>
-        <input *ngIf="isDescriptionEdited" type="text" [(ngModel)]="viewedTrack.description">
+        <input maxlength="100" *ngIf="isDescriptionEdited" type="text" [(ngModel)]="viewedTrack.description">
         <mat-icon *ngIf="isDescriptionEdited" (click)="clickDescriptionEdit()">save</mat-icon>
       </div>
 

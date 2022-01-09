@@ -69,16 +69,13 @@
             cursor: pointer
           &:active
             transform: scale(0.95)
-        select
+        mat-select
           background: transparent
           border: none
           border-bottom: 1px solid #a7a7a7
           color: $text-common
           margin: 10px !important
-          option
-            display: inline !important
-            background: $drk-gray
-            padding: 10px !important
+          width: 200px
         span
           color: $text-common
 
@@ -146,5 +143,12 @@
           color: $text-common !important
           caret-color: $text-common !important
 
-::ng-deep.mat-form-field-flex
-  padding: 0px !important
+::ng-deep
+  .mat-form-field-flex
+    padding: 0px !important
+
+  .mat-option 
+    background: $light-gray !important
+
+  .mat-option:hover 
+    background: lighten($light-gray, 10) !important
