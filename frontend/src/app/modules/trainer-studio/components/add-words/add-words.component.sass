@@ -1,0 +1,44 @@
+@import 'src/styles.sass'
+
+.container
+  .header
+    height: 170px
+    background: $header-gradient
+    padding: 110px 0px 0px 30px 
+    span  
+      display: inline-block
+      color: $text-gray
+      font-size: 3.5rem
+      font-weight: bold
+
+  .add-section
+    padding: 50px 10px 
+    form
+      display: grid
+      grid-template-columns: 100%
+      grid-template-rows: auto
+      align-items: center
+      justify-items: center
+      .mat-form-field
+        width: 80%
+        padding-top: 10px
+        background: $drk-gray !important
+    .controls
+      text-align: right
+      padding: 5px 0px
+      button
+        background: $drk-gray
+        color: $text-common
+        padding: 7px 10px
+        width: 90px
+        border: 1px solid #484848
+        border-radius: 20px
+        margin-left: 5px
+        cursor: pointer
+        &:hover
+          color: $primary
+          background: lighten($drk-gray, 3)
+
+
+    
+
