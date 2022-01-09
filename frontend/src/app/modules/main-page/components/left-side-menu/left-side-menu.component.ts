@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, take, takeUntil } from 'rxjs';
 import { TrackName } from 'src/app/models/track/track-name';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,7 +22,8 @@ export class LeftSideMenuComponent implements OnDestroy {
   constructor(
     private _auth: AuthService,
     private _trackService: WordTrackService,
-    private _createdTrackService: CreatedTracksService
+    private _createdTrackService: CreatedTracksService,
+    private _router: Router
   ) {
     this._auth.getUserId()
       .then((id) => {
@@ -50,5 +52,9 @@ export class LeftSideMenuComponent implements OnDestroy {
             }
           }); 
       });
+  }
+
+  goToTrainer() {
+    this._router.navigate([`main/trainer/${this.createdTracks[0]?.id}`]);
   }
 }

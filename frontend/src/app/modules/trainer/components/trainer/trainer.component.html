@@ -18,13 +18,13 @@
     </div>
   </div>
 
+  <div class="progress" *ngIf="isTrainerShown">
+    <!-- <label for="progress-bar" *ngIf="progress !== 0">{{progress}}%</label> -->
+    <mat-progress-bar name="progress-bar" mode="determinate" value="{{progress}}" *ngIf="progress !== 0"></mat-progress-bar>
+  </div>
+
   <!-- Trainer -->
   <div class="trainer" *ngIf="isTrainerShown">
-
-    <div class="progress">
-      <!-- <label for="progress-bar" *ngIf="progress !== 0">{{progress}}%</label> -->
-      <mat-progress-bar name="progress-bar" mode="determinate" value="{{progress}}" *ngIf="progress !== 0"></mat-progress-bar>
-    </div>
 
     <div class="word">
       <span>{{currentTrainerWords.text}}</span>

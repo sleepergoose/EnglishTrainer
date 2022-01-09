@@ -5,7 +5,7 @@
   <div class="item">Author: <span>{{track?.author?.name}}</span></div>
   <div class="description">{{track?.description}}</div>
   <div class="heart">
-    <button mat-raised-button color="primary">Play</button>
+    <button mat-raised-button color="primary" (click)="goToTrainer(track.id); $event.stopPropagation()">Play</button>
     <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
   </div>
 </div>

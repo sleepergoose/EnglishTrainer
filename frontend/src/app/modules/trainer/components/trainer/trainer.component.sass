@@ -22,12 +22,16 @@
   stroke: $primary !important
 
 .container
-  padding: 30px
+  padding: 0px 30px 30px 30px
   .track-info
-    width: 700px
+    position: relative
+    left: -30px
+    width: calc( 100% + 60px )
+    padding: 50px 30px
+    background: linear-gradient(#d66700a8, #d6670044, #d6670015)
     .name
       max-width: 700px
-      color: #999999
+      color: $text-common
       font-size: 3rem
       font-weight: bold
       padding: 15px 0px 14px 0px
@@ -39,20 +43,17 @@
       padding-top: 1px 
       span
         color: $text-common
-    
+  
+  .progress
+    position: relative
+    text-align: center
+    left: -30px
+    width: calc( 100% + 60px )
+    mat-progress-bar
+      height: 7px
+
   .trainer
     padding-top: 50px 
-    .progress
-      visibility: visible
-      padding: 5px 0px 5px 0px
-      text-align: center
-      label
-        color: $text-common
-        font-size: 1.5rem
-        padding: 5px
-      mat-progress-bar
-        height: 7px
-        background: red !important
     .word
       padding: 20px 0px 10px 0px
       text-align: center
@@ -119,12 +120,13 @@
   font-weight: bold
 
 ::ng-deep .mat-progress-bar-fill::after
-    background-color: #999999
+    background: #d6670015 // #d66700a8
+
 ::ng-deep .mat-progress-bar-buffer 
     background: $light-gray
 
 ::ng-deep .mat-progress-bar
-    border-radius: 5px
+    border-radius: 0px
 
 
 .container

@@ -15,4 +15,8 @@ export class TrackCardComponent {
   showTrack(id: number) {
     this._router.navigate([`main/trackview/${id}`]);
   }
+
+  goToTrainer(id: number) {
+    this._router.navigate([`main/trainer/${id}`]);
+  }
 }
