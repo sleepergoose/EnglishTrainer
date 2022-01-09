@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, take } from 'rxjs';
 import { KnowledgeLevel } from 'src/app/models/common/knowledge-level';
@@ -7,6 +8,11 @@ import { TrackCardRead } from 'src/app/models/track/track-card-read';
 import { UserReadShort } from 'src/app/models/user/user-read-short';
 import { TrainerWord } from 'src/app/models/word/trainer-word';
 import { TrainerService } from 'src/app/services/trainer.service';
+
+interface Invertor {
+  taskWord: string;
+  checkWord: string;
+}
 
 @Component({
   selector: 'app-trainer',
@@ -23,6 +29,7 @@ export class TrainerComponent implements OnInit {
   track = {} as TrackCardRead;
   words = [] as TrainerWord[];
   currentTrainerWords = {} as TrainerWord;
+  invertor = {} as Invertor;
 
   response: string = '';
   progress: number = 0;
@@ -30,6 +37,7 @@ export class TrainerComponent implements OnInit {
 
   rightAnswers = [] as TrainerWord[];
   wrongAnswers = [] as Example[];
+  isLangInverted: boolean = false;
 
   private _crowler: number = 0;
 
@@ -53,16 +61,19 @@ export class TrainerComponent implements OnInit {
       this._trainerService.getWordsByTrackId(+data!)
         .pipe(take(1))
         .subscribe((words) => {
-          this.words = words;
+          this.words = this._shuffleArray(words);
           this.currentTrainerWords = this.words[this._crowler];
           this.max = this.words.length;
+
+          this._setInvertor();
+
           this.isSpinnerShown = false;
         });
     });
   }
 
   admit() {
-    let trans = this.currentTrainerWords.translation.split(',').map(p => p.trim());
+    let trans = this.invertor?.checkWord?.split(',').map(p => p.trim());
     
     if (trans.includes(this.response.trim())) {
       this.rightAnswers.push(this.currentTrainerWords);
@@ -79,6 +90,7 @@ export class TrainerComponent implements OnInit {
     if (this._crowler < this.max) {
       this.currentTrainerWords = this.words[this._crowler];
       this.progress = Math.floor(this._crowler / this.max * 100);
+      this._setInvertor();
     }
     else {
       this._crowler = 0;
@@ -88,9 +100,47 @@ export class TrainerComponent implements OnInit {
     this.response = '';
   }
 
+  toggleSlider(event: MatSlideToggleChange) {
+    this.isLangInverted = event.checked;
+    this._setInvertor();
+  }
+
   keyUp(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       this.admit();
     }
+  }
+
+  private _setInvertor() {
+    if (!this.isLangInverted) {
+      this.invertor = { 
+        taskWord: this.currentTrainerWords.text,
+        checkWord: this.currentTrainerWords.translation
+      }
+    }
+    else {
+      this.invertor = { 
+        taskWord: this.currentTrainerWords.translation,
+        checkWord: this.currentTrainerWords.text
+      }
+    }
+  }
+
+  private _shuffleArray<T>(array: T[]): T[] {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
   }
 }

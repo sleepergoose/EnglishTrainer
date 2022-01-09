@@ -27,7 +27,7 @@
   <div class="trainer" *ngIf="isTrainerShown">
 
     <div class="word">
-      <span>{{currentTrainerWords.text}}</span>
+      <span>{{invertor.taskWord}}</span>
     </div>
 
     <div class="response">
@@ -35,7 +35,7 @@
     </div>
 
     <div class="controls">
-      <mat-slide-toggle class="lang-slider">Invert language</mat-slide-toggle>
+      <mat-slide-toggle class="lang-slider" [checked]="isLangInverted" (change)="toggleSlider($event)">Invert language</mat-slide-toggle>
       <button class="admit" (click)="admit()">Admit</button>
       <button class="translate" (click)="isTranslationShown = !isTranslationShown">Translate</button>
       <button class="example-en" (click)="isExampleRuShown = !isExampleRuShown">Example EN</button>
@@ -45,7 +45,7 @@
     <div class="help">
       <div class="translation" *ngIf="isTranslationShown">
         <p class="caption">Translation:</p>
-        <span>имя, название, называть, именовать</span>
+        <span>{{invertor.checkWord}}</span>
       </div>
       <div class="examples" *ngIf="currentTrainerWords.examples.length && !(isExampleRuShown && isExampleEnShown)">
         <p class="caption">Examples:</p>
