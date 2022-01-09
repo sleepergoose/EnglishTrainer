@@ -23,6 +23,23 @@
     <mat-progress-bar name="progress-bar" mode="determinate" value="{{progress}}" *ngIf="progress !== 0"></mat-progress-bar>
   </div>
 
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Settings
+      </mat-panel-title>
+      <mat-panel-description>
+        Click here to hit the settings
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="controls">
+      <mat-slide-toggle class="lang-slider" [checked]="isLangInverted" (change)="toggleSlider($event)">Invert language</mat-slide-toggle>
+      <mat-slide-toggle class="translate" (change)="isTranslationShown = !isTranslationShown">Translation</mat-slide-toggle>
+      <mat-slide-toggle class="example-en" (change)="isExampleRuShown = !isExampleRuShown">Example EN</mat-slide-toggle>
+      <mat-slide-toggle class="example-ru" (change)="isExampleEnShown = !isExampleEnShown">Example RU</mat-slide-toggle>
+    </div>
+  </mat-expansion-panel>
+
   <!-- Trainer -->
   <div class="trainer" *ngIf="isTrainerShown">
 
@@ -32,14 +49,7 @@
 
     <div class="response">
       <input type="text" (keyup)="keyUp($event)" #input="ngModel" [(ngModel)]="response" name="input">
-    </div>
-
-    <div class="controls">
-      <mat-slide-toggle class="lang-slider" [checked]="isLangInverted" (change)="toggleSlider($event)">Invert language</mat-slide-toggle>
       <button class="admit" (click)="admit()">Admit</button>
-      <button class="translate" (click)="isTranslationShown = !isTranslationShown">Translate</button>
-      <button class="example-en" (click)="isExampleRuShown = !isExampleRuShown">Example EN</button>
-      <button class="example-ru" (click)="isExampleEnShown = !isExampleEnShown">Example RU</button>
     </div>
 
     <div class="help">
