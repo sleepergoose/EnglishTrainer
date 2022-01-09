@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Trainer.BL.Services;
+using Trainer.Common.Auth.Constants;
 using Trainer.Common.DTO;
 using Trainer.Common.DTO.WordTrackDTO;
 
@@ -8,6 +10,7 @@ namespace Trainer.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class WordTracksController : ControllerBase
     {
         private readonly WordTracksService _wtService;

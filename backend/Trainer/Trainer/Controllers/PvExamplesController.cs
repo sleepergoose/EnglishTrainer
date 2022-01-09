@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Trainer.BL.Services;
 using Trainer.Common.DTO;
@@ -7,6 +8,7 @@ namespace Trainer.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PvExamplesController : ControllerBase
     {
         private readonly PvExamplesService _pveService;

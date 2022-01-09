@@ -1,6 +1,5 @@
 import { KnowledgeLevel } from "../common/knowledge-level";
 import { UserReadShort } from "../user/user-read-short";
-import { WordRead } from "../word/word-read";
 
 export interface TrackCardRead {
   id: number;
@@ -10,5 +9,5 @@ export interface TrackCardRead {
   description: string;
   level: KnowledgeLevel;
   amount: number;
-  rate: number;
+  rank: number;
 }
