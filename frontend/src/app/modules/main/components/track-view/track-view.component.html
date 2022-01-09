@@ -26,7 +26,7 @@
       </div>
 
       <div class="controls">
-        <button class="btn-play" mat-raised-button>Play</button>
+        <button class="btn-play" mat-raised-button (click)="goToTrainer(viewedTrack.id)">Play</button>
         <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
         
         <button *ngIf="isCurrentUser" class="btn-menu" [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
