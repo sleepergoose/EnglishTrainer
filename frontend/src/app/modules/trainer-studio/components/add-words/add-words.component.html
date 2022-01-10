@@ -3,30 +3,40 @@
     <span>Add new word</span>
   </div>
   <div class="add-section">
-    <form action="">
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
       <mat-form-field >
         <mat-label>English</mat-label>
-        <input matInput required>
+        <input matInput required [(ngModel)]="currentWord.text" #text="ngModel" name="text" 
+          pattern="^[^\s*][a-zA-Z-\s]+$"> 
+        <mat-error *ngIf="text.invalid && text.errors?.['required']">This is required field!</mat-error>
+        <mat-error *ngIf="text.invalid && text.errors?.['pattern']">Only letters and space are allowed</mat-error>
       </mat-form-field>
   
       <mat-form-field>
         <mat-label>Transcription</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]="currentWord.transcription" #transcription="ngModel" name="transcription">
       </mat-form-field>
   
       <mat-form-field>
         <mat-label>Translation</mat-label>
-        <input matInput required> 
+        <input matInput required [(ngModel)]="currentWord.translation" #translation="ngModel" name="translation" 
+          pattern="^[^\s*][а-яА-Я-,\s]+$"> 
+          <mat-error *ngIf="translation.invalid && translation.errors?.['required']">This is required field!</mat-error>
+        <mat-error *ngIf="translation.invalid && translation.errors?.['pattern']">Only letters and space are allowed</mat-error>
       </mat-form-field>
       
       <div class="controls">
-        <button class="btn-submit" type="submit">ADD</button>
+        <button class="btn-submit" type="submit" [disabled]="form.form.invalid">ADD</button>
         <button class="btn-cancel" type="reset">CANCEL</button>
       </div>
     </form>
 
     <div class="added-words">
-      <!-- TODO -->
+      <div class="row" *ngFor="let word of addedWords">
+        <div class="col-1"><span>{{word.text}}</span></div>
+        <div class="col-2"><span>[{{word.transcription}}]</span></div>
+        <div class="col-3"><span>{{word.translation}}</span></div>
+      </div>
     </div>
   </div>
 </div>
