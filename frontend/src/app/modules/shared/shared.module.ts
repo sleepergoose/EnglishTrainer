@@ -5,13 +5,15 @@ import { TrackCardComponent } from './components/track-card/track-card.component
 import { MaterialComponentsModule } from '../material-components/material-components.module';
 import { WordSearchRowComponent } from './components/word-search-row/word-search-row.component';
 import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
+import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
 
 @NgModule({
   declarations: [
     WordsTableComponent,
     TrackCardComponent,
     WordSearchRowComponent,
-    KnowledgeLevelPipe
+    KnowledgeLevelPipe,
+    ProfileMenuComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
     TrackCardComponent,
     WordsTableComponent,
     WordSearchRowComponent,
-    KnowledgeLevelPipe
+    KnowledgeLevelPipe,
+    ProfileMenuComponent
   ]
 })
 export class SharedModule { }

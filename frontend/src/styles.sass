@@ -5,6 +5,7 @@ $drk-gray: #21292D
 $light-gray: #282F37
 
 $text-common: #dddddd
+$text-gray: #999999
 
 $header-height: 300px
 $logo-height: 100px
@@ -35,21 +36,25 @@ $font: Arial, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
     background-color: #bfd6ff !important
     border-radius: 4px !important
 
-::ng-deep .mat-focused .mat-form-field-label
-  /*change color of label*/
-  color: $primary !important
+::ng-deep 
+  .mat-focused .mat-form-field-label
+    /*change color of label*/
+    color: $primary !important
   
-::ng-deep .mat-form-field-label
-  /*change color of label*/
-  color: #777777
+::ng-deep 
+  .mat-form-field-label
+    /*change color of label*/
+    color: #777777
 
-::ng-deep.mat-form-field-underline 
-  /*change color of underline*/
-  background-color: #999999 !important
+::ng-deep
+  .mat-form-field-underline 
+    /*change color of underline*/
+    background-color: #999999 !important
 
-::ng-deep.mat-form-field-ripple 
- /*change color of underline when focused*/
- background-color: #999999 !important
+::ng-deep
+  .mat-form-field-ripple 
+    /*change color of underline when focused*/
+    background-color: #999999 !important
 
 input
   caret-color: $text-common !important

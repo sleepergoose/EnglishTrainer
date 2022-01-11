@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   async getTokenResult() {
-    return await this._auth.currentUser!.getIdTokenResult(true);
+    return await this._auth.currentUser?.getIdTokenResult(true);
   }
 
   async getUser(): Promise<User | null> {
@@ -67,7 +67,12 @@ export class AuthService {
 
   async getUserId() {
     const token = await this.getTokenResult();
-    return token.claims['id'];
+    return token?.claims['id'];
+  }
+
+  async getUserRole() {
+    const token = await this.getTokenResult();
+    return token?.claims['role'];
   }
 
   getAuthState(): boolean {

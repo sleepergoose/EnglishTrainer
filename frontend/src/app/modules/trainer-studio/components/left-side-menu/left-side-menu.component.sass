@@ -1,0 +1,34 @@
+@import 'src/styles.sass'
+  
+.leftside-menu
+  grid-column: 1
+  grid-row: 1
+  width: 100%
+  height: 100%
+  padding: 10px
+  border-right: 1px solid $borders
+  .logo
+    width: 100%
+    height: $logo-height
+    color: $primary
+    font-size: 45px
+    font-weight: bold
+    padding: 25px 0px 0px 20px
+    cursor: pointer
+  .menu
+    border-bottom: 1px solid $borders
+    height:  190px
+    .menu-item
+      display: grid
+      grid-template-columns: max-content auto
+      align-content: center
+      align-items: center
+      color: $text-common
+      font-size: 1.1rem
+      font-weight: 400
+      padding: 10px 12px 10px 22px
+      cursor: pointer
+      span
+        padding-left: 7px
+      &:hover
+        color: $primary
