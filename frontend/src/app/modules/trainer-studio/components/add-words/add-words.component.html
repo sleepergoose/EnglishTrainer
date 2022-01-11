@@ -1,6 +1,6 @@
 <div class="container">
   <div class="header">
-    <span>Add new word</span>
+    <span>Add a new word</span>
   </div>
   <div class="add-section">
     <form id="fff" #form="ngForm" (keydown.enter)="$event.preventDefault()">
@@ -17,6 +17,8 @@
         <mat-label>English</mat-label>
         <input matInput required [(ngModel)]="currentWord.text" #text="ngModel" name="text" 
         pattern="^[^\s*][a-zA-Z-\s']+$" [matAutocomplete]="auto"> 
+        <mat-error *ngIf="text.invalid && text.errors?.['required']">This is required field!</mat-error>
+        <mat-error *ngIf="text.invalid && text.errors?.['pattern']">Only letters and space are allowed</mat-error>
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let word of addedWords" [value]="word.text" [disabled]="true">
             {{word.text}}
@@ -36,7 +38,7 @@
         <input matInput required [(ngModel)]="currentWord.translation" #translation="ngModel" name="translation" 
           pattern="^([а-яА-Я-\s]+, [а-яА-Я-\s]+){1,}$"> 
           <mat-error *ngIf="translation.invalid && translation.errors?.['required']">This is required field!</mat-error>
-        <mat-error *ngIf="translation.invalid && translation.errors?.['pattern']">Only letters and space are allowed</mat-error>
+        <mat-error *ngIf="translation.invalid && translation.errors?.['pattern']">You should match the pattern: "слово1, слово2, слово3, ..." Only letters and space are allowed</mat-error>
       </mat-form-field>
 
       <div class="added-examples">
@@ -46,7 +48,7 @@
       </div>
 
       <mat-form-field>
-        <mat-label>Example</mat-label>
+        <mat-label>Example - press 'Enter' to admit an example</mat-label>
         <input matInput [(ngModel)]="exampleStr" #example="ngModel" name="example" 
           pattern="^[!?'a-zA-Z\s-]+ - [!?а-яА-Я\s-]+$" (keyup)="keyupOnExample($event)"> 
         <button class="btn-suffix" type="button" mat-icon-button matSuffix (click)="addNewExample()">
@@ -57,7 +59,7 @@
  
       <div class="controls">
         <button (click)="onSubmit()" class="btn-submit" [disabled]="form.form.invalid">ADD</button>
-        <button class="btn-cancel" type="reset">CANCEL</button>
+        <button class="btn-cancel" type="reset">RESET</button>
       </div>
     </form>
 
