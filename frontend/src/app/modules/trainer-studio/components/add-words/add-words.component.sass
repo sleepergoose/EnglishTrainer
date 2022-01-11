@@ -25,8 +25,19 @@
         background: $drk-gray !important
         color: $text-common !important
         font-size: 1rem
-        mat-label
+        .btn-suffix
+          font-size: 1.8rem
+
+      .added-examples
+        margin: 0px auto
+        justify-self: left
+        width: 80%
+        div
           color: $text-gray
+          text-align: left
+          padding: 0px 50px
+          overflow: hidden
+
     .controls
       text-align: right
       padding: 5px 0px
@@ -36,7 +47,7 @@
         width: 90px
         border: 1px solid $text-gray
         border-radius: 20px
-        margin-left: 5px
+        margin: 15px 0px 0px 5px
         cursor: pointer
         &:hover
           color: $primary
@@ -69,3 +80,11 @@
   .col-1, .col-2, .col-3
     padding-left: 20px
     overflow: hidden
+
+
+::ng-deep
+  mat-option
+    background: $light-gray !important
+    line-height: 38px !important
+    height: 38px !important
+    font-style: italic !important

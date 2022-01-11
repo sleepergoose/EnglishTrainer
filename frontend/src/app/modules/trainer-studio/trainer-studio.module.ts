@@ -8,12 +8,14 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
 import { AddWordsComponent } from './components/add-words/add-words.component';
 import { FormsModule } from '@angular/forms';
+import { EditWordComponent } from './components/edit-word/edit-word.component';
 
 @NgModule({
   declarations: [
     ContainerComponent,
     LeftSideMenuComponent,
-    AddWordsComponent
+    AddWordsComponent,
+    EditWordComponent
   ],
   imports: [
     CommonModule,

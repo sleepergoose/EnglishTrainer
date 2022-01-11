@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { RoleGuard } from 'src/app/guards/role.guard';
 import { AddWordsComponent } from './components/add-words/add-words.component';
 import { ContainerComponent } from './components/container/container.component';
+import { EditWordComponent } from './components/edit-word/edit-word.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
       {
         path: 'addwords',
         component: AddWordsComponent
+      },
+      {
+        path: 'editword',
+        component: EditWordComponent
       }
     ]
   }
