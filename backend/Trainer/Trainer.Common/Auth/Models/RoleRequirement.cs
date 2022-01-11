@@ -4,7 +4,7 @@ using Trainer.Domain.Enums;
 
 namespace Trainer.Common.Auth.Models
 {
-    public sealed class RoleRequirement : IAuthorizationRequirement
+    internal sealed class RoleRequirement : IAuthorizationRequirement
     {
         public IList<Role> Roles { get; }
 

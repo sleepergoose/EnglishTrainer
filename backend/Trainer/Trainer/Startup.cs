@@ -11,6 +11,7 @@ using Trainer.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Trainer.BL.Extensions;
+using Trainer.Common.Auth.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Trainer.Common.ExceptionsHandler.Filters;
 using Swashbuckle.AspNetCore.Swagger;
@@ -25,14 +26,6 @@ namespace Trainer
         public Startup(IConfiguration configuration, IHostEnvironment env)
         {
             Configuration = configuration;
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("trainer-app.json");
-
-            builder.AddConfiguration(configuration);
-
-            Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -67,7 +60,11 @@ namespace Trainer
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trainer v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trainer v1");
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseHttpsRedirection();

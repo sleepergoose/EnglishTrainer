@@ -4,7 +4,7 @@ using OneOf.Types;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Trainer.BL.Extensions
+namespace Trainer.Common.Auth.Extensions
 {
     public static class FirebaseExtensions
     {

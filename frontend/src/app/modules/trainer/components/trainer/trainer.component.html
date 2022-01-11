@@ -75,7 +75,7 @@
       Right answers: <span>{{rightAnswers.length}}</span> from <span>{{max}} </span>
     </div>
     <br>
-    <p class="wrong-answers-title">Wrong answers:</p>
+    <p class="wrong-answers-title" *ngIf="wrongAnswers.length !== 0">Wrong answers:</p>
     <div class="wrong-answers">
       <app-example [examples]="wrongAnswers"></app-example>
     </div>
