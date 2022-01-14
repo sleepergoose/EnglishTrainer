@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Trainer.Common.Auth.Extensions;
+using Trainer.Common.ExceptionsHandler.Filters;
+using Trainer.Studio.BusinessLogic.Extensions;
 
 namespace Trainer.Studio
 {
@@ -21,7 +23,12 @@ namespace Trainer.Studio
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuth(Configuration);
-            services.AddControllers();
+
+            services.AddCustomServices(Configuration);
+
+            services.AddControllers(opt => {
+                opt.Filters.Add(new CustomExceptionFilterAttribute());
+            });
 
             services.AddSwaggerGen(c =>
             {
