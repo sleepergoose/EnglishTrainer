@@ -3,10 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 using System.Reflection;
-using Trainer.Studio.BusinessLogic.Services;
-using Trainer.Studio.DataAccess;
+using Trainer.Admin.BusinessLogic.Services;
+using Trainer.Admin.DataAccess;
 
-namespace Trainer.Studio.BusinessLogic.Extensions
+namespace Trainer.Admin.BusinessLogic.Extensions
 {
     public static class CustomExtensions
     {

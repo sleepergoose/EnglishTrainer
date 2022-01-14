@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Trainer.Studio
+namespace Trainer.Admin
 {
     public class Program
     {

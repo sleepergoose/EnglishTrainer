@@ -7,9 +7,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Trainer.Common.Auth.Extensions;
 using Trainer.Common.ExceptionsHandler.Filters;
-using Trainer.Studio.BusinessLogic.Extensions;
+using Trainer.Admin.BusinessLogic.Extensions;
 
-namespace Trainer.Studio
+namespace Trainer.Admin
 {
     public class Startup
     {

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Trainer.Studio.DataAccess
+namespace Trainer.Admin.DataAccess
 {
     public class DbConnectionFactory
     {
