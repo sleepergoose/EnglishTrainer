@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Trainer.Studio": {
+    "Trainer.Admin": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

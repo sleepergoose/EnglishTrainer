@@ -1,4 +1,4 @@
-﻿namespace Trainer.Studio.Domain.Entities
+﻿namespace Trainer.Admin.Domain.Entities
 {
     public class Example
     {

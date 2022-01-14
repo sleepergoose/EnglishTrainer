@@ -7,10 +7,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Trainer.Common.Auth.Constants;
 using Trainer.Domain.Models;
-using Trainer.Studio.BusinessLogic.Services;
-using Trainer.Studio.Domain.Entities;
+using Trainer.Admin.BusinessLogic.Services;
+using Trainer.Admin.Domain.Entities;
 
-namespace Trainer.Studio.Controllers
+namespace Trainer.Admin.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

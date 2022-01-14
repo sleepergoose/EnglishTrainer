@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Trainer.Studio.Domain.Entities
+namespace Trainer.Admin.Domain.Entities
 {
     public class WordWrite
     {

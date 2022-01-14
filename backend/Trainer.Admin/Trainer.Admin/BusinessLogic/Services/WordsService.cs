@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Trainer.Domain.Models;
-using Trainer.Studio.BusinessLogic.Commands;
-using Trainer.Studio.Domain.Entities;
+using Trainer.Admin.BusinessLogic.Commands;
+using Trainer.Admin.Domain.Entities;
 
-namespace Trainer.Studio.BusinessLogic.Services
+namespace Trainer.Admin.BusinessLogic.Services
 {
     public class WordsService
     {
