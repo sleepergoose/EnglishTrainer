@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using Trainer.Common.DTO.Auth;
 using Trainer.DAL.Context;
-using Trainer.BL.Extensions;
+using Trainer.Common.Auth.Extensions;
 using Trainer.Domain.Models;
 using Trainer.Common.DTO.UserDTO;
 using Trainer.Domain.Enums;

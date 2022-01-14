@@ -14,7 +14,7 @@ using Trainer.Domain.Enums;
 using Trainer.Common.Auth.Models;
 using Trainer.Common.Auth.Handlers;
 
-namespace Trainer.BL.Extensions
+namespace Trainer.Common.Auth.Extensions
 {
     public static class AddAuthExtensions
     {

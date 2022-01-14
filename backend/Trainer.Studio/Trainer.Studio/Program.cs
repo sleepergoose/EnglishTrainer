@@ -6,9 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Swashbuckle.AspNetCore.Swagger;
 
-namespace Trainer
+namespace Trainer.Studio
 {
     public class Program
     {
@@ -20,7 +19,7 @@ namespace Trainer
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
-                .ConfigureAppConfiguration(appCfgBuilder => appCfgBuilder
+                .ConfigureAppConfiguration(appConfigBuilder => appConfigBuilder
                     .AddJsonFile("trainer-app.json", optional: true, reloadOnChange: true)
                     .AddEnvironmentVariables()
                 );

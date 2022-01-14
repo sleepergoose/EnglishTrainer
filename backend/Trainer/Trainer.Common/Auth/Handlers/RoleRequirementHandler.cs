@@ -6,7 +6,7 @@ using Trainer.Common.Auth.Models;
 
 namespace Trainer.Common.Auth.Handlers
 {
-    public sealed class RoleRequirementHandler : AuthorizationHandler<RoleRequirement>
+    internal sealed class RoleRequirementHandler : AuthorizationHandler<RoleRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RoleRequirement requirement)
         {

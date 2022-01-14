@@ -2,7 +2,7 @@
 using System;
 using Trainer.Common.Auth.Constants;
 
-namespace Trainer.BL.Extensions
+namespace Trainer.Common.Auth.Extensions
 {
     public static class FirebaseTokenExtensions
     {

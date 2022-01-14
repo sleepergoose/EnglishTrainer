@@ -1,46 +1,30 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Trainer.DAL.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Trainer.BL.Extensions;
-using Trainer.Common.Auth.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Trainer.Common.ExceptionsHandler.Filters;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
+using Trainer.Common.Auth.Extensions;
+using Trainer.Common.ExceptionsHandler.Filters;
+using Trainer.Studio.BusinessLogic.Extensions;
 
-namespace Trainer
+namespace Trainer.Studio
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration, IHostEnvironment env)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var migrationAssembly = typeof(TrainerContext).Assembly.GetName().Name;
+            services.AddAuth(Configuration);
 
-            services.AddDbContext<TrainerContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:TrainerDbConnection"],
-                    opt => opt.MigrationsAssembly(migrationAssembly)));
-
-            services.RegisterAutoMapper();
-
-            services.RegisterCustomServices();
-
-            services.AddHttpClient();
+            services.AddCustomServices(Configuration);
 
             services.AddControllers(opt => {
                 opt.Filters.Add(new CustomExceptionFilterAttribute());
@@ -48,12 +32,10 @@ namespace Trainer
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trainer", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trainer Studio", Version = "v1" });
             });
-
-            services.AddAuth(Configuration);
         }
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -62,23 +44,22 @@ namespace Trainer
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trainer v1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trainer.Studio v1");
                     c.RoutePrefix = string.Empty;
                 });
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-            
             app.UseCors(builder => builder
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true)
-                .AllowCredentials());
+                .AllowCredentials()
+                .WithOrigins(Configuration["AngularAppURL"]));
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
 
             app.UseAuthentication();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
