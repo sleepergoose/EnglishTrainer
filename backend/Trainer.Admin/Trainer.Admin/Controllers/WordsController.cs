@@ -12,7 +12,7 @@ using Trainer.Admin.Domain.Entities;
 
 namespace Trainer.Admin.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
     [Authorize(Policy = Policies.IsAdmin)]
     public class WordsController : ControllerBase

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { WordWrite } from '../models/word/word-write';
 import { HttpInternalService } from './http-internal.service';
 
 @Injectable({
@@ -10,5 +11,9 @@ export class WordsService {
 
   removeWord(id: number) {
     return this._http.deleteRequest(`/api/Words/${id}`);
+  }
+
+  addWord(word: WordWrite) {
+    return this._http.postRequest<WordWrite>(`/api/admin/Words`, word);
   }
 }

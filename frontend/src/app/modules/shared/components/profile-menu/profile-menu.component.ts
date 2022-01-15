@@ -30,7 +30,7 @@ export class ProfileMenuComponent implements OnInit{
         this.userName = user.displayName;
       }
 
-      if (this._router.url.split('/')[1] === 'studio') {
+      if (this._router.url.split('/')[1] === 'admin') {
         this.isStudioNow = true;
       }
       else {
@@ -43,7 +43,7 @@ export class ProfileMenuComponent implements OnInit{
   }
 
   goToStudio() {
-    this._router.navigate([`studio`]);
+    this._router.navigate([`admin`]);
     this.isStudioNow = true;
   }
 
