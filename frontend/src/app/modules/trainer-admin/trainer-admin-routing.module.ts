@@ -28,4 +28,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard, RoleGuard]
 })
-export class TrainerStudioRoutingModule { }
+export class TrainerAdminRoutingModule { }

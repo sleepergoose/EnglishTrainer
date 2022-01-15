@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Example } from 'src/app/models/examples/example';
-import { WordRead } from 'src/app/models/word/word-read';
 import { WordWrite } from 'src/app/models/word/word-write';
 
 @Component({

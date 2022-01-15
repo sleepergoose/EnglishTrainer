@@ -16,8 +16,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'studio',
-    loadChildren: () => import('./modules/trainer-studio/trainer-studio.module').then((m) => m.TrainerStudioModule),
+    path: 'admin',
+    loadChildren: () => import('./modules/trainer-admin/trainer-admin.module').then((m) => m.TrainerAdminModule),
     canActivate: [AuthGuard, RoleGuard],
     data: {
       roles: ['admin']
