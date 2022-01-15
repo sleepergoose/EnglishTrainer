@@ -1,14 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Swashbuckle.AspNetCore.Swagger;
+using OcelotApiGateway.Extensions;
 
-namespace Trainer
+namespace OcelotApiGateway
 {
     public class Program
     {
@@ -22,11 +17,11 @@ namespace Trainer
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls("https://localhost:5001");
+                    webBuilder.UseUrls("https://localhost:5000");
                 })
-                .ConfigureAppConfiguration(appCfgBuilder => appCfgBuilder
-                    .AddJsonFile("trainer-app.json", optional: true, reloadOnChange: true)
-                    .AddEnvironmentVariables()
+                .ConfigureAppConfiguration((hostBuilderContext, configBuilder) => configBuilder
+                    .SetBasePath(hostBuilderContext.HostingEnvironment.ContentRootPath)
+                    .AddOcelotConfiguration($"Configuration/{hostBuilderContext.HostingEnvironment.EnvironmentName}")
                 );
     }
 }

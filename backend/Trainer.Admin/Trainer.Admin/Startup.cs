@@ -32,7 +32,7 @@ namespace Trainer.Admin
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trainer Studio", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trainer.Admin", Version = "v2" });
             });
         }
 
@@ -44,7 +44,7 @@ namespace Trainer.Admin
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trainer.Studio v1");
+                    c.SwaggerEndpoint("/swagger/v2/swagger.json", "Trainer.Admin v1");
                     c.RoutePrefix = string.Empty;
                 });
             }
