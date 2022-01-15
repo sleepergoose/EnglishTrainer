@@ -18,7 +18,8 @@ namespace Trainer.Admin
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>()
+                .UseUrls("https://localhost:5002"))
                 .ConfigureAppConfiguration(appConfigBuilder => appConfigBuilder
                     .AddJsonFile("trainer-app.json", optional: true, reloadOnChange: true)
                     .AddEnvironmentVariables()
