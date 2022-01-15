@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using OcelotApiGateway.Extensions;
 
 namespace OcelotApiGateway
 {
@@ -18,9 +19,9 @@ namespace OcelotApiGateway
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls("https://localhost:5000");
                 })
-                .ConfigureAppConfiguration(cfgBuilder => cfgBuilder
-                    .AddJsonFile("Configuration/Development/configuration.json")
-                    .AddEnvironmentVariables()
+                .ConfigureAppConfiguration((hostBuilderContext, configBuilder) => configBuilder
+                    .SetBasePath(hostBuilderContext.HostingEnvironment.ContentRootPath)
+                    .AddOcelotConfiguration($"Configuration/{hostBuilderContext.HostingEnvironment.EnvironmentName}")
                 );
     }
 }

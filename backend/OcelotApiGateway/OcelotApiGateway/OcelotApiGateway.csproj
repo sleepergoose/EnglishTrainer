@@ -8,8 +8,4 @@
     <PackageReference Include="Ocelot" Version="17.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
 </Project>
