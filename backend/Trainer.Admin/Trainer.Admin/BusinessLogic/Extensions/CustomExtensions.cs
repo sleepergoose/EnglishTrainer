@@ -21,6 +21,7 @@ namespace Trainer.Admin.BusinessLogic.Extensions
                 .GetConnection());
 
             service.AddScoped<WordsService>();
+            service.AddScoped<PhrasalVerbsService>();
         }
     }
 }
