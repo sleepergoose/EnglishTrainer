@@ -4,7 +4,7 @@
   height: 40px
   width: 100%
   display: grid
-  grid-template-columns: 3fr 3fr 8fr 2.2fr
+  grid-template-columns: 3fr 3fr 7fr 2.2fr
   grid-template-rows: 100%
   border: 1px solid $light-gray
   border-radius: 20px
@@ -15,23 +15,31 @@
     button
       color: $primary !important
       border: 1px solid $primary !important
-  .text, .transcription, .translation, .controls
+  .text
     align-self: center
-    justify-self: center
+    justify-self: left
+    padding-left: 10px
     a
       color: #cccccc
       cursor: pointer
       font-size: 0.9rem
       &:hover
         text-decoration: underline
+  .transcription, .translation
+    align-self: center
+    justify-self: left
     span
       color: #cccccc
       font-size: 0.9rem
+  .controls
+    align-self: center
+    justify-self: right
+    padding-right: 8px
     button
       border: 1px solid darken($text-common, 30)
       border-radius: 20px
       color: darken($text-common, 30)
-      padding: 5px 15px
+      padding: 4px 15px
       background: transparent
       cursor: pointer
       &:hover
@@ -40,5 +48,3 @@
       &:active
         font-weight: normal
         transform: scale(1)
-
-    

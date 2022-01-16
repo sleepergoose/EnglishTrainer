@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TrainerStudioRoutingModule } from './trainer-studio-routing.module';
+import { TrainerAdminRoutingModule } from './trainer-admin-routing.module';
 import { ContainerComponent } from './components/container/container.component';
 import { LeftSideMenuComponent } from './components/left-side-menu/left-side-menu.component';
 import { SharedModule } from '../shared/shared.module';
@@ -19,10 +19,10 @@ import { EditWordComponent } from './components/edit-word/edit-word.component';
   ],
   imports: [
     CommonModule,
-    TrainerStudioRoutingModule,
+    TrainerAdminRoutingModule,
     SharedModule,
     MaterialComponentsModule,
     FormsModule
   ]
 })
-export class TrainerStudioModule { }
+export class TrainerAdminModule { }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.Examples;
 using Trainer.Domain.Models;
 
 namespace Trainer.Common.MappingProfiles
@@ -9,6 +10,7 @@ namespace Trainer.Common.MappingProfiles
         public WordExampleProfile()
         {
             CreateMap<WordExample, WordExampleDTO>().ReverseMap();
+            CreateMap<WordExample, ExampleReadDTO>();
         }
     }
 }

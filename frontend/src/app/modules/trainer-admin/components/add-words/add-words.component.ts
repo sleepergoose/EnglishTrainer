@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { take } from 'rxjs';
 import { Example } from 'src/app/models/examples/example';
-import { WordRead } from 'src/app/models/word/word-read';
 import { WordWrite } from 'src/app/models/word/word-write';
+import { WordsService } from 'src/app/services/words.service';
 
 @Component({
   selector: 'app-add-words',
@@ -11,30 +12,31 @@ import { WordWrite } from 'src/app/models/word/word-write';
 export class AddWordsComponent {
   addedWords = [] as WordWrite[];
 
-  currentWord = {
-    text: 'name',
-    transcription: 'neim',
-    translation: 'имя, название, называть',
-    examples: []
-  } as WordWrite;
+  currentWord = {} as WordWrite;
 
   examples = [] as Example[];
-  exampleStr: string = 'He is looking for a new job - Он ищет новую работу'; 
+  exampleStr: string = ''; 
 
-  constructor() { }
-
-  keyUpInput() {
-    // TODO: auto complete
-  }
+  constructor(
+    private _wordService: WordsService
+  ) { }
 
   onSubmit() {
-    // call the service and according to its response add word to addedWrods
     this.currentWord.examples = this.examples;
 
-    this.addedWords = [
-      ...this.addedWords,
-      this.currentWord
-    ];
+    this.currentWord.text = this.currentWord.text.trim();
+    this.currentWord.transcription = this.currentWord.transcription.trim();
+    this.currentWord.translation = this.currentWord.translation.trim();
+
+    this._wordService.addWord(this.currentWord)
+      .pipe(take(1))
+      .subscribe((word) => {
+        this.addedWords = [
+          ...this.addedWords,
+          word
+        ];
+        this.onReset();
+      });
   }
 
   addNewExample() {
@@ -57,5 +59,10 @@ export class AddWordsComponent {
     if (event.key === 'Enter') {
       this.addNewExample();
     }
+  }
+
+  onReset() {
+    this.exampleStr = '';
+    this.examples = [] as Example[];
   }
 }

@@ -28,5 +28,17 @@ namespace Trainer.Admin.BusinessLogic.Services
                 Examples = word.Examples
             });
         }
+
+        public async Task<Word> EditWordAsync(WordEdit word)
+        {
+            return await _mediator.Send(new EditWordCommand()
+            {
+                Id = word.Id,
+                Text = word.Text,
+                Transcription = word.Transcription,
+                Translation = word.Translation,
+                Examples = word.Examples
+            });
+        }
     }
 }

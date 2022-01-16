@@ -12,7 +12,7 @@ using Trainer.Admin.Domain.Entities;
 
 namespace Trainer.Admin.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
     [Authorize(Policy = Policies.IsAdmin)]
     public class WordsController : ControllerBase
@@ -28,6 +28,12 @@ namespace Trainer.Admin.Controllers
         public async Task<IActionResult> CreateWordAsync(WordWrite word)
         {
             return Ok(await _wordsService.CreateWordAsync(word));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> EditWordAsync(WordEdit word)
+        {
+            return Ok(await _wordsService.EditWordAsync(word));
         }
     }
 }

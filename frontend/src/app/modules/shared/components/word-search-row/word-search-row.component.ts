@@ -8,6 +8,7 @@ import { WordRead } from 'src/app/models/word/word-read';
 })
 export class WordSearchRowComponent {
   @Input() word = {} as WordRead;
+  @Input() buttonCaption: string = 'ADD';
   @Output() clickButton = new EventEmitter<WordRead>();
 
   constructor() { }

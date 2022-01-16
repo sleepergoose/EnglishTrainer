@@ -7,6 +7,7 @@ using Trainer.DAL.Context;
 using Trainer.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.Word;
 
 namespace Trainer.BL.Services
 {
@@ -21,10 +22,12 @@ namespace Trainer.BL.Services
             _context = context;
         }
 
-        public async Task<WordDTO> GetWordAsync(int id)
+        public async Task<WordReadExamplesDTO> GetWordAsync(int id)
         {
-            var word = await _context.Words.FirstOrDefaultAsync(w => w.Id == id);
-            return _mapper.Map<WordDTO>(word);
+            var word = await _context.Words
+                .Include(w => w.Examples)
+                .FirstOrDefaultAsync(w => w.Id == id);
+            return _mapper.Map<WordReadExamplesDTO>(word);
         }
 
         public async Task<ICollection<WordDTO>> GetWordsAsync()
