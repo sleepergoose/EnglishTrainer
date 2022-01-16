@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/admin/Words",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST", "PUT" ]
     }
   ]
 }

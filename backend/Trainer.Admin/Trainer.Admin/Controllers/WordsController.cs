@@ -29,5 +29,11 @@ namespace Trainer.Admin.Controllers
         {
             return Ok(await _wordsService.CreateWordAsync(word));
         }
+
+        [HttpPut]
+        public async Task<IActionResult> EditWordAsync(WordEdit word)
+        {
+            return Ok(await _wordsService.EditWordAsync(word));
+        }
     }
 }

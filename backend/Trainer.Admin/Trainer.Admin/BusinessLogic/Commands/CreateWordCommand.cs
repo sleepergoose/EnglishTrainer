@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Trainer.Domain.Models;
 using Trainer.Admin.Domain.Entities;
+using System.Linq;
 
 namespace Trainer.Admin.BusinessLogic.Commands
 {
@@ -37,6 +38,14 @@ namespace Trainer.Admin.BusinessLogic.Commands
                 Transcription = command.Transcription,
                 Translation = command.Translation
             };
+
+            // Is there the added word?
+            const string sql_0 =
+                @"SELECT * FROM Words WHERE Text=@Text";
+            var existedWord = (await _dbConnection.QueryAsync<Word>(sql_0, word)).FirstOrDefault();
+
+            if (existedWord != null)
+                return word;
 
             const string sql_1 =
                 @"INSERT INTO Words (

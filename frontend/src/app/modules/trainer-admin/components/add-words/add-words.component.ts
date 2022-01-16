@@ -21,10 +21,6 @@ export class AddWordsComponent {
     private _wordService: WordsService
   ) { }
 
-  keyUpInput() {
-    // TODO: auto complete
-  }
-
   onSubmit() {
     this.currentWord.examples = this.examples;
 
