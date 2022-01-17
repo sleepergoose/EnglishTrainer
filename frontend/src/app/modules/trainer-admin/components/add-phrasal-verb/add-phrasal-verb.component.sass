@@ -1,0 +1,91 @@
+@import 'src/styles.sass'
+
+.container
+  .header
+    height: 170px
+    background: $header-gradient
+    padding: 110px 0px 0px 30px 
+    span  
+      display: inline-block
+      color: $text-gray
+      font-size: 3.5rem
+      font-weight: bold
+
+  .add-section
+    padding: 50px 10px 
+    form
+      display: grid
+      grid-template-columns: 100%
+      grid-template-rows: auto
+      align-items: center
+      justify-items: center
+      .mat-form-field
+        width: 80%
+        padding-top: 10px
+        background: $drk-gray !important
+        color: $text-common !important
+        font-size: 1rem
+        .btn-suffix
+          font-size: 1.8rem
+
+      .added-examples
+        margin: 0px auto
+        justify-self: left
+        width: 80%
+        div
+          color: $text-gray
+          text-align: left
+          padding: 0px 50px
+          overflow: hidden
+
+    .controls
+      text-align: right
+      padding: 5px 0px
+      button
+        background: $drk-gray
+        padding: 7px 10px
+        width: 90px
+        border: 1px solid $text-gray
+        border-radius: 20px
+        margin: 15px 0px 0px 5px
+        cursor: pointer
+        &:hover
+          color: $primary
+          background: lighten($drk-gray, 3)
+        &:disabled
+          color: $text-gray
+          background: transparent
+          border: 1px solid #383838
+      .btn-cancel
+        color: $text-common 
+      .btn-submit
+        color: $text-common 
+
+
+
+.added-words
+  padding: 50px 10px 
+  .row
+    display: grid
+    grid-template-columns: 1fr 3fr
+    grid-template-rows: 100%
+    align-items: center
+    height: 40px
+    border-bottom: 1px solid darken($text-gray, 40)
+    color: $text-gray
+    margin: 0px 0px 
+    &:hover
+      background: $light-gray
+      color: $text-common
+  .col-1, .col-2, .col-3
+    padding-left: 20px
+    overflow: hidden
+
+
+::ng-deep
+  mat-option
+    background: $light-gray !important
+    line-height: 30px !important
+    height: 30px !important
+    font-style: italic !important
+    font-size: 0.9rem !important

@@ -1,7 +1,6 @@
 import { Example } from "../examples/example";
 
-export interface PhrasalVerbRead {
-  id: number;
+export interface PhrasalVerbWrite {
   text: string;
   translation: string;
   examples: Example[]

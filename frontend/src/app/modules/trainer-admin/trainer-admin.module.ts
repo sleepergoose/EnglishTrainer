@@ -9,13 +9,15 @@ import { MaterialComponentsModule } from '../material-components/material-compon
 import { AddWordsComponent } from './components/add-words/add-words.component';
 import { FormsModule } from '@angular/forms';
 import { EditWordComponent } from './components/edit-word/edit-word.component';
+import { AddPhrasalVerbComponent } from './components/add-phrasal-verb/add-phrasal-verb.component';
 
 @NgModule({
   declarations: [
     ContainerComponent,
     LeftSideMenuComponent,
     AddWordsComponent,
-    EditWordComponent
+    EditWordComponent,
+    AddPhrasalVerbComponent
   ],
   imports: [
     CommonModule,
