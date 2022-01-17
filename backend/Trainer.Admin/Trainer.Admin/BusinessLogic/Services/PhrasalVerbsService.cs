@@ -19,7 +19,6 @@ namespace Trainer.Admin.BusinessLogic.Services
         {
             return await _mediator.Send(new CreatePvCommand
             {
-                Id = verb.Id,
                 Text = verb.Text,
                 Translation = verb.Translation,
                 Examples = verb.Examples

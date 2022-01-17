@@ -1,0 +1,16 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/admin/PhrasalVerbs",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/admin/PhrasalVerbs",
+      "UpstreamHttpMethod": [ "POST", "PUT" ]
+    }
+  ]
+}

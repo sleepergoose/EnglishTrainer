@@ -11,7 +11,7 @@ using Trainer.Common.Auth.Constants;
 
 namespace Trainer.Admin.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
     [Authorize(Policy = Policies.IsAdmin)]
     public class PhrasalVerbsController : ControllerBase

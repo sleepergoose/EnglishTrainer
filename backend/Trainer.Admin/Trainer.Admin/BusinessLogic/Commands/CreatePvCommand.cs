@@ -13,7 +13,6 @@ namespace Trainer.Admin.BusinessLogic.Commands
 {
     public class CreatePvCommand : IRequest<PhrasalVerb>
     {
-        public int Id { get; set; }
         public string Text { get; set; }
         public string Translation { get; set; }
         public ICollection<Example> Examples { get; set; }
@@ -34,7 +33,7 @@ namespace Trainer.Admin.BusinessLogic.Commands
             {
                 var verb = new PhrasalVerb()
                 {
-                    Id = command.Id,
+                    Id = 0,
                     CreatedAt = DateTimeOffset.Now,
                     Text = command.Text,
                     Translation = command.Translation,
