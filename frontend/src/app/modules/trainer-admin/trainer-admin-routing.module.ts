@@ -5,6 +5,7 @@ import { RoleGuard } from 'src/app/guards/role.guard';
 import { AddPhrasalVerbComponent } from './components/add-phrasal-verb/add-phrasal-verb.component';
 import { AddWordsComponent } from './components/add-words/add-words.component';
 import { ContainerComponent } from './components/container/container.component';
+import { EditPhrasalVerbComponent } from './components/edit-phrasal-verb/edit-phrasal-verb.component';
 import { EditWordComponent } from './components/edit-word/edit-word.component';
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'addphrasalverb',
         component: AddPhrasalVerbComponent
+      },
+      {
+        path: 'editphrasalverb',
+        component: EditPhrasalVerbComponent
       }
     ]
   }

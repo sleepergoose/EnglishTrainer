@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { PhrasalVerbRead } from '../models/phrasal-verb/phrasal-verb-read';
 import { WordRead } from '../models/word/word-read';
 import { HttpInternalService } from './http-internal.service';
 
@@ -12,5 +13,10 @@ export class SearchService {
   getWordsByName(term: string) {
     const httpParams = { term };
     return this._http.getRequest<WordRead[]>('/api/Search/getWordsByName', httpParams);
+  }
+
+  getPVsByName(term: string) {
+    const httpParams = { term };
+    return this._http.getRequest<PhrasalVerbRead[]>('/api/Search/getPVsByName', httpParams);
   }
 }
