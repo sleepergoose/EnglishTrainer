@@ -15,21 +15,8 @@
 
     <!-- Search result -->
     <div class="search-result" *ngIf="foundPVs.length">
-        <div class="search-result-row" *ngFor="let pv of foundPVs" (click)="editPhrasalVerb(pv)">
-          <div class="text">
-            <span>
-              {{pv.text}}
-            </span>
-          </div>
-          <div class="translation">
-            <span>
-              {{pv.translation}}
-            </span>
-          </div>
-          <div class="controls">
-            <button>EDIT</button>
-          </div>
-        </div>
+        <app-phrasal-verb-row class="search-result-row" *ngFor="let pv of foundPVs"
+        (clickButton)="editPhrasalVerb($event)" [phrasalVerb]="pv"></app-phrasal-verb-row>
     </div>
   </div>
 
