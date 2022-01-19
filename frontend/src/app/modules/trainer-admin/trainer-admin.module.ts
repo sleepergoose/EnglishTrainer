@@ -10,6 +10,7 @@ import { AddWordsComponent } from './components/add-words/add-words.component';
 import { FormsModule } from '@angular/forms';
 import { EditWordComponent } from './components/edit-word/edit-word.component';
 import { AddPhrasalVerbComponent } from './components/add-phrasal-verb/add-phrasal-verb.component';
+import { EditPhrasalVerbComponent } from './components/edit-phrasal-verb/edit-phrasal-verb.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AddPhrasalVerbComponent } from './components/add-phrasal-verb/add-phras
     LeftSideMenuComponent,
     AddWordsComponent,
     EditWordComponent,
-    AddPhrasalVerbComponent
+    AddPhrasalVerbComponent,
+    EditPhrasalVerbComponent
   ],
   imports: [
     CommonModule,

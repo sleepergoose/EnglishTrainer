@@ -6,6 +6,7 @@ import { MaterialComponentsModule } from '../material-components/material-compon
 import { WordSearchRowComponent } from './components/word-search-row/word-search-row.component';
 import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
 import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
+import { PhrasalVerbRowComponent } from './components/phrasal-verb-row/phrasal-verb-row.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ProfileMenuComponent } from './components/profile-menu/profile-menu.com
     TrackCardComponent,
     WordSearchRowComponent,
     KnowledgeLevelPipe,
-    ProfileMenuComponent
+    ProfileMenuComponent,
+    PhrasalVerbRowComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ProfileMenuComponent } from './components/profile-menu/profile-menu.com
     WordsTableComponent,
     WordSearchRowComponent,
     KnowledgeLevelPipe,
-    ProfileMenuComponent
+    ProfileMenuComponent,
+    PhrasalVerbRowComponent
   ]
 })
 export class SharedModule { }

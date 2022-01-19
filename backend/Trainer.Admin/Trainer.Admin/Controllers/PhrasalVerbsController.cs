@@ -28,5 +28,11 @@ namespace Trainer.Admin.Controllers
         {
             return Ok(await _pvService.CreatePvAsync(verb));
         }
+
+        [HttpPut]
+        public async Task<IActionResult> EditPvAsync(PhrasalVerbWrite verb)
+        {
+            return Ok(await _pvService.EditPvAsync(verb));
+        }
     }
 }

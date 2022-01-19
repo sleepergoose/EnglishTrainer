@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { Example } from 'src/app/models/examples/example';
-import { WordEdit } from 'src/app/models/word/word-edit';
-import { WordRead } from 'src/app/models/word/word-read';
+import { PhrasalVerbRead } from 'src/app/models/phrasal-verb/phrasal-verb-read';
+import { PhrasalVerbService } from 'src/app/services/phrasal-verb.service';
 import { SearchService } from 'src/app/services/search.service';
-import { WordsService } from 'src/app/services/words.service';
 
 @Component({
-  selector: 'app-edit-word',
-  templateUrl: './edit-word.component.html',
-  styleUrls: ['./edit-word.component.sass']
+  selector: 'app-edit-phrasal-verb',
+  templateUrl: './edit-phrasal-verb.component.html',
+  styleUrls: ['./edit-phrasal-verb.component.sass']
 })
-export class EditWordComponent implements OnInit {
-  editedWords = [] as WordEdit[];
+export class EditPhrasalVerbComponent implements OnInit {
+  editedPVs = [] as PhrasalVerbRead[];
 
-  currentWord = {} as WordEdit;
+  currentPV = {} as PhrasalVerbRead;
 
   examples = [] as Example[];
   exampleStr: string = ''; 
   searchValue: string = '';
-  foundWords: Array<WordRead> = new Array<WordRead>();
+  foundPVs: Array<PhrasalVerbRead> = new Array<PhrasalVerbRead>();
+
   private _searchTerms = new Subject<string>();
   private _unsubscribe$ = new Subject<void>();
 
   constructor(
-    private _wordService: WordsService,
+    private _pvService: PhrasalVerbService,
     private _searchService: SearchService
   ) { }
 
@@ -33,21 +33,20 @@ export class EditWordComponent implements OnInit {
   }
 
   onSubmit() {
-    this.currentWord.examples = this.examples;
+    this.currentPV.examples = this.examples;
 
-    this.currentWord.text = this.currentWord.text.trim();
-    this.currentWord.transcription = this.currentWord.transcription.trim();
-    this.currentWord.translation = this.currentWord.translation.trim();
+    this.currentPV.text = this.currentPV.text.trim();
+    this.currentPV.translation = this.currentPV.translation.trim();
 
-    this._wordService.editWord(this.currentWord)
+    this._pvService.editPhrasalVerb(this.currentPV)
       .pipe(take(1))
-      .subscribe((word) => {
-        this.editedWords = [
-          ...this.editedWords,
-          word
+      .subscribe((response) => {
+        this.editedPVs = [
+          ...this.editedPVs,
+          response
         ];
         this.onReset();
-        this.currentWord = {} as WordEdit;
+        this.currentPV = {} as PhrasalVerbRead;
       });
   }
 
@@ -82,19 +81,19 @@ export class EditWordComponent implements OnInit {
     this.examples = [] as Example[];
   }
 
-  findWords() {
+  findPhrasalVerbs() {
     if (this.searchValue.trim() !== '') {
       this._searchTerms.next(this.searchValue);
     }
     else {
-      this.foundWords = [];
+      this.foundPVs = [];
     }
   }
 
   clearSearch(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.searchValue = '';
-      this.foundWords = new Array<WordRead>();
+      this.foundPVs = new Array<PhrasalVerbRead>();
     }
   }
 
@@ -103,23 +102,23 @@ export class EditWordComponent implements OnInit {
       takeUntil(this._unsubscribe$),
       debounceTime(500),
       distinctUntilChanged(),
-      switchMap((term: string) => this._searchService.getWordsByName(term))
+      switchMap((term: string) => this._searchService.getPVsByName(term))
     ).subscribe({
       next: (data) => {
-        this.foundWords = data;
-        this.currentWord = {} as WordEdit;
+        this.foundPVs = data;
+        this.currentPV = {} as PhrasalVerbRead;
       }
     });
   }
 
-  editWord(word: WordRead) {
-    this._wordService.getWordById(word.id)
+  editPhrasalVerb(pv: PhrasalVerbRead) {
+    this._pvService.getPhrasalVerbById(pv.id)
       .pipe(take(1))
-      .subscribe((word) => {
-        this.currentWord = word;
-        this.examples = word.examples;
+      .subscribe((response) => {
+        this.currentPV = response;
+        this.examples = response.examples;
         this.searchValue = '';
-        this.foundWords = new Array<WordEdit>();
+        this.foundPVs = new Array<PhrasalVerbRead>();
       });
   }
 

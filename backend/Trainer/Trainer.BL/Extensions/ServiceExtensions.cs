@@ -10,8 +10,6 @@ namespace Trainer.BL.Extensions
         {
             services.AddScoped<WordsService>();
             services.AddScoped<PhrasalVerbsService>();
-            services.AddScoped<WordExamplesService>();
-            services.AddScoped<PvExamplesService>();
             services.AddScoped<WordTracksService>();
             services.AddScoped<PvTracksService>();
             services.AddSingleton<FirebaseService>();

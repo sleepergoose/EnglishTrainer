@@ -26,5 +26,11 @@ namespace Trainer.API.Controllers
         {
             return Ok(await _searchService.GetWordsByNameAsync(term));
         }
+        
+        [HttpGet("getPhrasalVerbByName")]
+        public async Task<IActionResult> GetPhrasalVerbByNameAsync(string term)
+        {
+            return Ok(await _searchService.GetPhrasalVerbByNameAsync(term));
+        }
     }
 }

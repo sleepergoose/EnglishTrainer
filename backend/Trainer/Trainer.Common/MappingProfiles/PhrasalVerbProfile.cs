@@ -8,7 +8,8 @@ namespace Trainer.Common.MappingProfiles
     {
         public PhrasalVerbProfile()
         {
-            CreateMap<PhrasalVerb, PhrasalVerbDTO>().ReverseMap();
+            CreateMap<PhrasalVerb, PhrasalVerbReadDTO>().ReverseMap();
+            CreateMap<PhrasalVerb, PhrasalVerbWriteDTO>().ReverseMap();
         }
     }
 }

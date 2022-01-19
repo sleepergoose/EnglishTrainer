@@ -9,7 +9,7 @@ namespace Trainer.Common.MappingProfiles
     {
         public WordExampleProfile()
         {
-            CreateMap<WordExample, WordExampleDTO>().ReverseMap();
+            CreateMap<WordExample, ExampleWriteDTO>().ReverseMap();
             CreateMap<WordExample, ExampleReadDTO>();
         }
     }

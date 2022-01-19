@@ -11,6 +11,18 @@
       ],
       "UpstreamPathTemplate": "/api/Search/getWordsByName",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Search/getPhrasalVerbByName",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Search/getPhrasalVerbByName",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ]
 }

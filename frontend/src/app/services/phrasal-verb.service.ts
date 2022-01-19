@@ -19,4 +19,8 @@ export class PhrasalVerbService {
   editPhrasalVerb(pv: PhrasalVerbRead) {
     return this._http.putRequest<PhrasalVerbRead>(`/api/admin/PhrasalVerbs`, pv);
   }
+
+  getPhrasalVerbById(id: number) {
+    return this._http.getRequest<PhrasalVerbRead>(`/api/PhrasalVerbs/${id}`)
+  }
 }
