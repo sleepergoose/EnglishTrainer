@@ -25,6 +25,7 @@ namespace Trainer.Admin
             services.AddAuth(Configuration);
 
             services.AddCustomServices(Configuration);
+            services.RegisterAutoMapper();
 
             services.AddControllers(opt => {
                 opt.Filters.Add(new CustomExceptionFilterAttribute());
@@ -32,7 +33,7 @@ namespace Trainer.Admin
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trainer.Admin", Version = "v2" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trainer.Admin", Version = "v1" });
             });
         }
 
@@ -44,7 +45,7 @@ namespace Trainer.Admin
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v2/swagger.json", "Trainer.Admin v1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trainer.Admin v1");
                     c.RoutePrefix = string.Empty;
                 });
             }
