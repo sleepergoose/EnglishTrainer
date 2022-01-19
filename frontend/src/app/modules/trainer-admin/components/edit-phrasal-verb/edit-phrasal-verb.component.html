@@ -7,7 +7,7 @@
     <!-- Search field -->
     <div class="search">
       <mat-form-field appearance="standard">
-        <mat-label>Search a word</mat-label>
+        <mat-label>Search a phrasal verb</mat-label>
         <input matInput (input)="findPhrasalVerbs()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
         (keyup)="clearSearch($event)">
       </mat-form-field>

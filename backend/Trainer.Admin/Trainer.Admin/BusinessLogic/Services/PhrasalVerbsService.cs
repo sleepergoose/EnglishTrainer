@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using System.Threading.Tasks;
 using Trainer.Admin.BusinessLogic.Commands;
 using Trainer.Admin.Domain.Entities;
@@ -9,31 +10,37 @@ namespace Trainer.Admin.BusinessLogic.Services
     public class PhrasalVerbsService
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public PhrasalVerbsService(IMediator mediator)
+        public PhrasalVerbsService(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
-        public async Task<PhrasalVerb> CreatePvAsync(PhrasalVerbWrite verb)
+        public async Task<PhrasalVerbRead> CreatePvAsync(PhrasalVerbWrite verb)
         {
-            return await _mediator.Send(new CreatePvCommand
+            var pv = await _mediator.Send(new CreatePvCommand
             {
                 Text = verb.Text,
                 Translation = verb.Translation,
                 Examples = verb.Examples
             });
+
+            return _mapper.Map<PhrasalVerbRead>(pv);
         }
 
-        public async Task<PhrasalVerb> EditPvAsync(PhrasalVerbWrite verb)
+        public async Task<PhrasalVerbRead> EditPvAsync(PhrasalVerbWrite verb)
         {
-            return await _mediator.Send(new EditPvCommand
+            var pv = await _mediator.Send(new EditPvCommand
             {
                 Id = verb.Id,
                 Text = verb.Text,
                 Translation = verb.Translation,
                 Examples = verb.Examples
             });
+
+            return _mapper.Map<PhrasalVerbRead>(pv);
         }
     }
 }
