@@ -28,5 +28,15 @@ namespace Trainer.BL.Services
 
             return _mapper.Map<ICollection<WordDTO>>(words);
         }
+
+        public async Task<ICollection<PhrasalVerbReadDTO>> GetPhrasalVerbByNameAsync(string term)
+        {
+            var words = await _context.PhrasalVerbs
+                .Where(w => w.Text.Contains(term.Trim()))
+                .Include(pv => pv.Examples)
+                .ToListAsync();
+
+            return _mapper.Map<ICollection<PhrasalVerbReadDTO>>(words);
+        }
     }
 }

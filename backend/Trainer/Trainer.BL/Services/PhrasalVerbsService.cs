@@ -22,65 +22,18 @@ namespace Trainer.BL.Services
             _mapper = mapper;
         }
 
-        public async Task<PhrasalVerbDTO> GetPhrasalVerbAsync(int id)
+        public async Task<PhrasalVerbReadDTO> GetPhrasalVerbAsync(int id)
         {
-            var pv = await _context.PhrasalVerbs.FirstOrDefaultAsync(pv => pv.Id == id);
-            return _mapper.Map<PhrasalVerbDTO>(pv);
+            var pv = await _context.PhrasalVerbs
+                .Include(pv => pv.Examples)
+                .FirstOrDefaultAsync(pv => pv.Id == id);
+            return _mapper.Map<PhrasalVerbReadDTO>(pv);
         }
 
-        public async Task<ICollection<PhrasalVerbDTO>> GetPhrasalVerbsAsync()
+        public async Task<ICollection<PhrasalVerbReadDTO>> GetPhrasalVerbsAsync()
         {
             var pvs = await _context.PhrasalVerbs.ToListAsync();
-            return _mapper.Map<ICollection<PhrasalVerbDTO>>(pvs);
-        }
-
-        public async Task<PhrasalVerbDTO> CreatePhrasalVerbAsync(PhrasalVerbDTO dto)
-        {
-            var pv = _mapper.Map<PhrasalVerb>(dto);
-
-            var createdPV = await _context.PhrasalVerbs.FirstOrDefaultAsync(pv => pv.Text == dto.Text);
-
-            if (createdPV != null)
-                return _mapper.Map<PhrasalVerbDTO>(createdPV);
-
-            pv.Id = 0;
-
-            await _context.PhrasalVerbs.AddAsync(pv);
-            await _context.SaveChangesAsync();
-
-            return _mapper.Map<PhrasalVerbDTO>(pv);
-        }
-
-        public async Task<PhrasalVerbDTO> UpdatePhrasalVerbAsync(PhrasalVerbDTO dto)
-        {
-            var updatedPV = await _context.PhrasalVerbs.FirstOrDefaultAsync(pv => pv.Text == dto.Text);
-
-            if (updatedPV == null)
-                return _mapper.Map<PhrasalVerbDTO>(null);
-
-            if (!string.IsNullOrEmpty(dto.Text.Trim()))
-                updatedPV.Text = dto.Text;
-
-            if (!string.IsNullOrEmpty(dto.Translation.Trim()))
-                updatedPV.Translation = dto.Translation;
-
-            _context.PhrasalVerbs.Update(updatedPV);
-            await _context.SaveChangesAsync();
-
-            return _mapper.Map<PhrasalVerbDTO>(updatedPV);
-        }
-
-        public async Task<int> DeletePhrasalVerbAsync(int id)
-        {
-            var deletedPV = await _context.PhrasalVerbs.FirstOrDefaultAsync(pv => pv.Id == id);
-
-            if (deletedPV == null)
-                return -1;
-
-            _context.PhrasalVerbs.Remove(deletedPV);
-            await _context.SaveChangesAsync();
-
-            return id;
+            return _mapper.Map<ICollection<PhrasalVerbReadDTO>>(pvs);
         }
     }
 }

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="header">
-    <span>Edit a word</span>
+    <span>Edit a phrasal verb</span>
   </div>
 
   <div class="search-section">
@@ -8,14 +8,14 @@
     <div class="search">
       <mat-form-field appearance="standard">
         <mat-label>Search a word</mat-label>
-        <input matInput (input)="findWords()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
+        <input matInput (input)="findPhrasalVerbs()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
         (keyup)="clearSearch($event)">
       </mat-form-field>
     </div>
 
     <!-- Search result -->
     <div class="search-result" *ngIf="foundPVs.length">
-        <div class="search-result-row" *ngFor="let pv of foundPVs" (clickButton)="editWord(pv)">
+        <div class="search-result-row" *ngFor="let pv of foundPVs" (click)="editPhrasalVerb(pv)">
           <div class="text">
             <span>
               {{pv.text}}

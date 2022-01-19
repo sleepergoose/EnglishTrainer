@@ -17,6 +17,6 @@ export class SearchService {
 
   getPVsByName(term: string) {
     const httpParams = { term };
-    return this._http.getRequest<PhrasalVerbRead[]>('/api/Search/getPVsByName', httpParams);
+    return this._http.getRequest<PhrasalVerbRead[]>('/api/Search/getPhrasalVerbByName', httpParams);
   }
 }

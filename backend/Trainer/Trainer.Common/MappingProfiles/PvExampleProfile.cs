@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.Examples;
 using Trainer.Domain.Models;
 
 namespace Trainer.Common.MappingProfiles
@@ -8,7 +9,8 @@ namespace Trainer.Common.MappingProfiles
     {
         public PvExampleProfile()
         {
-            CreateMap<PvExample, PvExampleDTO>().ReverseMap();
+            CreateMap<PvExample, ExampleReadDTO>().ReverseMap();
+            CreateMap<PvExample, PhrasalVerbWriteDTO>().ReverseMap();
         }
     }
 }

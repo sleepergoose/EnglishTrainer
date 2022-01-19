@@ -24,5 +24,16 @@ namespace Trainer.Admin.BusinessLogic.Services
                 Examples = verb.Examples
             });
         }
+
+        public async Task<PhrasalVerb> EditPvAsync(PhrasalVerbWrite verb)
+        {
+            return await _mediator.Send(new EditPvCommand
+            {
+                Id = verb.Id,
+                Text = verb.Text,
+                Translation = verb.Translation,
+                Examples = verb.Examples
+            });
+        }
     }
 }

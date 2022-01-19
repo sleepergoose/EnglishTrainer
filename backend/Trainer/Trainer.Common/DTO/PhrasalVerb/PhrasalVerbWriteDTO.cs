@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Trainer.Common.DTO.Examples;
 
 namespace Trainer.Common.DTO
 {
-    public sealed class PvExampleDTO
+    public sealed class PhrasalVerbWriteDTO
     {
-        public string Phrase { get; set; }
+        public string Text { get; set; }
         public string Translation { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
+        public ICollection<ExampleWriteDTO> Examples { get; set; }
     }
 }

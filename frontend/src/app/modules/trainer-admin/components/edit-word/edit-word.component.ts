@@ -52,6 +52,10 @@ export class EditWordComponent implements OnInit {
   }
 
   addNewExample() {
+    if (this.exampleStr.trim() === '') {
+      return;
+    }
+    
     const temp = this.exampleStr.split(' - ').map(p => p.trim());
 
     this.examples = [

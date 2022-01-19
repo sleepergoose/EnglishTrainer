@@ -40,10 +40,10 @@ export class EditPhrasalVerbComponent implements OnInit {
 
     this._pvService.editPhrasalVerb(this.currentPV)
       .pipe(take(1))
-      .subscribe((word) => {
+      .subscribe((response) => {
         this.editedPVs = [
           ...this.editedPVs,
-          word
+          response
         ];
         this.onReset();
         this.currentPV = {} as PhrasalVerbRead;
@@ -51,6 +51,10 @@ export class EditPhrasalVerbComponent implements OnInit {
   }
 
   addNewExample() {
+    if (this.exampleStr.trim() === '') {
+      return;
+    }
+    
     const temp = this.exampleStr.split(' - ').map(p => p.trim());
 
     this.examples = [
@@ -77,7 +81,7 @@ export class EditPhrasalVerbComponent implements OnInit {
     this.examples = [] as Example[];
   }
 
-  findWords() {
+  findPhrasalVerbs() {
     if (this.searchValue.trim() !== '') {
       this._searchTerms.next(this.searchValue);
     }
@@ -107,12 +111,12 @@ export class EditPhrasalVerbComponent implements OnInit {
     });
   }
 
-  editWord(word: PhrasalVerbRead) {
-    this._pvService.getPhrasalVerbById(word.id)
+  editPhrasalVerb(pv: PhrasalVerbRead) {
+    this._pvService.getPhrasalVerbById(pv.id)
       .pipe(take(1))
-      .subscribe((word) => {
-        this.currentPV = word;
-        this.examples = word.examples;
+      .subscribe((response) => {
+        this.currentPV = response;
+        this.examples = response.examples;
         this.searchValue = '';
         this.foundPVs = new Array<PhrasalVerbRead>();
       });
