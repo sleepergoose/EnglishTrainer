@@ -11,13 +11,8 @@ using System.Linq;
 
 namespace Trainer.Admin.BusinessLogic.Commands
 {
-    public class CreateWordCommand : IRequest<Word>
-    {
-        public string Text { get; set; }
-        public string Transcription { get; set; }
-        public string Translation { get; set; }
-        public ICollection<Example> Examples { get; set; }
-    }
+    public class CreateWordCommand : WordWrite, IRequest<Word>
+    {}
 
     public class CreateWordCommandHandler : IRequestHandler<CreateWordCommand, Word>
     {

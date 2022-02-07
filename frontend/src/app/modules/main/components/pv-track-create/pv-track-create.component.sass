@@ -1,0 +1,145 @@
+@import 'src/styles.sass'
+  
+.main-content
+  grid-column: 2
+  grid-row: 1
+  width: 100%
+  height: 100%
+  overflow: auto
+  .header
+    height: $header-height
+    width: 100%
+    border-bottom: 1px solid $borders
+    display: grid
+    grid-template-columns: 250px auto
+    grid-template-rows: 60px 180px 60px
+    gap: 0px 20px
+    justify-items: center
+    background: $header-gradient
+    .img-cover
+      grid-column: 1
+      grid-row: 2
+      justify-self: right
+      align-self: center
+      img
+        height: 170px
+        width: 170px
+    .info-block
+      grid-column: 2
+      grid-row: 2
+      justify-self: left
+      padding: 10px 0px 10px 0px
+      color: $text-common
+      .name
+        max-width: 600px
+        padding: 10px 0px 10px 0px
+        span, input
+          font-size: 3rem
+          font-weight: 600
+          color: $text-common
+          overflow: hidden
+          text-overflow: ellipsis
+          white-space: nowrap
+        input
+          width: 90%
+          background: transparent
+          border: none
+          border-bottom: 1px solid #a7a7a7
+        mat-icon
+          margin-left: 10px
+          &:hover
+            text-decoration: underline
+            cursor: pointer
+          &:active
+            transform: scale(0.95)
+
+      .statistic
+        color: $text-gray
+        div
+          display: inline-block
+        mat-icon
+          font-size: 1rem
+          margin-left: 10px
+          color: $text-common
+          &:hover
+            text-decoration: underline
+            cursor: pointer
+          &:active
+            transform: scale(0.95)
+        select
+          background: transparent
+          border: none
+          border-bottom: 1px solid #a7a7a7
+          color: $text-common
+          margin: 10px !important
+          option
+            display: inline !important
+            background: $drk-gray
+            padding: 10px !important
+        span
+          color: $text-common
+
+      .description
+        max-height: 50px
+        max-width: 600px
+        width: 600px
+        padding: 7px 0px
+        mat-icon
+          font-size: 1rem
+          margin-left: 10px
+          &:hover
+            text-decoration: underline
+            cursor: pointer
+          &:active
+            transform: scale(0.95)
+        input
+          background: transparent
+          border: none
+          border-bottom: 1px solid #a7a7a7
+          width: 550px
+          color: $text-common
+
+      .controls
+        margin-top: 10px
+        width: 200px
+        display: grid
+        grid-template-columns: 100px 100px
+        grid-template-rows: 100%
+        justify-items: center
+        align-items: center
+        .btn-edit
+          grid-column: 1
+          width: 80%
+          background: $primary !important
+          border-radius: 20px
+        .btn-save
+          grid-column: 2
+          justify-self: center
+          width: 80%
+          border-radius: 20px
+
+  .words-list
+    display: grid
+    grid-template-columns: 100%
+    grid-template-rows: auto
+    padding: 10px
+    .list-header
+      color: $text-common
+      font-weight: 500
+      padding: 0px
+      margin: 0px
+    .search-header
+      padding: 0px
+      margin: 0px
+      margin-top: 20px
+      color: $text-common
+      font-weight: 500
+    .search
+      mat-form-field
+        width: 50%  
+        input
+          color: $text-common !important
+          caret-color: $text-common !important
+
+::ng-deep.mat-form-field-flex
+  padding: 0px !important

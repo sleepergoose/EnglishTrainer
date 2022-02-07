@@ -11,12 +11,8 @@ using Trainer.Domain.Models;
 
 namespace Trainer.Admin.BusinessLogic.Commands
 {
-    public class CreatePvCommand : IRequest<PhrasalVerb>
-    {
-        public string Text { get; set; }
-        public string Translation { get; set; }
-        public ICollection<Example> Examples { get; set; }
-    }
+    public class CreatePvCommand : PhrasalVerbWrite, IRequest<PhrasalVerb>
+    {}
 
     public class CreatePvCommandHandler : IRequestHandler<CreatePvCommand, PhrasalVerb>
     {

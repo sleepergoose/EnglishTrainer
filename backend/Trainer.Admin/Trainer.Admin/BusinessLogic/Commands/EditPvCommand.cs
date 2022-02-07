@@ -11,13 +11,8 @@ using System.Linq;
 
 namespace Trainer.Admin.BusinessLogic.Commands
 {
-    public class EditPvCommand : IRequest<PhrasalVerb>
-    {
-        public int Id { get; set; }
-        public string Text { get; set; }
-        public string Translation { get; set; }
-        public ICollection<Example> Examples { get; set; }
-    }
+    public class EditPvCommand : PhrasalVerbWrite, IRequest<PhrasalVerb>
+    {}
 
     public class EditPvCommandHandler : IRequestHandler<EditPvCommand, PhrasalVerb>
     {

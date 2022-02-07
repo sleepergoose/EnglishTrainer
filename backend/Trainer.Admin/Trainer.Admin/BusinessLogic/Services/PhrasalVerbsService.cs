@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using System.Threading.Tasks;
-using Trainer.Admin.BusinessLogic.Commands;
 using Trainer.Admin.Domain.Entities;
-using Trainer.Domain.Models;
 
 namespace Trainer.Admin.BusinessLogic.Services
 {
@@ -20,27 +18,12 @@ namespace Trainer.Admin.BusinessLogic.Services
 
         public async Task<PhrasalVerbRead> CreatePvAsync(PhrasalVerbWrite verb)
         {
-            var pv = await _mediator.Send(new CreatePvCommand
-            {
-                Text = verb.Text,
-                Translation = verb.Translation,
-                Examples = verb.Examples
-            });
-
-            return _mapper.Map<PhrasalVerbRead>(pv);
+            return _mapper.Map<PhrasalVerbRead>(await _mediator.Send(verb));
         }
 
         public async Task<PhrasalVerbRead> EditPvAsync(PhrasalVerbWrite verb)
         {
-            var pv = await _mediator.Send(new EditPvCommand
-            {
-                Id = verb.Id,
-                Text = verb.Text,
-                Translation = verb.Translation,
-                Examples = verb.Examples
-            });
-
-            return _mapper.Map<PhrasalVerbRead>(pv);
+            return _mapper.Map<PhrasalVerbRead>(await _mediator.Send(verb));
         }
     }
 }

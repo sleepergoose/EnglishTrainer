@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { ContainerComponent } from './components/container/container.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { PvTrackCreateComponent } from './components/pv-track-create/pv-track-create.component';
 import { TrackCreateComponent } from './components/track-create/track-create.component';
 import { TrackEditComponent } from './components/track-edit/track-edit.component';
 import { TrackViewComponent } from './components/track-view/track-view.component';
@@ -44,6 +45,10 @@ const routes: Routes = [
         path: 'trainer',
         loadChildren: () => import('../trainer/trainer.module').then((m) => m.TrainerModule),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'trackview/pv/create',
+        component: PvTrackCreateComponent
       },
     ]
   }

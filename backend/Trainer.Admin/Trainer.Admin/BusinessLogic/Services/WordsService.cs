@@ -1,12 +1,6 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Trainer.Domain.Models;
-using Trainer.Admin.BusinessLogic.Commands;
 using Trainer.Admin.Domain.Entities;
-using Trainer.Common.DTO.Word;
 using AutoMapper;
 
 namespace Trainer.Admin.BusinessLogic.Services
@@ -24,29 +18,12 @@ namespace Trainer.Admin.BusinessLogic.Services
 
         public async Task<WordRead> CreateWordAsync(WordWrite word)
         {
-            var createdWord = await _mediator.Send(new CreateWordCommand()
-                {
-                    Text = word.Text,
-                    Transcription = word.Transcription,
-                    Translation = word.Translation,
-                    Examples = word.Examples
-                });
-
-            return _mapper.Map<WordRead>(createdWord);
+            return _mapper.Map<WordRead>(await _mediator.Send(word));
         }
 
         public async Task<WordRead> EditWordAsync(WordEdit word)
         {
-            var editedWord = await _mediator.Send(new EditWordCommand()
-            {
-                Id = word.Id,
-                Text = word.Text,
-                Transcription = word.Transcription,
-                Translation = word.Translation,
-                Examples = word.Examples
-            });
-
-            return _mapper.Map<WordRead>(editedWord);
+            return _mapper.Map<WordRead>(await _mediator.Send(word));
         }
     }
 }
