@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Trainer.Admin.Domain.Entities;
 using AutoMapper;
+using Trainer.Admin.BusinessLogic.Commands;
 
 namespace Trainer.Admin.BusinessLogic.Services
 {
@@ -18,12 +19,29 @@ namespace Trainer.Admin.BusinessLogic.Services
 
         public async Task<WordRead> CreateWordAsync(WordWrite word)
         {
-            return _mapper.Map<WordRead>(await _mediator.Send(word));
+            var command = new CreateWordCommand
+            {
+                Text = word.Text,
+                Transcription = word.Transcription,
+                Translation = word.Translation,
+                Examples = word.Examples
+            };
+
+            return _mapper.Map<WordRead>(await _mediator.Send(command));
         }
 
         public async Task<WordRead> EditWordAsync(WordEdit word)
         {
-            return _mapper.Map<WordRead>(await _mediator.Send(word));
+            var command = new EditWordCommand
+            {
+                Id = word.Id,
+                Text = word.Text,
+                Transcription = word.Transcription,
+                Translation = word.Translation,
+                Examples = word.Examples
+            };
+
+            return _mapper.Map<WordRead>(await _mediator.Send(command));
         }
     }
 }
