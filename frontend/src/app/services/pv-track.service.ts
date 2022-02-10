@@ -10,6 +10,6 @@ export class PvTrackService {
   constructor(private _http: HttpInternalService) { }
 
   createTrack(track: TrackWrite) {
-    return this._http.postRequest<TrackRead>('/api/admin/WordTracks', track);
+    return this._http.postRequest<TrackRead>('/api/admin/PvTracks', track);
   }
 }

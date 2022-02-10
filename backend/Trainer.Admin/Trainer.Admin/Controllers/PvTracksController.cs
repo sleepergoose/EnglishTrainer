@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Trainer.Admin.BusinessLogic.Services;
+using Trainer.Admin.Domain.Entities;
 using Trainer.Common.Auth.Constants;
 
 namespace Trainer.Admin.Controllers
@@ -20,6 +18,12 @@ namespace Trainer.Admin.Controllers
         public PvTracksController(PvTracksService pvTrackService)
         {
             _pvTrackService = pvTrackService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePvTrackAsync([FromBody] PhrasalVerbTrackWrite track)
+        {
+            return Ok(await _pvTrackService.CreatePvTrackAsync(track));
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Trainer.Admin.BusinessLogic.Extensions
 
             service.AddScoped<WordsService>();
             service.AddScoped<PhrasalVerbsService>();
+            service.AddScoped<PvTracksService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)
@@ -31,6 +32,7 @@ namespace Trainer.Admin.BusinessLogic.Extensions
                 cfg.AddProfile<WordProfile>();
                 cfg.AddProfile<PhrasalVerbProfile>();
                 cfg.AddProfile<ExampleProfile>();
+                cfg.AddProfile<PvTrackProfile>();
             });
         }
     }
