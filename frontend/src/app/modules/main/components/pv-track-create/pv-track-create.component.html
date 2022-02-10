@@ -1,0 +1,41 @@
+<!-- Content section -->
+<div class="main-content">
+  <!-- Header -->
+  <div class="header">
+    <div class="img-cover">
+      <img src="../../../../../assets/dictionary_2.png" alt="">
+    </div>
+    <div class="info-block">
+
+      <div class="name">
+        <span *ngIf="!isNameEdited">{{createdTrack.name}}</span>
+        <mat-icon *ngIf="!isNameEdited" (click)="clickNameEdit()">edit</mat-icon>
+        <input *ngIf="isNameEdited" type="text" [(ngModel)]="createdTrack.name">
+        <mat-icon *ngIf="isNameEdited" (click)="clickNameEdit()">save</mat-icon>
+      </div>
+
+      <div class="statistic">
+        <div *ngIf="!isLevelEdited">
+          Level: <span>{{createdTrack.level | knowledgeLevel}}</span> 
+        </div>
+        <mat-icon *ngIf="!isLevelEdited" (click)="clickLevelEdit()">edit</mat-icon>
+        <select *ngIf="isLevelEdited"  name="knowledgeLevel" [ngModel]="createdTrack.level" 
+          (ngModelChange)="createdTrack.level=$event"  #knowledgeLevel="ngModel" required>
+          <option *ngFor="let level of levelValues" [ngValue]="level">{{level | knowledgeLevel}}</option>
+        </select>
+        <mat-icon *ngIf="isLevelEdited" (click)="clickLevelEdit()">save</mat-icon>
+      </div>
+
+      <div class="description">
+        <span *ngIf="!isDescriptionEdited">{{createdTrack.description}}</span>
+        <mat-icon *ngIf="!isDescriptionEdited" (click)="clickDescriptionEdit()">edit</mat-icon>
+        <input *ngIf="isDescriptionEdited" type="text" [(ngModel)]="createdTrack.description">
+        <mat-icon *ngIf="isDescriptionEdited" (click)="clickDescriptionEdit()">save</mat-icon>
+      </div>
+
+      <div class="controls">
+        <button class="btn-edit" mat-raised-button (click)="clickCreateTrack()">Create</button>
+      </div>
+    </div>
+  </div>
+</div>

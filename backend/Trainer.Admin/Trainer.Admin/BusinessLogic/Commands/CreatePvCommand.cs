@@ -13,6 +13,7 @@ namespace Trainer.Admin.BusinessLogic.Commands
 {
     public class CreatePvCommand : IRequest<PhrasalVerb>
     {
+        public int Id { get; set; }
         public string Text { get; set; }
         public string Translation { get; set; }
         public ICollection<Example> Examples { get; set; }

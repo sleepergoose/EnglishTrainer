@@ -10,6 +10,7 @@ import { LeftSideMenuComponent } from './components/left-side-menu/left-side-men
 import { TrackEditComponent } from './components/track-edit/track-edit.component';
 import { SharedModule } from '../shared/shared.module';
 import { TrackCreateComponent } from './components/track-create/track-create.component';
+import { PvTrackCreateComponent } from './components/pv-track-create/pv-track-create.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TrackCreateComponent } from './components/track-create/track-create.com
     LeftSideMenuComponent,
     ContainerComponent,
     TrackEditComponent,
-    TrackCreateComponent
+    TrackCreateComponent,
+    PvTrackCreateComponent
   ],
   imports: [
     CommonModule,

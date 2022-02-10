@@ -21,7 +21,7 @@ namespace OcelotApiGateway
                 })
                 .ConfigureAppConfiguration((hostBuilderContext, configBuilder) => configBuilder
                     .SetBasePath(hostBuilderContext.HostingEnvironment.ContentRootPath)
-                    .AddOcelotConfiguration($"Configuration/{hostBuilderContext.HostingEnvironment.EnvironmentName}")
+                    .AddOcelotConfiguration($"Configuration/Development") // {hostBuilderContext.HostingEnvironment.EnvironmentName}
                 );
     }
 }
