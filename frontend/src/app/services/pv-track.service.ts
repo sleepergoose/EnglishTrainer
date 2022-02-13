@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TrackRead } from '../models/track/track-read';
+import { PvTrackRead, TrackRead } from '../models/track/track-read';
 import { TrackWrite } from '../models/track/track-write';
 import { HttpInternalService } from './http-internal.service';
 
@@ -11,5 +11,9 @@ export class PvTrackService {
 
   createTrack(track: TrackWrite) {
     return this._http.postRequest<TrackRead>('/api/admin/PvTracks', track);
+  }
+
+  getTrack(id: number) {
+    return this._http.getRequest<PvTrackRead>(`/api/PvTracks/${id}`);
   }
 }

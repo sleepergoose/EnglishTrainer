@@ -31,10 +31,6 @@ export class PvTrackCreateComponent implements OnDestroy {
 
   createdTrack = {} as TrackWrite;
 
-  foundWords: Array<PhrasalVerbRead> = new Array<PhrasalVerbRead>();
-  trackWords = [] as PhrasalVerbRead[];
-  searchValue: string = '';
-
   private _unsubscribe$ = new Subject<void>();
 
   constructor(

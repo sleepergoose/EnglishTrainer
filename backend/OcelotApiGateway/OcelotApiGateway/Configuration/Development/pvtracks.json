@@ -1,0 +1,16 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/PvTracks/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/PvTracks/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}

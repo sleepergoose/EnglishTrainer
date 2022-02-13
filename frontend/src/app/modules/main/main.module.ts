@@ -11,6 +11,7 @@ import { TrackEditComponent } from './components/track-edit/track-edit.component
 import { SharedModule } from '../shared/shared.module';
 import { TrackCreateComponent } from './components/track-create/track-create.component';
 import { PvTrackCreateComponent } from './components/pv-track-create/pv-track-create.component';
+import { PvTrackEditComponent } from './components/pv-track-edit/pv-track-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PvTrackCreateComponent } from './components/pv-track-create/pv-track-cr
     ContainerComponent,
     TrackEditComponent,
     TrackCreateComponent,
-    PvTrackCreateComponent
+    PvTrackCreateComponent,
+    PvTrackEditComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,66 @@
+<!-- Content section -->
+<div class="main-content">
+  <!-- Header -->
+  <div class="header">
+    <div class="img-cover">
+      <img src="../../../../../assets/dictionary_2.png" alt="">
+    </div>
+    <div class="info-block">
+
+      <div class="name">
+        <span *ngIf="!isNameEdited">{{viewedTrack.name}}</span>
+        <mat-icon *ngIf="!isNameEdited" (click)="clickNameEdit()">edit</mat-icon>
+        <input *ngIf="isNameEdited" type="text" [(ngModel)]="viewedTrack.name">
+        <mat-icon *ngIf="isNameEdited" (click)="clickNameEdit()">save</mat-icon>
+      </div>
+
+      <div class="statistic">
+        <div *ngIf="!isLevelEdited">
+          Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> 
+        </div>
+        <mat-icon *ngIf="!isLevelEdited" (click)="clickLevelEdit()">edit</mat-icon>
+        <select *ngIf="isLevelEdited"  name="knowledgeLevel" [ngModel]="viewedTrack.level" 
+          (ngModelChange)="viewedTrack.level=$event"  #knowledgeLevel="ngModel" required>
+          <option *ngFor="let level of levelValues" [ngValue]="level">{{level | knowledgeLevel}}</option>
+        </select>
+        <mat-icon *ngIf="isLevelEdited" (click)="clickLevelEdit()">save</mat-icon>
+      </div>
+
+      <div class="description">
+        <span *ngIf="!isDescriptionEdited">{{viewedTrack.description}}</span>
+        <mat-icon *ngIf="!isDescriptionEdited" (click)="clickDescriptionEdit()">edit</mat-icon>
+        <input *ngIf="isDescriptionEdited" type="text" [(ngModel)]="viewedTrack.description">
+        <mat-icon *ngIf="isDescriptionEdited" (click)="clickDescriptionEdit()">save</mat-icon>
+      </div>
+
+      <div class="controls">
+        <button class="btn-edit" mat-raised-button>Save changes</button>
+      </div>
+    </div>
+  </div>
+
+
+   <!-- Page -->
+   <div class="words-list">
+    <!-- List of track's words -->
+    <h2 class="list-header" *ngIf="trackWords">Track's phrasal verbs</h2>
+    <!-- <app-words-table *ngIf="trackWords" [words$]="words$" (clickRemove)="removeWord($event)"
+      [isControlShown]="true"></app-words-table> -->
+
+    <!-- Search field -->
+    <h2 class="search-header">Search new phrasal verbs</h2>
+    <div class="search">
+      <mat-form-field appearance="standard">
+        <mat-label>Search</mat-label>
+        <input matInput (input)="findWords()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
+        (keyup)="clearSearch($event)">
+      </mat-form-field>
+    </div>
+
+    <!-- Search result -->
+    <div class="search-result" *ngIf="foundWords.length">
+      <!-- <app-word-search-row *ngFor="let word of foundWords" (clickButton)="addWordToTrack($event)" [word]="word"></app-word-search-row> -->
+    </div>
+  </div>
+
+</div>
