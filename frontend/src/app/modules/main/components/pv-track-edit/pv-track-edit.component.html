@@ -34,7 +34,7 @@
       </div>
 
       <div class="controls">
-        <button class="btn-edit" mat-raised-button>Save changes</button>
+        <button class="btn-edit" mat-raised-button (click)="clickSaveTrack()">Save changes</button>
       </div>
     </div>
   </div>
@@ -42,8 +42,8 @@
    <!-- Page -->
    <div class="words-list">
     <!-- List of track's words -->
-    <h2 class="list-header" *ngIf="trackWords">Track's phrasal verbs</h2>
-    <app-pv-table *ngIf="trackWords" [verbs$]="words$" (clickRemove)="removeWord($event)"
+    <h2 class="list-header" *ngIf="trackVerbs">Track's phrasal verbs</h2>
+    <app-pv-table *ngIf="trackVerbs" [verbs$]="verbs$" (clickRemove)="removeWord($event)"
       [isControlShown]="true"></app-pv-table>
 
     <!-- Search field -->
@@ -51,14 +51,14 @@
     <div class="search">
       <mat-form-field appearance="standard">
         <mat-label>Search</mat-label>
-        <input matInput (input)="findWords()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
+        <input matInput (input)="findVerbs()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
         (keyup)="clearSearch($event)">
       </mat-form-field>
     </div>
 
     <!-- Search result -->
-    <div class="search-result" *ngIf="foundWords.length">
-      <app-pv-search-row *ngFor="let verb of foundWords" (clickButton)="addWordToTrack($event)" [verb]="verb"></app-pv-search-row>
+    <div class="search-result" *ngIf="foundVerbs.length">
+      <app-pv-search-row *ngFor="let verb of foundVerbs" (clickButton)="addWordToTrack($event)" [verb]="verb"></app-pv-search-row>
     </div>
   </div>
 

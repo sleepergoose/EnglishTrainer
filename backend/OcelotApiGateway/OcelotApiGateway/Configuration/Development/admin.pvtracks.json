@@ -11,6 +11,30 @@
       ],
       "UpstreamPathTemplate": "/api/admin/PvTracks",
       "UpstreamHttpMethod": [ "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/admin/PvTracks/addVerbToTrack",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/admin/PvTracks/addVerbToTrack",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/admin/PvTracks/removeVerbFromTrack",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/admin/PvTracks/removeVerbFromTrack",
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { PhrasalVerbRead } from '../models/phrasal-verb/phrasal-verb-read';
+import { VerbToTrackWrite } from '../models/track/pv-to-track';
 import { PvTrackRead, TrackRead } from '../models/track/track-read';
 import { TrackWrite } from '../models/track/track-write';
 import { HttpInternalService } from './http-internal.service';
@@ -15,5 +17,17 @@ export class PvTrackService {
 
   getTrack(id: number) {
     return this._http.getRequest<PvTrackRead>(`/api/PvTracks/${id}`);
+  }
+
+  addVerbToTrack(verb: VerbToTrackWrite) {
+    return this._http.postRequest('/api/admin/PvTracks/addVerbToTrack', verb);
+  }
+
+  removeVerbFromTrack(verb: VerbToTrackWrite) {
+    return this._http.postRequest('/api/admin/PvTracks/removeVerbFromTrack', verb);
+  }
+
+  updateTrack(track: PvTrackRead) {
+    return this._http.putRequest<PvTrackRead>('/api/admin/PvTracks', track);
   }
 }

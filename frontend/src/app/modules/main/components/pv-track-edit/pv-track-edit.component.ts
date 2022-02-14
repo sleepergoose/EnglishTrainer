@@ -26,12 +26,12 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
     KnowledgeLevel.proficient
   ];
 
-  words$ = new Subject<Array<PhrasalVerbRead>>(); 
-  wordsAmount$ = new Subject<number>();
+  verbs$ = new Subject<Array<PhrasalVerbRead>>(); 
+  verbsAmount$ = new Subject<number>();
   viewedTrack = {} as PvTrackRead;
 
-  foundWords: Array<PhrasalVerbRead> = new Array<PhrasalVerbRead>();
-  trackWords = [] as PhrasalVerbRead[];
+  foundVerbs: Array<PhrasalVerbRead> = new Array<PhrasalVerbRead>();
+  trackVerbs = [] as PhrasalVerbRead[];
   searchValue: string = '';
 
   private _id: number = 0;
@@ -66,37 +66,37 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
     this._unsubscribe$.complete();
   }
 
-  findWords() {
+  findVerbs() {
     if (this.searchValue.trim() !== '') {
       this._searchTerms.next(this.searchValue);
     }
     else {
-      this.foundWords = [];
+      this.foundVerbs = [];
     }
   }
 
-  addWordToTrack(word: PhrasalVerbRead) {
-    if (!this.trackWords.find((s) => s.id === word.id)) {
-      const trackWord = { trackId: this.viewedTrack.id, wordId: word.id };
+  addWordToTrack(verb: PhrasalVerbRead) {
+    if (!this.trackVerbs.find((s) => s.id === verb.id)) {
+      const trackVerb = { trackId: this.viewedTrack.id, verbId: verb.id };
       
-      // this._trackService.addWordToTrack(trackWord)
-      //   .pipe(takeUntil(this._unsubscribe$))
-      //   .subscribe({
-      //     next: () => {
-      //       this.foundWords = this.foundWords.filter((s) => s.id !== word.id);
-      //       this.trackWords = [...this.trackWords, word];
-      //       console.log(this.trackWords);
-      //       this.viewedTrack.words = this.trackWords;
-      //       this.words$.next(this.trackWords);
-      //     }
-      //   });
+      this._trackService.addVerbToTrack(trackVerb)
+        .pipe(takeUntil(this._unsubscribe$))
+        .subscribe({
+          next: () => {
+            this.foundVerbs = this.foundVerbs.filter((s) => s.id !== verb.id);
+            this.trackVerbs = [...this.trackVerbs, verb];
+            console.log(this.trackVerbs);
+            this.viewedTrack.words = this.trackVerbs;
+            this.verbs$.next(this.trackVerbs);
+          }
+        });
     }
   }
 
   clearSearch(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.searchValue = '';
-      this.foundWords = new Array<PhrasalVerbRead>();
+      this.foundVerbs = new Array<PhrasalVerbRead>();
     }
   }
 
@@ -113,34 +113,34 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
   }
 
   clickSaveTrack() {
-    // this._trackService.updateTrack(this.viewedTrack)
-    //   .pipe(take(1))
-    //   .subscribe((updatedTrack) => {
-    //     this.viewedTrack = updatedTrack;
-    //   })
+    this._trackService.updateTrack(this.viewedTrack)
+      .pipe(take(1))
+      .subscribe((updatedTrack) => {
+        this.viewedTrack = updatedTrack;
+      })
   }
 
   private _setLiveSearch() {
-    // this._searchTerms.pipe(
-    //   takeUntil(this._unsubscribe$),
-    //   debounceTime(500),
-    //   distinctUntilChanged(),
-    //   switchMap((term: string) => this._searchService.getWordsByName(term))
-    // ).subscribe({
-    //   next: (data) => {
-    //     this.foundWords = data;
-    //   }
-    // });
+    this._searchTerms.pipe(
+      takeUntil(this._unsubscribe$),
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap((term: string) => this._searchService.getPVsByName(term))
+    ).subscribe({
+      next: (data) => {
+        this.foundVerbs = data;
+      }
+    });
   }
 
   removeWord(id: number) {
-    // this._trackService.removeWordFromTrack({ trackId: this.viewedTrack.id, wordId: id })
-    //   .pipe(take(1))
-    //   .subscribe(() => {
-    //     this.trackWords = this.trackWords.filter((w) => w.id !== id);
-    //     this.viewedTrack.words = this.trackWords;
-    //     this.words$.next(this.trackWords);
-    //   });
+    this._trackService.removeVerbFromTrack({ trackId: this.viewedTrack.id, verbId: id })
+      .pipe(take(1))
+      .subscribe(() => {
+        this.trackVerbs = this.trackVerbs.filter((v) => v.id !== id);
+        this.viewedTrack.words = this.trackVerbs;
+        this.verbs$.next(this.trackVerbs);
+      });
   }
 }
 
