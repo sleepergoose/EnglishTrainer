@@ -50,10 +50,20 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
     ).subscribe((data) => {
       if (data && this._id! !== +data) {
         this._id = +data;
+
         this._trackService.getTrack(this._id)
           .pipe(take(1))
           .subscribe((track) => {
             this.viewedTrack = track;
+          });
+
+        this._trackService.getVerbsOfTrack(this._id)
+          .pipe(take(1))
+          .subscribe((verbs) => {           
+            this.viewedTrack.words = verbs;
+            this.trackVerbs = verbs;
+            this.verbsAmount$.next(verbs.length);
+            this.verbs$.next(this.trackVerbs);
           });
       }
     });
@@ -85,7 +95,6 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
           next: () => {
             this.foundVerbs = this.foundVerbs.filter((s) => s.id !== verb.id);
             this.trackVerbs = [...this.trackVerbs, verb];
-            console.log(this.trackVerbs);
             this.viewedTrack.words = this.trackVerbs;
             this.verbs$.next(this.trackVerbs);
           }
@@ -116,6 +125,7 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
     this._trackService.updateTrack(this.viewedTrack)
       .pipe(take(1))
       .subscribe((updatedTrack) => {
+        updatedTrack.words = this.trackVerbs;
         this.viewedTrack = updatedTrack;
       })
   }

@@ -19,6 +19,10 @@ export class PvTrackService {
     return this._http.getRequest<PvTrackRead>(`/api/PvTracks/${id}`);
   }
 
+  getVerbsOfTrack(id: number) {
+    return this._http.getRequest<PhrasalVerbRead[]>(`/api/PvTracks/phrasalVerbs/${id}`);
+  }
+
   addVerbToTrack(verb: VerbToTrackWrite) {
     return this._http.postRequest('/api/admin/PvTracks/addVerbToTrack', verb);
   }

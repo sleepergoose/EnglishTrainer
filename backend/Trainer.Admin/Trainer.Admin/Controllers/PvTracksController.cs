@@ -25,5 +25,23 @@ namespace Trainer.Admin.Controllers
         {
             return Ok(await _pvTrackService.CreatePvTrackAsync(track));
         }
+
+        [HttpPut]
+        public async Task<IActionResult> EditPvTrackAsync([FromBody] PhrasalVerbTrackRead track)
+        {
+            return Ok(await _pvTrackService.EditPvTrackAsync(track));
+        }
+
+        [HttpPost("addVerbToTrack")]
+        public async Task<IActionResult> AddVerbToTrackAsync([FromBody] PhrasalVerbToTrack verb)
+        {
+            return Ok(await _pvTrackService.AddVerbToTrackAsync(verb));
+        }
+
+        [HttpPost("removeVerbFromTrack")]
+        public async Task<IActionResult> RemoveVerbToTrackAsync([FromBody] PhrasalVerbToTrack verb)
+        {
+            return Ok(await _pvTrackService.RemoveVerbToTrackAsync(verb));
+        }
     }
 }

@@ -32,5 +32,40 @@ namespace Trainer.Admin.BusinessLogic.Services
 
             return _mapper.Map<PhrasalVerbTrackRead>(await _mediator.Send(command));
         }
+
+        public async Task<PhrasalVerbTrackRead> EditPvTrackAsync(PhrasalVerbTrackRead track)
+        {
+            var command = new EditPvTrackCommand
+            {
+                Id = track.Id,
+                Name = track.Name,
+                Description = track.Description,
+                Level = track.Level
+            };
+
+            return _mapper.Map<PhrasalVerbTrackRead>(await _mediator.Send(command));
+        }
+
+        public async Task<Unit> AddVerbToTrackAsync(PhrasalVerbToTrack verb)
+        {
+            var command = new AddPvToTrackCommand
+            {
+                TrackId = verb.TrackId,
+                VerbId = verb.VerbId
+            };
+
+            return _mapper.Map<Unit>(await _mediator.Send(command));
+        }
+
+        public async Task<Unit> RemoveVerbToTrackAsync(PhrasalVerbToTrack verb)
+        {
+            var command = new RemovePvToTrackCommand
+            {
+                TrackId = verb.TrackId,
+                VerbId = verb.VerbId
+            };
+
+            return _mapper.Map<Unit>(await _mediator.Send(command));
+        }
     }
 }
