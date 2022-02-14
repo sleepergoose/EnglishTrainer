@@ -39,13 +39,12 @@
     </div>
   </div>
 
-
    <!-- Page -->
    <div class="words-list">
     <!-- List of track's words -->
     <h2 class="list-header" *ngIf="trackWords">Track's phrasal verbs</h2>
-    <!-- <app-words-table *ngIf="trackWords" [words$]="words$" (clickRemove)="removeWord($event)"
-      [isControlShown]="true"></app-words-table> -->
+    <app-pv-table *ngIf="trackWords" [verbs$]="words$" (clickRemove)="removeWord($event)"
+      [isControlShown]="true"></app-pv-table>
 
     <!-- Search field -->
     <h2 class="search-header">Search new phrasal verbs</h2>
@@ -59,7 +58,7 @@
 
     <!-- Search result -->
     <div class="search-result" *ngIf="foundWords.length">
-      <!-- <app-word-search-row *ngFor="let word of foundWords" (clickButton)="addWordToTrack($event)" [word]="word"></app-word-search-row> -->
+      <app-pv-search-row *ngFor="let verb of foundWords" (clickButton)="addWordToTrack($event)" [verb]="verb"></app-pv-search-row>
     </div>
   </div>
 
