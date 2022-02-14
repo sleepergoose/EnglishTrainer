@@ -28,6 +28,12 @@ namespace Trainer.API.Controllers
             return Ok(await _pvtService.GetPvTrackAsync(id));
         }
 
+        [HttpGet("phrasalVerbs/{id}")]
+        public async Task<IActionResult> GetWordsByTrackIdAsync(int id)
+        {
+            return Ok(await _pvtService.GetPvByTrackIdAsync(id));
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetEntitiesAsync()
         {

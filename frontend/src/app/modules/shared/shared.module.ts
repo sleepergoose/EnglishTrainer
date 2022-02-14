@@ -7,6 +7,8 @@ import { WordSearchRowComponent } from './components/word-search-row/word-search
 import { KnowledgeLevelPipe } from 'src/app/pipes/knowledge-level.pipe';
 import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
 import { PhrasalVerbRowComponent } from './components/phrasal-verb-row/phrasal-verb-row.component';
+import { PvSearchRowComponent } from './components/pv-search-row/pv-search-row.component';
+import { PvTableComponent } from './components/pv-table/pv-table.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { PhrasalVerbRowComponent } from './components/phrasal-verb-row/phrasal-v
     WordSearchRowComponent,
     KnowledgeLevelPipe,
     ProfileMenuComponent,
-    PhrasalVerbRowComponent
+    PhrasalVerbRowComponent,
+    PvSearchRowComponent,
+    PvTableComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { PhrasalVerbRowComponent } from './components/phrasal-verb-row/phrasal-v
     WordSearchRowComponent,
     KnowledgeLevelPipe,
     ProfileMenuComponent,
-    PhrasalVerbRowComponent
+    PhrasalVerbRowComponent,
+    PvSearchRowComponent,
+    PvTableComponent
   ]
 })
 export class SharedModule { }

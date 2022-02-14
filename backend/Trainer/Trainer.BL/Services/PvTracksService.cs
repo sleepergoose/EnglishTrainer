@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Trainer.Common.DTO;
 using Trainer.DAL.Context;
@@ -26,6 +27,17 @@ namespace Trainer.BL.Services
                 .FirstOrDefaultAsync(t => t.Id == id);
 
             return _mapper.Map<PvTrackReadDTO>(track);
+        }
+
+        public async Task<ICollection<PhrasalVerbReadDTO>> GetPvByTrackIdAsync(int id)
+        {
+            var verbs = await _context.PvToTracks
+                .Where(wt => wt.PvTrackId == id)
+                .Include(wt => wt.PhrasalVerb)
+                .Select(w => w.PhrasalVerb)
+                .ToListAsync();
+
+            return _mapper.Map<ICollection<PhrasalVerbReadDTO>>(verbs);
         }
 
         public async Task<ICollection<PvTrackReadDTO>> GetPvTracksAsync()
@@ -88,6 +100,5 @@ namespace Trainer.BL.Services
 
             return id;
         }
-
     }
 }
