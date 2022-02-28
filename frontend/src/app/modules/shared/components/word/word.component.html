@@ -10,7 +10,7 @@
   </div>
 
   <!-- Examples -->
-  <div class="examples" *ngIf="word.examples.length">
+  <div class="examples" *ngIf="word?.examples?.length">
     <div class="title">Examples</div>
     <div class="example-row" *ngFor="let example of word.examples">
       <span>{{example.phrase}}</span> - <span><i>{{example.translation}}</i></span>

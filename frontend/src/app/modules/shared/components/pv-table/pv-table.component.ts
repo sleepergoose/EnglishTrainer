@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { PhrasalVerbRead } from 'src/app/models/phrasal-verb/phrasal-verb-read';
+import { PhrasalVerbComponent } from '../phrasal-verb/phrasal-verb.component';
 
 @Component({
   selector: 'app-pv-table',
@@ -21,7 +23,9 @@ export class PvTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(
+    private _dialog: MatDialog
+  ) {
   }
 
   ngOnInit() {
@@ -43,5 +47,13 @@ export class PvTableComponent implements OnInit {
 
   removeWord(id: number) {
     this.clickRemove.emit(id);
+  }
+
+  showPvInDetails(id: number) {
+    this._dialog.open(PhrasalVerbComponent, {
+      data: {
+        phrasalVerbId: id
+      }
+    });
   }
 }

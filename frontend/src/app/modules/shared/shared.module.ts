@@ -11,6 +11,7 @@ import { PvSearchRowComponent } from './components/pv-search-row/pv-search-row.c
 import { PvTableComponent } from './components/pv-table/pv-table.component';
 import { WordComponent } from './components/word/word.component';
 import { FirstLetterToUpcasePipe } from 'src/app/pipes/first-letter-to-upcase.pipe';
+import { PhrasalVerbComponent } from './components/phrasal-verb/phrasal-verb.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FirstLetterToUpcasePipe } from 'src/app/pipes/first-letter-to-upcase.pi
     PvSearchRowComponent,
     PvTableComponent,
     WordComponent,
-    FirstLetterToUpcasePipe
+    FirstLetterToUpcasePipe,
+    PhrasalVerbComponent
   ],
   imports: [
     CommonModule,
