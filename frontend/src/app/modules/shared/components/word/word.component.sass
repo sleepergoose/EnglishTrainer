@@ -1,0 +1,30 @@
+@import 'src/styles.sass'
+
+.container
+  h1
+    font-weight: 600
+    color: $primary
+    font-size: 2rem
+  .transcription
+    padding: 10px 0px 10px 0px
+    font-size: 1.15rem
+    span
+      color: $text-gray
+  .translation
+    padding: 10px 0px
+    font-size: 1rem
+  .examples
+    padding: 10px 0px 5px 0px
+    font-size: 1rem
+    .title
+      color: $text-gray
+      font-weight: 500
+      padding: 5px 0px
+    .example-row
+      margin: 7px 25px
+
+::ng-deep
+  mat-dialog-container
+   background-color: $light-gray !important
+   border-radius: 7px !important
+   

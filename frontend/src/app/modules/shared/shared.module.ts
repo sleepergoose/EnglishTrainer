@@ -9,6 +9,8 @@ import { ProfileMenuComponent } from './components/profile-menu/profile-menu.com
 import { PhrasalVerbRowComponent } from './components/phrasal-verb-row/phrasal-verb-row.component';
 import { PvSearchRowComponent } from './components/pv-search-row/pv-search-row.component';
 import { PvTableComponent } from './components/pv-table/pv-table.component';
+import { WordComponent } from './components/word/word.component';
+import { FirstLetterToUpcasePipe } from 'src/app/pipes/first-letter-to-upcase.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { PvTableComponent } from './components/pv-table/pv-table.component';
     ProfileMenuComponent,
     PhrasalVerbRowComponent,
     PvSearchRowComponent,
-    PvTableComponent
+    PvTableComponent,
+    WordComponent,
+    FirstLetterToUpcasePipe
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,8 @@ import { PvTableComponent } from './components/pv-table/pv-table.component';
     ProfileMenuComponent,
     PhrasalVerbRowComponent,
     PvSearchRowComponent,
-    PvTableComponent
+    PvTableComponent,
+    WordComponent
   ]
 })
 export class SharedModule { }
