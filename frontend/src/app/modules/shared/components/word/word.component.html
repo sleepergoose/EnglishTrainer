@@ -1,28 +1,19 @@
 <div class="container">
-  <h1>Wall</h1>
+  <h1>{{word.text | firstLetterToUpcase}}</h1>
 
   <!-- Transcription -->
-  <div class="transcription"> <span>|</span> wɔːl <span>|</span></div>
+  <div class="transcription"> <span>|</span> {{word.transcription}} <span>|</span></div>
 
   <!-- Translation -->
   <div class="translation">
-    <i>стенной, настенный, стена, стенка, вал, барьер, бок, обносить стеной</i>
+    <i>{{word.translation}}</i>
   </div>
 
   <!-- Examples -->
-  <div class="examples">
+  <div class="examples" *ngIf="word.examples.length">
     <div class="title">Examples</div>
-    <div class="example-row">
-      <span>Walls have ears</span> - <span><i>И у стен есть уши</i></span>
-    </div>
-    <div class="example-row">
-      <span>He sat facing the wall</span> - <span><i>Он сидел лицом к стене</i></span>
-    </div>
-    <div class="example-row">
-      <span>Nail the picture to the wall</span> - <span><i>Прибей картину к стене</i></span>
-    </div>
-    <div class="example-row">
-      <span>The Great Wall of China</span> - <span><i>Великая китайская стена</i></span>
+    <div class="example-row" *ngFor="let example of word.examples">
+      <span>{{example.phrase}}</span> - <span><i>{{example.translation}}</i></span>
     </div>
   </div>
 </div>
