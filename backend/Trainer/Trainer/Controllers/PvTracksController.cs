@@ -57,5 +57,11 @@ namespace Trainer.API.Controllers
         {
             return Ok(await _pvtService.DeletePvTrackAsync(id));
         }
+
+        [HttpGet("getByAuthorId/{authorId}")]
+        public async Task<IActionResult> GetTracksByAuthorIdAsync(int authorId)
+        {
+            return Ok(await _pvtService.GetTracksByAuthorIdAsync(authorId));
+        }
     }
 }

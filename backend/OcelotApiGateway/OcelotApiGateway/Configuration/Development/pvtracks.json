@@ -23,6 +23,18 @@
       ],
       "UpstreamPathTemplate": "/api/PvTracks/phrasalVerbs/{id}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/PvTracks/getByAuthorId/{authorId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/PvTracks/getByAuthorId/{authorId}",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ]
 }

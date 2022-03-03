@@ -43,7 +43,6 @@ export class PvTrackCreateComponent implements OnDestroy {
       this._auth.getUserId()
       .then((id) => {
           this.currentUserId = +id!;
-          console.log(this.currentUserId);
 
           this.createdTrack = {
             authorId: this.currentUserId,

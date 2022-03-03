@@ -4,6 +4,7 @@ import { Subject, take, takeUntil } from 'rxjs';
 import { TrackName } from 'src/app/models/track/track-name';
 import { AuthService } from 'src/app/services/auth.service';
 import { CreatedTracksService } from 'src/app/services/created-tracks.service';
+import { PvTrackService } from 'src/app/services/pv-track.service';
 import { WordTrackService } from 'src/app/services/word-track.service';
 
 @Component({
@@ -22,10 +23,11 @@ export class LeftSideMenuComponent implements OnDestroy {
   constructor(
     private _auth: AuthService,
     private _trackService: WordTrackService,
+    private _pvTrackService: PvTrackService,
     private _createdTrackService: CreatedTracksService,
     private _router: Router
   ) {
-    this._auth.getUserId()
+      this._auth.getUserId()
       .then((id) => {
         this._userId = +id!;
         this.loadCreatedTracks(this._userId);
@@ -42,16 +44,23 @@ export class LeftSideMenuComponent implements OnDestroy {
       .pipe(take(1))
       .subscribe((tracks) => {
         this._createdTrackService.fillCreatedTrackArray(tracks);
-        this._createdTrackService.getChachedTracks()
-          .pipe(takeUntil(this._subscription$))
-          .subscribe((tracks) => {
-            this.createdTracks = tracks;
 
-            if (this.createdTracks.length > 0) {
-              this.isMyTrackContainerShown = true;
-            }
-          }); 
-      });
+        this._pvTrackService.getTracksByAuthorId(userId)
+          .pipe(take(1))
+          .subscribe((tracks) => {
+            this._createdTrackService.fillCreatedTrackArray(tracks);
+
+            this._createdTrackService.getChachedTracks()
+              .pipe(takeUntil(this._subscription$))
+              .subscribe((tracks) => {
+                this.createdTracks = tracks;
+                console.log(tracks);
+                if (this.createdTracks.length > 0) {
+                  this.isMyTrackContainerShown = true;
+                }
+              }); 
+          });
+      }); 
   }
 
   goToTrainer() {

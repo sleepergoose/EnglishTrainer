@@ -33,8 +33,8 @@
     <div class="create-track-button">
       <button  mat-raised-button color="primary" [matMenuTriggerFor]="menu">Create Track</button>
       <mat-menu #menu="matMenu" class="customize">
-        <button mat-menu-item routerLink="trackview/create">Word Track</button>
-        <button mat-menu-item routerLink="trackview/pv/create">Phrasal Verb Track</button>
+        <button class="btn" mat-menu-item routerLink="trackview/create">Word Track</button>
+        <button class="btn" mat-menu-item routerLink="trackview/pv/create">Phrasal Verb Track</button>
       </mat-menu>
     </div>
     <p *ngIf="isMyTrackContainerShown">Created tracks:</p>
