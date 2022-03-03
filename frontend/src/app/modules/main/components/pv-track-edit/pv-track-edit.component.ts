@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { KnowledgeLevel } from 'src/app/models/common/knowledge-level';
 import { PhrasalVerbRead } from 'src/app/models/phrasal-verb/phrasal-verb-read';
+import { TrackName } from 'src/app/models/track/track-name';
 import { PvTrackRead } from 'src/app/models/track/track-read';
+import { CreatedTracksService } from 'src/app/services/created-tracks.service';
 import { PvTrackService } from 'src/app/services/pv-track.service';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -41,7 +43,8 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _searchService: SearchService,
-    private _trackService: PvTrackService
+    private _trackService: PvTrackService,
+    private _createdTracks: CreatedTracksService
   ) { }
 
   ngOnInit() {
@@ -126,6 +129,7 @@ export class PvTrackEditComponent implements OnInit, OnDestroy {
       .pipe(take(1))
       .subscribe((updatedTrack) => {
         updatedTrack.words = this.trackVerbs;
+        this._createdTracks.editTrackName({...updatedTrack} as TrackName)
         this.viewedTrack = updatedTrack;
       })
   }

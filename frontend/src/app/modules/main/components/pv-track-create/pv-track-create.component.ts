@@ -5,6 +5,7 @@ import { KnowledgeLevel } from 'src/app/models/common/knowledge-level';
 import { PhrasalVerbRead } from 'src/app/models/phrasal-verb/phrasal-verb-read';
 import { TrackWrite } from 'src/app/models/track/track-write';
 import { AuthService } from 'src/app/services/auth.service';
+import { CreatedTracksService } from 'src/app/services/created-tracks.service';
 import { PvTrackService } from 'src/app/services/pv-track.service';
 
 @Component({
@@ -36,7 +37,8 @@ export class PvTrackCreateComponent implements OnDestroy {
   constructor(
     private _router: Router,
     private _pvTrackService: PvTrackService,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _createdTracks: CreatedTracksService
   ) {
       this._auth.getUserId()
       .then((id) => {
@@ -73,6 +75,7 @@ export class PvTrackCreateComponent implements OnDestroy {
     this._pvTrackService.createTrack(this.createdTrack)
       .pipe(take(1))
       .subscribe((track) => {
+        this._createdTracks.addTrack(track);
         this._router.navigate([`main/trackview/pv/${track.id}/edit`]);
       });
   }
