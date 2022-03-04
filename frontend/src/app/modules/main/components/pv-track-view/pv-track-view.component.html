@@ -1,0 +1,56 @@
+<!-- Content section -->
+<div class="main-content">
+  <!-- Header -->
+  <div class="header">
+    <div class="img-cover">
+      <img src="../../../../../assets/dictionary_2.png" alt="">
+    </div>
+    <div class="info-block">
+ 
+      <div class="name">
+        <span>{{viewedTrack.name}}</span>
+      </div>
+
+      <div class="statistic">
+        <div>
+          Level: <span>{{viewedTrack.level | knowledgeLevel}}</span> 
+          |
+          Rank: <span>152</span> 
+          | 
+          Amount: <span>{{wordsAmount$ | async}}</span>
+        </div>
+      </div>
+
+      <div class="description">
+        <span>{{viewedTrack.description}}</span>
+      </div>
+
+      <div class="controls">
+        <button class="btn-play" mat-raised-button (click)="goToTrainer(viewedTrack.id)">Play</button>
+        <mat-icon class="icon" aria-hidden="false">favorite</mat-icon>
+        
+        <button *ngIf="isCurrentUser" class="btn-menu" [matMenuTriggerFor]="menu" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="customize">
+          <button mat-menu-item (click)="editTrack(viewedTrack.id)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="removeTrack(viewedTrack.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Remove</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+  <!-- List of words -->
+  <div class="words-list">
+    <!-- List of track's words -->
+    <h2 class="list-header" *ngIf="trackWords">Track's words</h2>
+    <app-pv-table *ngIf="trackWords" [verbs$]="words$"
+      [isControlShown]="false"></app-pv-table>
+  </div>
+</div>

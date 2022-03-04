@@ -48,13 +48,19 @@ export class LeftSideMenuComponent implements OnDestroy {
         this._pvTrackService.getTracksByAuthorId(userId)
           .pipe(take(1))
           .subscribe((tracks) => {
-            this._createdTrackService.fillCreatedTrackArray(tracks);
+
+            tracks = tracks.map(track => {
+              track.name = `• ${track.name}`;
+              return track;
+            });
+
+            this._createdTrackService.addCreatedTracks(tracks);
 
             this._createdTrackService.getChachedTracks()
               .pipe(takeUntil(this._subscription$))
               .subscribe((tracks) => {
                 this.createdTracks = tracks;
-                console.log(tracks);
+
                 if (this.createdTracks.length > 0) {
                   this.isMyTrackContainerShown = true;
                 }
@@ -65,5 +71,14 @@ export class LeftSideMenuComponent implements OnDestroy {
 
   goToTrainer() {
     this._router.navigate([`main/trainer/${this.createdTracks[0]?.id}`]);
+  }
+
+  viewTrackInDetails(track: TrackName) {
+    if (track.name.charAt(0) === '•') {
+      this._router.navigate([`main/trackview/pv/${track.id}`]);
+    }
+    else {
+      this._router.navigate([`main/trackview/${track.id}`]);
+    }    
   }
 }
