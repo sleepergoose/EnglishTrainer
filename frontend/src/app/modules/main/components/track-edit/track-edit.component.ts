@@ -2,8 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { KnowledgeLevel } from 'src/app/models/common/knowledge-level';
+import { TrackName } from 'src/app/models/track/track-name';
 import { TrackRead } from 'src/app/models/track/track-read';
 import { WordRead } from 'src/app/models/word/word-read';
+import { CreatedTracksService } from 'src/app/services/created-tracks.service';
 import { HttpInternalService } from 'src/app/services/http-internal.service';
 import { SearchService } from 'src/app/services/search.service';
 import { WordTrackService } from 'src/app/services/word-track.service';
@@ -43,7 +45,8 @@ export class TrackEditComponent implements OnInit, OnDestroy {
     private _activatedRoute: ActivatedRoute,
     private _http: HttpInternalService,
     private _searchService: SearchService,
-    private _trackService: WordTrackService
+    private _trackService: WordTrackService,
+    private _createdTracks: CreatedTracksService
   ) { }
 
   ngOnInit() {
@@ -127,6 +130,7 @@ export class TrackEditComponent implements OnInit, OnDestroy {
     this._trackService.updateTrack(this.viewedTrack)
       .pipe(take(1))
       .subscribe((updatedTrack) => {
+        this._createdTracks.editTrackName({...updatedTrack} as TrackName);
         this.viewedTrack = updatedTrack;
       })
   }

@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged, Subject, switchMap, take, takeUntil
 import { TrackRead } from 'src/app/models/track/track-read';
 import { WordRead } from 'src/app/models/word/word-read';
 import { AuthService } from 'src/app/services/auth.service';
+import { CreatedTracksService } from 'src/app/services/created-tracks.service';
 import { HttpInternalService } from 'src/app/services/http-internal.service';
 import { SearchService } from 'src/app/services/search.service';
 import { WordTrackService } from 'src/app/services/word-track.service';
@@ -35,7 +36,8 @@ export class TrackViewComponent implements OnInit, OnDestroy {
     private _searchService: SearchService,
     private _trackService: WordTrackService,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _createdTracks: CreatedTracksService
   ) {
       this._auth.getUserId()
         .then((id) => {
@@ -123,6 +125,7 @@ export class TrackViewComponent implements OnInit, OnDestroy {
     this._trackService.removeTrack(id)
       .pipe(take(1))
       .subscribe((id) => {
+        this._createdTracks.deleteTrack(id);
         this._router.navigate([`main`]);
       });
   }

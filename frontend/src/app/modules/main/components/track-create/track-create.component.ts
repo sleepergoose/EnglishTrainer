@@ -7,6 +7,7 @@ import { TrackWrite } from 'src/app/models/track/track-write';
 import { UserReadShort } from 'src/app/models/user/user-read-short';
 import { WordRead } from 'src/app/models/word/word-read';
 import { AuthService } from 'src/app/services/auth.service';
+import { CreatedTracksService } from 'src/app/services/created-tracks.service';
 import { WordTrackService } from 'src/app/services/word-track.service';
 
 @Component({
@@ -41,12 +42,12 @@ export class TrackCreateComponent implements OnDestroy {
   constructor(
     private _router: Router,
     private _trackService: WordTrackService,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _createdTracks: CreatedTracksService
   ) {
       this._auth.getUserId()
       .then((id) => {
           this.currentUserId = +id!;
-          console.log(this.currentUserId);
 
           this.createdTrack = {
             authorId: this.currentUserId,
@@ -78,6 +79,7 @@ export class TrackCreateComponent implements OnDestroy {
     this._trackService.createTrack(this.createdTrack)
       .pipe(take(1))
       .subscribe((track) => {
+        this._createdTracks.addTrack(track);
         this._router.navigate([`main/trackview/${track.id}/edit`]);
       });
   }

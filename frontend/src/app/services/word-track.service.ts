@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TrackCardRead } from '../models/track/track-card-read';
+import { TrackName } from '../models/track/track-name';
 import { TrackRead } from '../models/track/track-read';
 import { TrackWrite } from '../models/track/track-write';
 import { WordToTrackWrite } from '../models/track/word-to-track';
@@ -46,6 +47,6 @@ export class WordTrackService {
   }
 
   getTracksByAuthorId(authorId: number) {
-    return this._http.getRequest<TrackRead[]>(`/api/WordTracks/getByAuthorId/${authorId}`);
+    return this._http.getRequest<TrackName[]>(`/api/WordTracks/getByAuthorId/${authorId}`);
   }
 }

@@ -9,7 +9,7 @@ import { TrackRead } from '../models/track/track-read';
 export class CreatedTracksService {
   private _createdTracks = [] as TrackName[];
 
-  private _trackSubject$ = new Subject<TrackRead | null>();
+  private _trackSubject$ = new Subject<TrackName | null>();
   trackChanged$ = this._trackSubject$.asObservable();
   
   private _editedNameSubject$ = new Subject<TrackName>();
@@ -50,6 +50,15 @@ export class CreatedTracksService {
   }
 
   fillCreatedTrackArray(array: TrackName[]) {
-    this._createdTracks = array;
+    this._createdTracks =  [...this._createdTracks, ...array].sort((a, b) => {
+      if (a.id > b.id) {
+        return -1;
+      }
+      else if (a.id < b.id) {
+        return 1;
+      }
+
+      return 0;
+    });
   }
 }

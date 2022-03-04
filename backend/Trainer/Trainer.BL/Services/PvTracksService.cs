@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Trainer.Common.DTO;
+using Trainer.Common.DTO.WordTrackDTO;
 using Trainer.DAL.Context;
 using Trainer.Domain.Models;
 
@@ -99,6 +100,16 @@ namespace Trainer.BL.Services
             await _context.SaveChangesAsync();
 
             return id;
+        }
+
+        public async Task<ICollection<TrackNameDTO>> GetTracksByAuthorIdAsync(int id)
+        {
+            var tracks = await _context.PvTracks
+                .Where(t => t.AuthorId == id)
+                .OrderByDescending(t => t.CreatedAt)
+                .ToListAsync();
+
+            return _mapper.Map<ICollection<TrackNameDTO>>(tracks);
         }
     }
 }
