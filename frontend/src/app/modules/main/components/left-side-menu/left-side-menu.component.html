@@ -39,7 +39,7 @@
     </div>
     <p *ngIf="isMyTrackContainerShown">Created tracks:</p>
     <div class="track-list" *ngIf="isMyTrackContainerShown">
-      <a [routerLink]="['../main/trackview/', track.id]" *ngFor="let track of createdTracks">{{track.name}}</a>
+      <a (click)="viewTrackInDetails(track)" *ngFor="let track of createdTracks">{{track.name}}</a>
     </div>
   </div>
 </div>

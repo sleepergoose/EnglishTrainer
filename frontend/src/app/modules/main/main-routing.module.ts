@@ -5,6 +5,7 @@ import { ContainerComponent } from './components/container/container.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { PvTrackCreateComponent } from './components/pv-track-create/pv-track-create.component';
 import { PvTrackEditComponent } from './components/pv-track-edit/pv-track-edit.component';
+import { PvTrackViewComponent } from './components/pv-track-view/pv-track-view.component';
 import { TrackCreateComponent } from './components/track-create/track-create.component';
 import { TrackEditComponent } from './components/track-edit/track-edit.component';
 import { TrackViewComponent } from './components/track-view/track-view.component';
@@ -54,6 +55,10 @@ const routes: Routes = [
       {
         path: 'trackview/pv/:id/edit',
         component: PvTrackEditComponent
+      },
+      {
+        path: 'trackview/pv/:id',
+        component: PvTrackViewComponent
       }
     ]
   }

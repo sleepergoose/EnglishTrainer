@@ -50,15 +50,20 @@ export class CreatedTracksService {
   }
 
   fillCreatedTrackArray(array: TrackName[]) {
-    this._createdTracks =  [...this._createdTracks, ...array].sort((a, b) => {
-      if (a.id > b.id) {
-        return -1;
-      }
-      else if (a.id < b.id) {
-        return 1;
-      }
+    this._createdTracks =  array.sort((a, b) => this.sortTracks(a, b));
+  }
 
-      return 0;
-    });
+  addCreatedTracks(array: TrackName[]) {
+    this._createdTracks = [...this._createdTracks, ...array.sort((a, b) => this.sortTracks(a, b))];
+  }
+
+  sortTracks(a: TrackName, b: TrackName) {
+    if (a.id > b.id) {
+      return -1;
+    }
+    else if (a.id < b.id) {
+      return 1;
+    }
+    return 0;
   }
 }
