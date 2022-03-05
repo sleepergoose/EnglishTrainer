@@ -8,6 +8,11 @@ const routes: Routes = [
     path: ':id',
     component: TrainerComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'pv/:id',
+    component: TrainerComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -32,5 +32,17 @@ namespace Trainer.API.Controllers
         {
             return Ok(await _trainerService.GetTrackByIdAsync(trackId));
         }
+
+        [HttpGet("verbsByTrackId/{trackId}")]
+        public async Task<IActionResult> GetVerbsByTrackIdAsync(int trackId)
+        {
+            return Ok(await _trainerService.GetVerbsByTrackIdAsync(trackId));
+        }
+
+        [HttpGet("getPvTrackById/{trackId}")]
+        public async Task<IActionResult> GetPvTrackByIdAsync(int trackId)
+        {
+            return Ok(await _trainerService.GetPvTrackByIdAsync(trackId));
+        }
     }
 }

@@ -55,5 +55,38 @@ namespace Trainer.BL.Services
 
             return track;
         }
+
+        public async Task<ICollection<TrainerWordDTO>> GetVerbsByTrackIdAsync(int trackId)
+        {
+            var verbs = await _context.PvToTracks
+                .Where(wt => wt.PvTrackId == trackId)
+                .Include(wt => wt.PhrasalVerb)
+                    .ThenInclude(w => w.Examples)
+                .Select(wt => wt.PhrasalVerb)
+                .ToListAsync();
+
+            return _mapper.Map<ICollection<TrainerWordDTO>>(verbs);
+        }
+
+        public async Task<WordTrackCardReadDTO> GetPvTrackByIdAsync(int trackId)
+        {
+            var track = await _context.PvTracks
+                .Where(t => t.Id == trackId)
+                .Include(wt => wt.Author)
+                .Select(w => new WordTrackCardReadDTO
+                {
+                    Id = w.Id,
+                    Name = w.Name,
+                    Description = w.Description,
+                    Level = w.Level,
+                    CreatedAt = w.CreatedAt,
+                    Author = _mapper.Map<UserReadShortDTO>(w.Author),
+                    Amount = w.PhrasalVerbs.Count,
+                    Rate = 0
+                })
+                .FirstOrDefaultAsync();
+
+            return track;
+        }
     }
 }

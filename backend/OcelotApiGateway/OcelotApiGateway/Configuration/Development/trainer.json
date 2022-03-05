@@ -23,6 +23,30 @@
       ],
       "UpstreamPathTemplate": "/api/Trainer/getTrackById/{trackId}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Trainer/verbsByTrackId/{trackId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Trainer/verbsByTrackId/{trackId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Trainer/getPvTrackById/{trackId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Trainer/getPvTrackById/{trackId}",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ]
 }
