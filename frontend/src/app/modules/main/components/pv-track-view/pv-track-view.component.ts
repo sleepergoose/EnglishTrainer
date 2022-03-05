@@ -83,6 +83,6 @@ export class PvTrackViewComponent implements OnInit, OnDestroy {
   }
   
   goToTrainer(id: number) {
-    this._router.navigate([`main/trainer/${id}`]);
+    this._router.navigate([`main/trainer/pv/${id}`]);
   }
 }

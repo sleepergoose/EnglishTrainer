@@ -19,4 +19,12 @@ export class TrainerService {
   getTrackById(trackId: number) {
     return this._http.getRequest<TrackCardRead>(`/api/Trainer/getTrackById/${trackId}`);
   }
+
+  getVerbsByTrackId(trackId: number) {
+    return this._http.getRequest<TrainerWord[]>(`/api/Trainer/verbsByTrackId/${trackId}`);
+  }
+
+  getPvTrackById(trackId: number) {
+    return this._http.getRequest<TrackCardRead>(`/api/Trainer/getPvTrackById/${trackId}`);
+  }
 }

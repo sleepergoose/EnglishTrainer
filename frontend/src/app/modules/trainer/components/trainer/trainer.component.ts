@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, UrlSegment } from '@angular/router';
 import { switchMap, take } from 'rxjs';
 import { KnowledgeLevel } from 'src/app/models/common/knowledge-level';
 import { Example } from 'src/app/models/examples/example';
@@ -48,7 +48,43 @@ export class TrainerComponent implements OnInit {
 
   ngOnInit() {
     this.isSpinnerShown = true;
+    this._activatedRoute.url
+    .pipe(take(1))
+    .subscribe((data) => {
+      if (data[0].path === 'pv') {
+        this.loadForPvTrack();
+      }
+      else {
+        this.loadForWordTrack();
+      }
+    });
+  }
 
+  loadForPvTrack() {
+    this._activatedRoute.paramMap.pipe(
+      switchMap((params) => params.getAll('id'))
+    ).subscribe((data) => {
+      this._trainerService.getPvTrackById(+data!)
+        .pipe(take(1))
+        .subscribe((track) => {
+          this.track = track;
+        });
+
+      this._trainerService.getVerbsByTrackId(+data!)
+        .pipe(take(1))
+        .subscribe((words) => {
+          this.words = this._shuffleArray(words);
+          this.currentTrainerWords = this.words[this._crowler];
+          this.max = this.words.length;
+
+          this._setInvertor();
+
+          this.isSpinnerShown = false;
+        });
+    });
+  }
+
+  loadForWordTrack() {
     this._activatedRoute.paramMap.pipe(
       switchMap((params) => params.getAll('id'))
     ).subscribe((data) => {
@@ -114,8 +150,8 @@ export class TrainerComponent implements OnInit {
   private _setInvertor() {
     if (!this.isLangInverted) {
       this.invertor = { 
-        taskWord: this.currentTrainerWords.text,
-        checkWord: this.currentTrainerWords.translation
+        taskWord: this.currentTrainerWords?.text,
+        checkWord: this.currentTrainerWords?.translation
       }
     }
     else {
