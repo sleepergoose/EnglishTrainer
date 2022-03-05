@@ -15,6 +15,8 @@ namespace Trainer.Common.MappingProfiles
         {
             CreateMap<Word, TrainerWordDTO>();
             CreateMap<WordExample, ExampleDTO>();
+            CreateMap<PvExample, ExampleDTO>();
+            CreateMap<PhrasalVerb, TrainerWordDTO>();
         }
     }
 }
