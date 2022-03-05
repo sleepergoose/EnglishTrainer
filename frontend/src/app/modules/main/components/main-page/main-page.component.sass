@@ -11,6 +11,30 @@
     width: 100%
     border-bottom: 1px solid $borders
     background: $header-gradient
+    display: grid
+    grid-template-columns: 100%
+    grid-template-rows: 85% 15%
+    .accordion
+      grid-column: 1
+      grid-row: 1
+    .search
+      grid-column: 1
+      grid-row: 2
+      align-self: center
+      padding: 10px
+      select 
+        width: 100%
+        background: transparent
+        border: none
+        border: 1px solid #99999950
+        border-radius: 10px
+        padding: 5px 10px
+        color: $text-common
+        &:focus
+          outline: none
+        option
+          background: $light-gray
+
   .page
     display: grid
     grid-template-columns: 100%
