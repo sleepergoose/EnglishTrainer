@@ -179,4 +179,14 @@ export class TrainerComponent implements OnInit {
   
     return array;
   }
+
+  playAgain() {
+    this.response = '';
+    this.progress = 0;
+    this.rightAnswers = [] as TrainerWord[];
+    this.wrongAnswers = [] as Example[];
+    this._crowler = 0;
+    this.currentTrainerWords = this.words[this._crowler];
+    this.isTrainerShown = true;
+  }
 }

@@ -1,5 +1,19 @@
 @import 'src/styles.sass'
 
+.proto-btn
+  border: 1px solid $text-common
+  border-radius: 20px
+  color: $text-common
+  padding: 10px 10px
+  background: $light-gray
+  width: 150px
+  cursor: pointer
+  &:hover
+    color: $primary
+    border: 1px solid $primary
+  &:active
+    transform: scale(1)
+
 .spinner-field
   position: relative
   top: 50%
@@ -104,19 +118,8 @@
       button
         grid-row: 2
         justify-self: right
-        border: 1px solid $text-common
-        border-radius: 20px
-        color: $text-common
-        padding: 10px 10px
         margin: 5px 30px
-        background: $light-gray
-        width: 150px
-        cursor: pointer
-        &:hover
-          color: $primary
-          border: 1px solid $primary
-        &:active
-          transform: scale(1)
+        @extend .proto-btn
     .help
       color: $text-common
       padding: 5px 0px 10px 0px
@@ -139,12 +142,19 @@
     font-size: 1.3rem
     .summary
       text-align: center
-      padding: 70px 0px 70px 0px
+      padding: 70px 0px 10px 0px
       color: $primary
       font-size: 2rem
       span
         color: $text-common
         font-weight: bold
+    .btn-container
+      text-align: center
+      margin: 10px 0px 50px 0px
+      button
+        @extend .proto-btn
+        text-align: center
+        background: transparent
     .wrong-answers-title
       font-size: 1.2rem
       font-weight: bold
