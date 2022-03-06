@@ -6,13 +6,37 @@
 
     </div>
     <div class="search">
-      <select placeholder="Search">
-        <option value=""></option>
-      </select>
+      <input type="text" list="cars" (input)="findWords()" placeholder="" #searchBox name="search" [(ngModel)]="searchValue" 
+      (keyup)="clearSearch($event)" (change)="selectWord(searchBox.value)"/>
+      <datalist id="cars" *ngIf="foundWords.length">
+        <option *ngFor="let word of foundWords" [value]="word.text">{{word.translation}}</option>
+      </datalist>
     </div>
   </div>
+
+  <!-- Search Result -->
+  <div class="search-result" *ngIf="showSearchResult">
+    <div class="text">{{word?.text}}</div>
+
+    <!-- Transcription -->
+    <div class="transcription"> <span>|</span> {{word.transcription}} <span>|</span></div>
+  
+    <!-- Translation -->
+    <div class="translation">
+      <i>{{word.translation}}</i>
+    </div>
+  
+    <!-- Examples -->
+    <div class="examples" *ngIf="word?.examples?.length">
+      <div class="title">Examples</div>
+      <div class="example-row" *ngFor="let example of word.examples">
+        <span>{{example.phrase}}</span> - <span><i>{{example.translation}}</i></span>
+      </div>
+    </div>
+  </div>
+
   <!-- Page -->
-  <div class="page">
+  <div class="page" *ngIf="!showSearchResult">
     <div class="new-releses card-container">
       <p>New Releases</p>
       <div class="cards" *ngIf="newReleasesTracks.length">

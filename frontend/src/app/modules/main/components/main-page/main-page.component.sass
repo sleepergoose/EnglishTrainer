@@ -22,7 +22,7 @@
       grid-row: 2
       align-self: center
       padding: 10px
-      select 
+      input 
         width: 100%
         background: transparent
         border: none
@@ -32,8 +32,30 @@
         color: $text-common
         &:focus
           outline: none
-        option
-          background: $light-gray
+  .search-result
+    padding: 30px 10px 20px 20px
+    color: $text-common
+    .text
+      font-weight: 600
+      color: $primary
+      font-size: 2rem
+    .transcription
+      padding: 20px 0px 10px 0px
+      font-size: 1.15rem
+      span
+        color: $text-gray
+    .translation
+      padding: 10px 0px
+      font-size: 1rem
+    .examples
+      padding: 10px 0px 5px 0px
+      font-size: 1rem
+      .title
+        color: $text-gray
+        font-weight: 500
+        padding: 5px 0px
+      .example-row
+        margin: 7px 25px  
 
   .page
     display: grid
@@ -59,3 +81,9 @@
   position: absolute
   right: 30px
   top: 15px
+
+
+::ng-deep
+  datalist 
+    background: red !important
+    width: 800px !important
