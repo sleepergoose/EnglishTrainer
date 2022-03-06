@@ -11,6 +11,52 @@
     width: 100%
     border-bottom: 1px solid $borders
     background: $header-gradient
+    display: grid
+    grid-template-columns: 100%
+    grid-template-rows: 85% 15%
+    .accordion
+      grid-column: 1
+      grid-row: 1
+    .search
+      grid-column: 1
+      grid-row: 2
+      align-self: center
+      padding: 10px
+      input 
+        width: 100%
+        background: transparent
+        border: none
+        border: 1px solid #99999950
+        border-radius: 10px
+        padding: 5px 10px
+        color: $text-common
+        &:focus
+          outline: none
+  .search-result
+    padding: 30px 10px 20px 20px
+    color: $text-common
+    .text
+      font-weight: 600
+      color: $primary
+      font-size: 2rem
+    .transcription
+      padding: 20px 0px 10px 0px
+      font-size: 1.15rem
+      span
+        color: $text-gray
+    .translation
+      padding: 10px 0px
+      font-size: 1rem
+    .examples
+      padding: 10px 0px 5px 0px
+      font-size: 1rem
+      .title
+        color: $text-gray
+        font-weight: 500
+        padding: 5px 0px
+      .example-row
+        margin: 7px 25px  
+
   .page
     display: grid
     grid-template-columns: 100%
@@ -35,3 +81,9 @@
   position: absolute
   right: 30px
   top: 15px
+
+
+::ng-deep
+  datalist 
+    background: red !important
+    width: 800px !important
