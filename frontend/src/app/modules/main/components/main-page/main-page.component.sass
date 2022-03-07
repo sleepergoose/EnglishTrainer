@@ -23,17 +23,24 @@
       align-self: center
       padding: 10px
       input 
-        width: 100%
+        justify-self: right
         background: transparent
         border: none
-        border: 1px solid #99999950
-        border-radius: 10px
+        border-bottom: 1px solid #999999ff
         padding: 5px 10px
         color: $text-common
+        font-size: 1.1rem
+        outline: none
         &:focus
           outline: none
+          border: none
+          border: 1px solid #99999955
+          border-radius: 10px
+          width: 100%
+          background: transparent
+
   .search-result
-    padding: 30px 10px 20px 20px
+    padding: 50px 10px 20px 40px
     color: $text-common
     .text
       font-weight: 600
@@ -81,7 +88,6 @@
   position: absolute
   right: 30px
   top: 15px
-
 
 ::ng-deep
   datalist 
