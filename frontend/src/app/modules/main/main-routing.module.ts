@@ -59,6 +59,11 @@ const routes: Routes = [
       {
         path: 'trackview/pv/:id',
         component: PvTrackViewComponent
+      },
+      {
+        path: 'reading',
+        loadChildren: () => import('../reading/reading.module').then((m) => m.ReadingModule),
+        canActivate: [AuthGuard]
       }
     ]
   }
