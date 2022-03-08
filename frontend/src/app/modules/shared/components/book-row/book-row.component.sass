@@ -1,0 +1,36 @@
+@import 'src/styles.sass'
+  
+.book-row
+  display: grid
+  grid-template-rows: 100%
+  grid-template-columns: 7% 52% 26% 15%
+  align-items: center
+  width: 100%
+  border: 1px solid red
+  padding: 10px 0px
+  border: 1px solid $text-gray
+  border-radius: 20px
+  &:hover
+    background: $light-gray
+    .controls
+      .btn-read
+        color: $primary
+  .number
+    grid-column: 1
+    justify-self: center
+  .name
+    grid-column: 2
+  .author
+    grid-column: 3
+  .controls
+    grid-column: 4
+    justify-self: center
+    .btn-read
+      background: transparent
+      border: none
+      color: $text-common
+      cursor: pointer
+      font-size: 1.2rem
+      padding: 0px 5px
+      &:active
+        transform: scale(0.9)
