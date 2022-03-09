@@ -54,7 +54,7 @@ export class AddBooksComponent {
 
       this._booksService.uploadBooks(formData)
       .pipe(take(1))
-      .subscribe(() => {
+      .subscribe((str) => {
         this.reset();
       });
     }

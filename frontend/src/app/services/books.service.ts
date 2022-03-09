@@ -12,6 +12,6 @@ export class BooksService {
   ) {}
 
   uploadBooks(formData: FormData) {
-    return this._http.post("https://localhost:5002/api/admin/Books/uploadBooks", formData);
+    return this._http.post<string>("https://localhost:5002/api/admin/Books/uploadBooks", formData);
   }
 }

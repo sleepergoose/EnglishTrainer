@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.AzureBlobStorage;
 using System.Data;
 using System.Reflection;
 using Trainer.Admin.BusinessLogic.Services;
@@ -24,6 +25,8 @@ namespace Trainer.Admin.BusinessLogic.Extensions
             service.AddScoped<WordsService>();
             service.AddScoped<PhrasalVerbsService>();
             service.AddScoped<PvTracksService>();
+            service.AddScoped<BooksService>();
+            service.AddScoped<BlobService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)

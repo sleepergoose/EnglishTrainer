@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Trainer.Admin.BusinessLogic.Services;
 using Trainer.Common.Auth.Constants;
 
 namespace Trainer.Admin.Controllers
@@ -11,12 +13,23 @@ namespace Trainer.Admin.Controllers
     [Authorize(Policy = Policies.IsAdmin)]
     public class BooksController : ControllerBase
     {
+        private readonly BooksService _booksService;
+
+        public BooksController(BooksService booksService)
+        {
+            _booksService = booksService;
+        }
 
         [HttpPost("uploadBooks")]
-        public IActionResult UploadBooksAsync([FromForm] IFormFile[] form)
+        public async Task<IActionResult> UploadBooksAsync([FromForm] IFormFile[] form)
         {
             // TODO: make a service to send files via RabbitMQ to Processor for saving into Blob Storage
-            return Ok();
+            var result = await _booksService.UploadBooksAsync(form);
+
+            return result.Match<ActionResult>(
+                success => Ok(),
+                error => BadRequest()
+                );
         }
     }
 }
