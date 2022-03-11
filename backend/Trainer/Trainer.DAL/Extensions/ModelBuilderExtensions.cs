@@ -19,6 +19,7 @@ namespace Trainer.DAL.Extensions
             modelBuilder.ApplyConfiguration(new WordExampleConfiguration());
             modelBuilder.ApplyConfiguration(new PhrasalVerbConfiguration());
             modelBuilder.ApplyConfiguration(new PvTrackConfiguration());
+            modelBuilder.ApplyConfiguration(new BookConfiguration());
         }
 
         public static void Seed(this ModelBuilder modelBuilder)
