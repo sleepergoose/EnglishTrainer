@@ -1,13 +1,13 @@
 ﻿using RabbitMQ.Client;
-using RabbitMQ.Wrapper.Interfaces;
-using RabbitMQ.Wrapper.Models;
+using Shared.RabbitMQ.Wrapper.Interfaces;
+using Shared.RabbitMQ.Wrapper.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RabbitMQ.Wrapper.Services
+namespace Shared.RabbitMQ.Wrapper.Services
 {
     /// <summary>
     /// Producer - describes an object for transmiting data

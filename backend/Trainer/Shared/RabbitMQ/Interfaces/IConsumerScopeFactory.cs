@@ -1,6 +1,6 @@
-﻿using RabbitMQ.Wrapper.Models;
+﻿using Shared.RabbitMQ.Wrapper.Models;
 
-namespace RabbitMQ.Wrapper.Interfaces
+namespace Shared.RabbitMQ.Wrapper.Interfaces
 {
     public interface IConsumerScopeFactory
     {

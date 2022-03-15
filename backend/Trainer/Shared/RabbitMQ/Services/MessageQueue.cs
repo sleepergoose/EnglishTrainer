@@ -1,8 +1,8 @@
 ﻿using RabbitMQ.Client;
-using RabbitMQ.Wrapper.Interfaces;
-using RabbitMQ.Wrapper.Models;
+using Shared.RabbitMQ.Wrapper.Interfaces;
+using Shared.RabbitMQ.Wrapper.Models;
 
-namespace RabbitMQ.Wrapper.Services
+namespace Shared.RabbitMQ.Wrapper.Services
 {
     internal class MessageQueue : IMessageQueue
     {

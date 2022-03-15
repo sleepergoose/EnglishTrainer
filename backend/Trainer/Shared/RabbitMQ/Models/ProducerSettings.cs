@@ -1,7 +1,7 @@
 ﻿using RabbitMQ.Client;
-using RabbitMQ.Wrapper.Interfaces;
+using Shared.RabbitMQ.Wrapper.Interfaces;
 
-namespace RabbitMQ.Wrapper.Models
+namespace Shared.RabbitMQ.Wrapper.Models
 {
     internal class ProducerSettings
     {

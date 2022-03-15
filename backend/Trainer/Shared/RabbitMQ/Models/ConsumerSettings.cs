@@ -1,6 +1,6 @@
 ﻿using RabbitMQ.Client;
 
-namespace RabbitMQ.Wrapper.Models
+namespace Shared.RabbitMQ.Wrapper.Models
 {
     internal class ConsumerSettings
     {

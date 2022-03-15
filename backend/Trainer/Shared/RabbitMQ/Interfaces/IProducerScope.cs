@@ -1,4 +1,4 @@
-﻿namespace RabbitMQ.Wrapper.Interfaces
+﻿namespace Shared.RabbitMQ.Wrapper.Interfaces
 {
     public interface IProducerScope
     {

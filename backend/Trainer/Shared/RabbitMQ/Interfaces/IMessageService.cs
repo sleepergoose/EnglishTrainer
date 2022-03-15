@@ -1,9 +1,9 @@
 ﻿using System;
 using RabbitMQ.Client.Events;
-using RabbitMQ.Wrapper.Models;
-using RabbitMQ.Wrapper.Services;
+using Shared.RabbitMQ.Wrapper.Models;
+using Shared.RabbitMQ.Wrapper.Services;
 
-namespace RabbitMQ.Wrapper.Interfaces
+namespace Shared.RabbitMQ.Wrapper.Interfaces
 {
     public interface IMessageService
     {

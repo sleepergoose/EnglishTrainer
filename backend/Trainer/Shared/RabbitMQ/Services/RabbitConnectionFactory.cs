@@ -1,7 +1,7 @@
 ﻿using RabbitMQ.Client;
 using System;
 
-namespace RabbitMQ.Wrapper.Services
+namespace Shared.RabbitMQ.Wrapper.Services
 {
     internal class RabbitConnectionFactory
     {

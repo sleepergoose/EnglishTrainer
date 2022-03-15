@@ -1,10 +1,10 @@
 ﻿using System;
 using RabbitMQ.Client;
-using RabbitMQ.Wrapper.Models;
-using RabbitMQ.Wrapper.Interfaces;
-using RabbitMQ.Wrapper.Services;
+using Shared.RabbitMQ.Wrapper.Models;
+using Shared.RabbitMQ.Wrapper.Interfaces;
+using Shared.RabbitMQ.Wrapper.Services;
 
-namespace RabbitMQ.Wrapper.Services
+namespace Shared.RabbitMQ.Wrapper.Services
 {
     internal class ConsumerScope : IConsumerScope
     {

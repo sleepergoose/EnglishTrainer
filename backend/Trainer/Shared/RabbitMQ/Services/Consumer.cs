@@ -1,10 +1,10 @@
 ﻿using RabbitMQ.Client.Events;
-using RabbitMQ.Wrapper.Interfaces;
-using RabbitMQ.Wrapper.Models;
+using Shared.RabbitMQ.Wrapper.Interfaces;
+using Shared.RabbitMQ.Wrapper.Models;
 using System;
 using System.Collections.Generic;
 
-namespace RabbitMQ.Wrapper.Services
+namespace Shared.RabbitMQ.Wrapper.Services
 {
     internal class Consumer : IConsumer
     {

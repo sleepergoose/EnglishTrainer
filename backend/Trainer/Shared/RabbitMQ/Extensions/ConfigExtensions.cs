@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
-using RabbitMQ.Wrapper.Interfaces;
-using RabbitMQ.Wrapper.Services;
+using Shared.RabbitMQ.Wrapper.Interfaces;
+using Shared.RabbitMQ.Wrapper.Services;
 
-namespace RabbitMQ.Wrapper.Extensions
+namespace Shared.RabbitMQ.Wrapper.Extensions
 {
     public static class ConfigExtensions
     {

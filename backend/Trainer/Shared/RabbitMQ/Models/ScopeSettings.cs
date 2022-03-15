@@ -1,4 +1,4 @@
-﻿namespace RabbitMQ.Wrapper.Models
+﻿namespace Shared.RabbitMQ.Wrapper.Models
 {
     public  class ScopeSettings
     {
