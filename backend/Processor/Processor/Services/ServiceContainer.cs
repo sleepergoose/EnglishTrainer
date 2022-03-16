@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using Shared.RabbitMQ.Wrapper.Extensions;
 using Processor.Interfaces;
+using Shared.AzureBlobStorage;
 
 namespace Processor.Services
 {
@@ -28,6 +29,7 @@ namespace Processor.Services
             services.AddRabbitMQService(configuration["RabbitMQUri"]);
 
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IBlobService, BlobService>();
 
             _provider = services.BuildServiceProvider();
         }

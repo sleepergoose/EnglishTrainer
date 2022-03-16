@@ -30,9 +30,16 @@ namespace Shared.RabbitMQ.Wrapper.Services
         /// <param name="consumerSettings">General consumer settings</param>
         public void SetMessageService(ScopeSettings producerSettings, ScopeSettings consumerSettings)
         {
-            _producerScope = _producerScopeFactory.Open(producerSettings);
-            _consumerScope = _consumerScopeFactory.Connect(consumerSettings);
-            _consumerScope.Consumer.Received += ListenQueue;
+            if (producerSettings != null)
+            {
+                _producerScope = _producerScopeFactory.Open(producerSettings);
+            }
+
+            if (consumerSettings != null)
+            {
+                _consumerScope = _consumerScopeFactory.Connect(consumerSettings);
+                _consumerScope.Consumer.Received += ListenQueue;
+            }            
         }
 
         public void ListenQueue(object model, BasicDeliverEventArgs ea)

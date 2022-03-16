@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
 using Shared.RabbitMQ.Wrapper.Interfaces;
+using Shared.RabbitMQ.Wrapper.Models;
 using Shared.RabbitMQ.Wrapper.Services;
 
 namespace Shared.RabbitMQ.Wrapper.Extensions
@@ -10,6 +11,10 @@ namespace Shared.RabbitMQ.Wrapper.Extensions
     {
         public static void AddRabbitMQService(this IServiceCollection services, string uri)
         {
+            services.AddScoped<ProducerSettings>();
+            services.AddScoped<ConsumerSettings>();
+            services.AddScoped<ScopeSettings>();
+
             services.AddScoped<IProducer, Producer>();
             services.AddScoped<IConsumer, Consumer>();
             services.AddScoped<IProducerScope, ProducerScope>();

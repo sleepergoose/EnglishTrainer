@@ -12,9 +12,10 @@ namespace Processor
         static void Main(string[] args)
         {
             var processor = ServiceProvider.GetRequiredService<IBookService>();
-            processor.Start();  
+            processor.Start();
 
-            Console.ReadLine(); 
+            while (Console.ReadLine() != "stop")
+            { }
         }
     }
 }
