@@ -35,6 +35,7 @@ namespace Processor.Services
         {
             _messageService.SetMessageService(null, _consumerSettings);
             _messageService.MessageReceived += BookReceived;
+
             Console.WriteLine("Book processing is started...");
         }
 

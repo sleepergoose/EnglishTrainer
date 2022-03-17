@@ -29,12 +29,16 @@
           </span>
         </div>
       </div>
+
+      <div class="uploaded-books" *ngIf="isUploadedBooksShown">
+        <app-book-row *ngFor="let book of books; let i = index" [book]="book" [number]="i + 1"></app-book-row>
+      </div>
       
       <div class="spinner-upload">
         <mat-spinner class="spinner" color="accent" *ngIf="isSpinnerShown"></mat-spinner>
       </div>
 
-      <div class="controls">
+      <div class="controls" *ngIf="isControlsShown">
         <button (click)="submit()" class="btn-submit" [disabled]="form.form.invalid">ADD</button>
         <button (click)="reset()" class="btn-cancel" type="reset">RESET</button>
       </div>

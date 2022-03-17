@@ -23,11 +23,10 @@ namespace Trainer.Admin.Controllers
         [HttpPost("uploadBooks")]
         public async Task<IActionResult> UploadBooksAsync([FromForm] IFormFile[] form)
         {
-            // TODO: make a service to send files via RabbitMQ to Processor for saving into Blob Storage
             var result = await _booksService.UploadBooksAsync(form);
 
             return result.Match<ActionResult>(
-                success => Ok(),
+                success => Ok(result.AsT0),
                 error => BadRequest()
                 );
         }

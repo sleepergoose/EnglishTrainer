@@ -8,6 +8,7 @@ import { Book } from 'src/app/models/book/book';
 })
 export class BookRowComponent {
   @Input() book = {} as Book;
-
+  @Input() number: number = 0;
+  
   constructor() { }
 }

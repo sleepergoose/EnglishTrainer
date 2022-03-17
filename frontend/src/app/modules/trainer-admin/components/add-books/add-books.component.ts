@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
+import { Book } from 'src/app/models/book/book';
 import { BooksService } from 'src/app/services/books.service';
 
 @Component({
@@ -16,6 +17,9 @@ export class AddBooksComponent {
   files = [] as File[];
   isListShown: boolean = false;
   isSpinnerShown: boolean = false;
+  isUploadedBooksShown: boolean = false;
+  isControlsShown: boolean = true;
+  books = [] as Book[];
 
   constructor(
     private _booksService: BooksService
@@ -54,8 +58,11 @@ export class AddBooksComponent {
 
       this._booksService.uploadBooks(formData)
       .pipe(take(1))
-      .subscribe((str) => {
+      .subscribe((result) => {
         this.reset();
+        this.isUploadedBooksShown = true;
+        this.books = result;
+        this.isControlsShown = false;
       });
     }
   }

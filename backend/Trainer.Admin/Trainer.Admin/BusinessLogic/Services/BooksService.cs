@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http;
 using OneOf;
 using OneOf.Types;
-using Shared.AzureBlobStorage;
 using System.Threading.Tasks;
-using Shared.RabbitMQ.Wrapper.Services;
 using Shared.RabbitMQ.Wrapper.Interfaces;
 using Shared.RabbitMQ.Wrapper.Models;
 using Microsoft.Extensions.Options;
 using Shared.RabbitMQ.Wrapper.Options;
 using Shared.AzureBlobStorage.Models;
 using System.IO;
+using System.Collections.Generic;
 using System;
-using System.Text.Json;
+using MediatR;
+using AutoMapper;
+using Trainer.Admin.BusinessLogic.Commands;
+using Trainer.Domain.Enums;
+using Trainer.Domain.Models;
 
 namespace Trainer.Admin.BusinessLogic.Services
 {
@@ -20,40 +23,66 @@ namespace Trainer.Admin.BusinessLogic.Services
         private readonly IMessageService _messageService;
         private readonly ScopeSettings _producerSettings;
         private readonly ScopeSettings _consumerSettings;
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
         public BooksService(IMessageService messageService,
-            IOptions<BookProcessingRabbitMQOptions> rabbitMqOptions)
+            IOptions<BookProcessingRabbitMQOptions> rabbitMqOptions,
+            IMediator mediator,
+            IMapper mapper)
         {
             _messageService = messageService;
+            _mediator = mediator;
+            _mapper = mapper;
 
             var options = rabbitMqOptions.Value;
             _producerSettings = options.ProducerSettings;
             _consumerSettings = options.ConsumerSettings;
         }
 
-        public async Task<OneOf<Success, Error>> UploadBooksAsync(IFormFile[] files)
+        public async Task<OneOf<ICollection<Book>, Error>> UploadBooksAsync(IFormFile[] files)
         {
-            _messageService.SetMessageService(_producerSettings, null);
-
-            foreach (var file in files)
+            try
             {
-                var data = new BookDataTransferModel
+                var books = new List<Book>();
+
+                _messageService.SetMessageService(_producerSettings, null);
+
+                foreach (var file in files)
                 {
-                    BookBlobId = Guid.NewGuid().ToString(),
-                    BookName = file.FileName,
-                    ContentType = file.ContentType
-                };
+                    var data = new BookDataTransferModel
+                    {
+                        BookBlobId = Guid.NewGuid().ToString(),
+                        BookName = file.FileName,
+                        ContentType = file.ContentType
+                    };
 
-                MemoryStream memoryStream = new MemoryStream();
-                file.CopyTo(memoryStream);
-                data.BookBody = memoryStream.ToArray(); 
+                    MemoryStream memoryStream = new MemoryStream();
+                    file.CopyTo(memoryStream);
+                    data.BookBody = memoryStream.ToArray();
 
-                var body = BinaryData.FromObjectAsJson(data).ToArray();
+                    var body = BinaryData.FromObjectAsJson(data).ToArray();
 
-                _messageService.SendDataToQueue(body);
+                    _messageService.SendDataToQueue(body);
+
+                    var command = new CreateBookCommand
+                    {
+                        Name = data.BookName,
+                        BlobId = data.BookBlobId,
+                        Author = "",
+                        Description = "",
+                        Level = KnowledgeLevel.Beginer
+                    };
+
+                    books.Add(await _mediator.Send(command));
+                }
+
+                return books;
             }
-
-            return new Success();
+            catch (Exception ex)
+            {
+                return new Error();
+            }
         }
     }
 }
