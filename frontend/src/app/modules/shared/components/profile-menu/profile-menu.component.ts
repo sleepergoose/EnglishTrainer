@@ -48,7 +48,7 @@ export class ProfileMenuComponent implements OnInit{
   }
 
   goToTrainer() {
-    this._router.navigate([``]);
+    this._router.navigate([`main`]);
     this.isStudioNow = false;
   }
 }

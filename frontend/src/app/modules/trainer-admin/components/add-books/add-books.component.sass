@@ -1,0 +1,40 @@
+@import '../add-words/add-words.component.sass'
+
+.add-section
+  form
+    width: 100%
+    .file-upload
+      text-align: center
+      .file-input
+        display: none
+      h1
+        color: $text-common
+      button
+        margin: 10px 0px
+        padding: 5px 30px
+        border-radius: 10px !important
+        font-size: 1.1rem
+    .choosen-file-list
+      margin: 20px 5px
+      .choosen-file-row
+        span
+          color: $text-common
+          font-size: 1.1rem
+          line-height: 2rem
+          i
+            color: $text-gray
+    .uploaded-books
+      width: 100%
+      padding: 20px 10px
+    .error-message
+      color: red
+      font-size: 1.1rem
+    .spinner-upload
+      width: 100%
+      display: grid
+      grid-template-columns: 100%
+      justify-items: center
+      .spinner
+        grid-column: 1
+        justify-self: center
+        width: 80%

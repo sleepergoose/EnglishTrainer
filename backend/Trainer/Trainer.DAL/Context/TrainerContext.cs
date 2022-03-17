@@ -22,6 +22,7 @@ namespace Trainer.DAL.Context
         public DbSet<PvExample> PvExamples { get; set; }
         public DbSet<PvToTrack> PvToTracks { get; set; }
         public DbSet<PvTrack> PvTracks { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         public TrainerContext(DbContextOptions<TrainerContext> options) : base(options)
         { }

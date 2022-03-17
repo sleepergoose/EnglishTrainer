@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { RoleGuard } from 'src/app/guards/role.guard';
+import { AddBooksComponent } from './components/add-books/add-books.component';
 import { AddPhrasalVerbComponent } from './components/add-phrasal-verb/add-phrasal-verb.component';
 import { AddWordsComponent } from './components/add-words/add-words.component';
 import { ContainerComponent } from './components/container/container.component';
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'editphrasalverb',
         component: EditPhrasalVerbComponent
+      },
+      {
+        path: 'addbooks',
+        component: AddBooksComponent
       }
     ]
   }

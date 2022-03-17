@@ -1,0 +1,16 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/admin/Books/uploadBooks",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/admin/Books/uploadBooks",
+      "UpstreamHttpMethod": [ "POST" ]
+    }
+  ]
+}

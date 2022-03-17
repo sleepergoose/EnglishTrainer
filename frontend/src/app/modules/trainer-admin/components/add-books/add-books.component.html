@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="header">
+    <span>Add books</span>
+  </div>
+
+  <div class="add-section">
+    <form #form="ngForm" (keydown.enter)="$event.preventDefault()">
+
+      <div class="file-upload">
+        <input required type="file" pattern="{{pattern}}" [ngModel] #file="ngModel" name="file"  class="file-input" [accept]="requiredFileType" multiple (change)="onFileSelected($event)" #fileUpload>
+
+        <h1>Choose TXT files of books using a button below</h1>
+
+        <button mat-raised-button color="basic" class="upload-btn" (click)="fileUpload.click()">
+          <mat-icon>add</mat-icon>
+          Add files
+        </button>
+        <div *ngIf="file.invalid && (file.dirty || file.touched)" class="error-message">
+          <div *ngIf="file.errors?.['pattern']">
+            Invalid file type
+          </div>
+        </div>
+      </div>
+
+      <div class="choosen-file-list" *ngIf="isListShown && file.valid">
+        <div class="choosen-file-row" *ngFor="let fileName of fileNames; let i=index">
+          <span>{{i + 1}}. 
+            {{fileName.split('.')[0]}}.<i>{{fileName.split('.')[1]}}</i>
+          </span>
+        </div>
+      </div>
+
+      <div class="uploaded-books" *ngIf="isUploadedBooksShown">
+        <app-book-row *ngFor="let book of books; let i = index" [book]="book" [number]="i + 1"></app-book-row>
+      </div>
+      
+      <div class="spinner-upload">
+        <mat-spinner class="spinner" color="accent" *ngIf="isSpinnerShown"></mat-spinner>
+      </div>
+
+      <div class="controls" *ngIf="isControlsShown">
+        <button (click)="submit()" class="btn-submit" [disabled]="form.form.invalid">ADD</button>
+        <button (click)="reset()" class="btn-cancel" type="reset">RESET</button>
+      </div>
+    </form>
+  </div>
+</div>

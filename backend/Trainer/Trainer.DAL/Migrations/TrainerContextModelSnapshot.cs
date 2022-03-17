@@ -19,6 +19,46 @@ namespace Trainer.DAL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Trainer.Domain.Models.Book", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("BlobId")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)");
+
+                    b.Property<int>("Level")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Books");
+                });
+
             modelBuilder.Entity("Trainer.Domain.Models.PhrasalVerb", b =>
                 {
                     b.Property<int>("Id")
@@ -47,42 +87,42 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 380, DateTimeKind.Unspecified).AddTicks(2502), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(210), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "bring up",
                             Translation = "упоминать, заводить разговор об"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 380, DateTimeKind.Unspecified).AddTicks(2558), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(262), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "call off",
                             Translation = "отменять, отменить"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 380, DateTimeKind.Unspecified).AddTicks(2562), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(267), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "work out",
                             Translation = "придумать что-нибудь"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 380, DateTimeKind.Unspecified).AddTicks(2565), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(270), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "hold up",
                             Translation = "задерживать"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 380, DateTimeKind.Unspecified).AddTicks(2568), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(272), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "take it out on",
                             Translation = "вызвериться на"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 380, DateTimeKind.Unspecified).AddTicks(2574), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(278), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "stick up for",
                             Translation = "встать на защиту"
                         });
@@ -121,7 +161,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(290), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(7658), new TimeSpan(0, 2, 0, 0, 0)),
                             PhrasalVerbId = 1,
                             Phrase = "Why did you bring it up?",
                             Translation = "Почему ты заговорил об этом"
@@ -129,7 +169,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(339), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(7707), new TimeSpan(0, 2, 0, 0, 0)),
                             PhrasalVerbId = 1,
                             Phrase = "Don't even try to bring it up!",
                             Translation = "Даже не пытайся сказать это!"
@@ -137,7 +177,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(343), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(7711), new TimeSpan(0, 2, 0, 0, 0)),
                             PhrasalVerbId = 2,
                             Phrase = "I had to call the meeting off",
                             Translation = "Я должен был отменить встречу"
@@ -145,7 +185,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(346), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(7714), new TimeSpan(0, 2, 0, 0, 0)),
                             PhrasalVerbId = 2,
                             Phrase = "We should to call off the festival",
                             Translation = "Нам стоит отменить фестиваль"
@@ -153,7 +193,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(348), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(7717), new TimeSpan(0, 2, 0, 0, 0)),
                             PhrasalVerbId = 4,
                             Phrase = "We were held up yesterday till five p.m.",
                             Translation = "Нас задержали вчера до 5 вечера"
@@ -161,7 +201,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(355), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 510, DateTimeKind.Unspecified).AddTicks(7723), new TimeSpan(0, 2, 0, 0, 0)),
                             PhrasalVerbId = 4,
                             Phrase = "My boss held me up today",
                             Translation = "Мой босс задержал меня сегодня"
@@ -263,7 +303,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 382, DateTimeKind.Unspecified).AddTicks(1968), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(8713), new TimeSpan(0, 2, 0, 0, 0)),
                             Email = "peter@server.com",
                             Name = "Peter",
                             Role = 0
@@ -271,7 +311,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 382, DateTimeKind.Unspecified).AddTicks(2018), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(8756), new TimeSpan(0, 2, 0, 0, 0)),
                             Email = "nick@server.com",
                             Name = "Nick",
                             Role = 0
@@ -279,7 +319,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 382, DateTimeKind.Unspecified).AddTicks(2021), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(8760), new TimeSpan(0, 2, 0, 0, 0)),
                             Email = "jane@server.com",
                             Name = "Jane",
                             Role = 0
@@ -318,7 +358,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 374, DateTimeKind.Unspecified).AddTicks(7842), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 504, DateTimeKind.Unspecified).AddTicks(8898), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "name",
                             Transcription = "naim",
                             Translation = "имя"
@@ -326,7 +366,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 378, DateTimeKind.Unspecified).AddTicks(2585), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 508, DateTimeKind.Unspecified).AddTicks(1608), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "old",
                             Transcription = "old",
                             Translation = "имя"
@@ -334,7 +374,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 378, DateTimeKind.Unspecified).AddTicks(2628), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 508, DateTimeKind.Unspecified).AddTicks(1648), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "work",
                             Transcription = "work",
                             Translation = "работать"
@@ -342,7 +382,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 378, DateTimeKind.Unspecified).AddTicks(2633), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 508, DateTimeKind.Unspecified).AddTicks(1653), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "hope",
                             Transcription = "heup",
                             Translation = "надежда"
@@ -350,7 +390,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 378, DateTimeKind.Unspecified).AddTicks(2635), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 508, DateTimeKind.Unspecified).AddTicks(1656), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "convey",
                             Transcription = "konvei",
                             Translation = "передавать"
@@ -358,7 +398,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 378, DateTimeKind.Unspecified).AddTicks(2643), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 508, DateTimeKind.Unspecified).AddTicks(1662), new TimeSpan(0, 2, 0, 0, 0)),
                             Text = "gather",
                             Transcription = "gather",
                             Translation = "собирать"
@@ -398,7 +438,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(6040), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(3037), new TimeSpan(0, 2, 0, 0, 0)),
                             Phrase = "My name is John",
                             Translation = "Меня зовут Джон",
                             WordId = 1
@@ -406,7 +446,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(6086), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(3083), new TimeSpan(0, 2, 0, 0, 0)),
                             Phrase = "Her name is Jane",
                             Translation = "Ее зовут Джейн",
                             WordId = 1
@@ -414,7 +454,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(6091), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(3086), new TimeSpan(0, 2, 0, 0, 0)),
                             Phrase = "What's your name?",
                             Translation = "Как тебя зовут?",
                             WordId = 1
@@ -422,7 +462,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(6093), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(3089), new TimeSpan(0, 2, 0, 0, 0)),
                             Phrase = "He has an old car",
                             Translation = "У него есть старая машина",
                             WordId = 2
@@ -430,7 +470,7 @@ namespace Trainer.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 381, DateTimeKind.Unspecified).AddTicks(6096), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 511, DateTimeKind.Unspecified).AddTicks(3091), new TimeSpan(0, 2, 0, 0, 0)),
                             Phrase = "She was really old",
                             Translation = "Она была очень старая",
                             WordId = 2
@@ -499,7 +539,7 @@ namespace Trainer.DAL.Migrations
                         {
                             Id = 1,
                             AuthorId = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2021, 12, 20, 18, 8, 52, 382, DateTimeKind.Unspecified).AddTicks(7706), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2022, 3, 11, 20, 16, 35, 512, DateTimeKind.Unspecified).AddTicks(3805), new TimeSpan(0, 2, 0, 0, 0)),
                             Description = "My first track",
                             Level = 0,
                             Name = "100 most important words"

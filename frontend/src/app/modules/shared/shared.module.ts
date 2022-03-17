@@ -12,6 +12,7 @@ import { PvTableComponent } from './components/pv-table/pv-table.component';
 import { WordComponent } from './components/word/word.component';
 import { FirstLetterToUpcasePipe } from 'src/app/pipes/first-letter-to-upcase.pipe';
 import { PhrasalVerbComponent } from './components/phrasal-verb/phrasal-verb.component';
+import { BookRowComponent } from './components/book-row/book-row.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PhrasalVerbComponent } from './components/phrasal-verb/phrasal-verb.com
     PvTableComponent,
     WordComponent,
     FirstLetterToUpcasePipe,
-    PhrasalVerbComponent
+    PhrasalVerbComponent,
+    BookRowComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { PhrasalVerbComponent } from './components/phrasal-verb/phrasal-verb.com
     PhrasalVerbRowComponent,
     PvSearchRowComponent,
     PvTableComponent,
-    WordComponent
+    WordComponent,
+    BookRowComponent
   ]
 })
 export class SharedModule { }
