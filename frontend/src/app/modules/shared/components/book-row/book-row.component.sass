@@ -1,13 +1,40 @@
 @import 'src/styles.sass'
   
+.button
+  background: transparent
+  border: none
+  color: $text-common
+  cursor: pointer
+  font-size: 1rem
+  font-family: monospace, sans-serif
+  padding: 0px 10px
+  margin: 5px
+  &:active
+    transform: scale(0.9)
+  &:hover
+    background: $drk-gray
+
+input
+  background: $light-gray
+  border: none
+  border-radius: 10px
+  padding: 5px 10px
+  width: 95%
+  overflow: hidden
+  color: $text-common
+  font-family: monospace, sans-serif
+  font-size: 1.1rem
+  &:focus
+    outline: none
+
 .book-row
+  font-family: monospace, sans-serif
   display: grid
-  grid-template-rows: 100%
-  grid-template-columns: 7% 52% 26% 15%
+  grid-template-rows: auto auto
+  grid-template-columns: 5% 50% 25% 20%
   align-items: center
   width: 100%
   border: 1px solid red
-  padding: 10px 0px
   border: 1px solid $text-gray
   border-radius: 20px
   font-size: 1.1rem
@@ -16,11 +43,9 @@
   cursor: pointer
   &:hover
     background: $light-gray
-    .controls
-      .btn-read
-        color: $primary
   .number
     grid-column: 1
+    align-self: center
     justify-self: center
   .name
     grid-column: 2
@@ -28,13 +53,28 @@
     grid-column: 3
   .controls
     grid-column: 4
+    align-self: center
     justify-self: center
-    .btn-read
-      background: transparent
+    .btn-read, .btn-edit
+      @extend .button
+  .description
+    grid-row: 2
+    grid-column: 1/5
+    display: grid
+    grid-template-columns: 100%
+    textarea
+      grid-column: 1
+      justify-self: center
+      align-self: center
+      height: 120px
+      width: 100%
+      background: $light-gray
       border: none
-      color: $text-common
-      cursor: pointer
-      font-size: 1.2rem
-      padding: 0px 5px
-      &:active
-        transform: scale(0.9)
+      border-radius: 0px 0px 20px 20px
+      border-top: 1px solid $text-gray
+      padding: 10px 15px
+      color: $text-gray
+      font-size: 1rem
+      &:focus
+        outline: none
+

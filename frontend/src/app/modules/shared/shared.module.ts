@@ -13,6 +13,7 @@ import { WordComponent } from './components/word/word.component';
 import { FirstLetterToUpcasePipe } from 'src/app/pipes/first-letter-to-upcase.pipe';
 import { PhrasalVerbComponent } from './components/phrasal-verb/phrasal-verb.component';
 import { BookRowComponent } from './components/book-row/book-row.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BookRowComponent } from './components/book-row/book-row.component';
   ],
   imports: [
     CommonModule,
-    MaterialComponentsModule
+    MaterialComponentsModule,
+    FormsModule
   ],
   exports: [
     TrackCardComponent,
