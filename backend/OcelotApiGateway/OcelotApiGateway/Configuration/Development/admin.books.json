@@ -11,6 +11,18 @@
       ],
       "UpstreamPathTemplate": "/api/admin/Books/uploadBooks",
       "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/admin/Books",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5002"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/admin/Books",
+      "UpstreamHttpMethod": [ "PUT" ]
     }
   ]
 }

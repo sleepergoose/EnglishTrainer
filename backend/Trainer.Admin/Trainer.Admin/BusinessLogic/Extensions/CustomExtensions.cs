@@ -39,6 +39,7 @@ namespace Trainer.Admin.BusinessLogic.Extensions
             services.AddRabbitMQService(configuration.GetSection("RabbitMQUri").Value);
 
             services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<BooksService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)
@@ -48,6 +49,7 @@ namespace Trainer.Admin.BusinessLogic.Extensions
                 cfg.AddProfile<PhrasalVerbProfile>();
                 cfg.AddProfile<ExampleProfile>();
                 cfg.AddProfile<PvTrackProfile>();
+                cfg.AddProfile<BookProfile>();
             });
         }
     }

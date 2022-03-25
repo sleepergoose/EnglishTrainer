@@ -20,7 +20,7 @@ namespace Trainer.Common.Auth.Extensions
     {
         public static void AddAuth(this IServiceCollection services, IConfiguration configuration)
         {
-            string firebaseProjectId = configuration["GOOGLE_CREDENTIALS:project_id"];
+            string firebaseProjectId = configuration["project_id"];
 
             services.AddSingleton<IAuthorizationHandler, RoleRequirementHandler>();
 

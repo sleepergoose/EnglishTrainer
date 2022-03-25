@@ -19,14 +19,18 @@ export class BookRowComponent {
   constructor() { }
 
   buttonEditClick() {
-    this.isDescriptionShown = !this.isDescriptionShown;
-
     if (this.isDescriptionShown === true) {
       this.buttonEditEvent.emit(this.book);
     }
+
+    this.isDescriptionShown = !this.isDescriptionShown;
   }
 
   buttonReadClick() {
-    this.buttonRaadEvent.emit(this.book);
+    if (this.isDescriptionShown === true) {
+      this.buttonRaadEvent.emit(this.book);
+    }
+
+    this.isDescriptionShown = !this.isDescriptionShown;
   }
 }

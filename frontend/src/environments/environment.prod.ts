@@ -2,5 +2,6 @@ import { firebaseKeys } from "./fb-keys";
 
 export const environment = {
   firebase: firebaseKeys,
-  production: true
+  production: false,
+  apiUrl: 'https://localhost:5000' 
 };
