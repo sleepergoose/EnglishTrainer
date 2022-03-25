@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Trainer.Admin.BusinessLogic.Services;
+using Trainer.Admin.Domain.Entities;
 using Trainer.Common.Auth.Constants;
 
 namespace Trainer.Admin.Controllers
@@ -24,6 +25,17 @@ namespace Trainer.Admin.Controllers
         public async Task<IActionResult> UploadBooksAsync([FromForm] IFormFile[] form)
         {
             var result = await _booksService.UploadBooksAsync(form);
+
+            return result.Match<ActionResult>(
+                success => Ok(result.AsT0),
+                error => BadRequest()
+                );
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> EditBookAsync(BookRead book)
+        {
+            var result = await _booksService.EditBookAsync(book);
 
             return result.Match<ActionResult>(
                 success => Ok(result.AsT0),

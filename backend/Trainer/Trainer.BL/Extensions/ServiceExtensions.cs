@@ -17,6 +17,7 @@ namespace Trainer.BL.Extensions
             services.AddScoped<UsersService>();
             services.AddScoped<SearchService>();
             services.AddScoped<TrainerService>();
+            services.AddScoped<BooksService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)
@@ -30,6 +31,7 @@ namespace Trainer.BL.Extensions
                 cfg.AddProfile<WordTrackProfile>();
                 cfg.AddProfile<PvTrackProfile>();
                 cfg.AddProfile<TrainerProfile>();
+                cfg.AddProfile<BookbProfile>();
             });
         }
     }

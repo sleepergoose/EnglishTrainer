@@ -15,6 +15,7 @@ using AutoMapper;
 using Trainer.Admin.BusinessLogic.Commands;
 using Trainer.Domain.Enums;
 using Trainer.Domain.Models;
+using Trainer.Admin.Domain.Entities;
 
 namespace Trainer.Admin.BusinessLogic.Services
 {
@@ -78,6 +79,28 @@ namespace Trainer.Admin.BusinessLogic.Services
                 }
 
                 return books;
+            }
+            catch (Exception ex)
+            {
+                return new Error();
+            }
+        }
+    
+        public async Task<OneOf<BookRead, Error>> EditBookAsync(BookRead book)
+        {
+            try
+            {
+                var command = new EditBookCommand
+                {
+                    Id = book.Id,
+                    Name = book.Name,
+                    Author = book.Author,
+                    BlobId = book.BlobId,
+                    Description = book.Description,
+                    Level = book.Level
+                };
+
+                return _mapper.Map<BookRead>(await _mediator.Send(command));
             }
             catch (Exception ex)
             {

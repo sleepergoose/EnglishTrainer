@@ -1,18 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 import { Book } from 'src/app/models/book/book';
+import { AuthService } from 'src/app/services/auth.service';
+import { BooksService } from 'src/app/services/books.service';
 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.sass']
 })
-export class BooksComponent {
-  book = {
-    id: 1,
-    name: 'Pride and Prejudice',
-    author: 'Jane Austen' ,
-    description: 'The story is about two young people in love with each other'
-  } as Book;
+export class BooksComponent implements OnInit {
+  books = [] as Book[];
+  isAdmin: boolean = false;
 
-  constructor() { }
+  constructor(
+    private _auth: AuthService,
+    private _booksService: BooksService
+  ) { }
+
+  async ngOnInit() {
+    const userRole = await this._auth.getUserRole();
+ 
+    if (+userRole! === 1) {
+      this.isAdmin = true;
+    }
+
+    this._booksService.getBooks()
+      .pipe(take(1))
+      .subscribe((books) => {
+        this.books = books;
+      });
+  }
+
+  clickEditButton(book: Book) {
+    this._booksService.editBook(book)
+      .pipe(take(1))
+      .subscribe((book) => {
+        const foundBook = this.books.find(b => b.id === book.id);
+        const index = this.books.indexOf(foundBook!);
+        this.books[index] = book;
+      });
+  }
 }
