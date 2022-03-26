@@ -12,8 +12,9 @@ export class BookRowComponent {
   @Input() number: number = 0;
 
   @Output() buttonEditEvent = new EventEmitter<Book>();
-  @Output() buttonRaadEvent = new EventEmitter<Book>();
-  
+  @Output() buttonDeleteEvent = new EventEmitter<Book>();
+  @Output() buttonReadEvent = new EventEmitter<Book>();
+
   isDescriptionShown: boolean = false;
 
   constructor() { }
@@ -27,10 +28,17 @@ export class BookRowComponent {
   }
 
   buttonReadClick() {
-    if (this.isDescriptionShown === true) {
-      this.buttonRaadEvent.emit(this.book);
+    if (this.isDescriptionShown !== true) {
+      this.buttonReadEvent.emit(this.book);
     }
+    else {
+      this.isDescriptionShown = !this.isDescriptionShown;
+    }
+  }
 
-    this.isDescriptionShown = !this.isDescriptionShown;
+  buttonDeleteClick() {
+    if (this.isDescriptionShown === true) {
+      this.buttonDeleteEvent.emit(this.book);
+    }
   }
 }

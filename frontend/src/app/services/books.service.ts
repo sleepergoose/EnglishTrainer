@@ -23,4 +23,8 @@ export class BooksService {
   editBook(book: Book) {
     return this._http.putRequest<Book>('/api/admin/Books', book);
   }
+
+  deleteBook(book: Book) {
+    return this._http.deleteRequest<number>('/api/admin/Books', { bookId: book.id });
+  }
 }

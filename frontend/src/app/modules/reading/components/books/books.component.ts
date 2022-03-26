@@ -41,4 +41,12 @@ export class BooksComponent implements OnInit {
         this.books[index] = book;
       });
   }
+
+  clickDeleteButton(book: Book) {
+    this._booksService.deleteBook(book)
+      .pipe(take(1))
+      .subscribe((id) => {
+        this.books = this.books.filter(book => book.id !== id);
+      });
+  }
 }
