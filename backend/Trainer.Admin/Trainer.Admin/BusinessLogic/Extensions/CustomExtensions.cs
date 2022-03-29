@@ -39,6 +39,7 @@ namespace Trainer.Admin.BusinessLogic.Extensions
             services.AddRabbitMQService(configuration.GetSection("RabbitMQUri").Value);
 
             services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<IBlobService, BlobService>();
             services.AddScoped<BooksService>();
         }
 

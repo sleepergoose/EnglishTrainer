@@ -43,7 +43,12 @@ export class BooksComponent implements OnInit {
   }
 
   clickDeleteButton(book: Book) {
-    this._booksService.deleteBook(book)
+    const response = confirm("Do you realy want to delete this book?");
+    
+    if (response === false )
+      return;
+
+    this._booksService.deleteBook(book.id)
       .pipe(take(1))
       .subscribe((id) => {
         this.books = this.books.filter(book => book.id !== id);

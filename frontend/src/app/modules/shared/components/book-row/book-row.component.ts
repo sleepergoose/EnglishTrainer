@@ -20,7 +20,7 @@ export class BookRowComponent {
   constructor() { }
 
   buttonEditClick() {
-    if (this.isDescriptionShown === true) {
+    if (this.isDescriptionShown === true && this.editable === true) {
       this.buttonEditEvent.emit(this.book);
     }
 
@@ -37,7 +37,7 @@ export class BookRowComponent {
   }
 
   buttonDeleteClick() {
-    if (this.isDescriptionShown === true) {
+    if (this.isDescriptionShown === true && this.editable === true) {
       this.buttonDeleteEvent.emit(this.book);
     }
   }

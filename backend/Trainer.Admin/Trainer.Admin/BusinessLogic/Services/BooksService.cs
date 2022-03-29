@@ -16,6 +16,7 @@ using Trainer.Admin.BusinessLogic.Commands;
 using Trainer.Domain.Enums;
 using Trainer.Domain.Models;
 using Trainer.Admin.Domain.Entities;
+using Shared.AzureBlobStorage;
 
 namespace Trainer.Admin.BusinessLogic.Services
 {
@@ -26,15 +27,18 @@ namespace Trainer.Admin.BusinessLogic.Services
         private readonly ScopeSettings _consumerSettings;
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly IBlobService _blobService;
 
         public BooksService(IMessageService messageService,
             IOptions<BookProcessingRabbitMQOptions> rabbitMqOptions,
             IMediator mediator,
-            IMapper mapper)
+            IMapper mapper,
+            IBlobService blobService)
         {
             _messageService = messageService;
             _mediator = mediator;
             _mapper = mapper;
+            _blobService = blobService;
 
             var options = rabbitMqOptions.Value;
             _producerSettings = options.ProducerSettings;
@@ -101,6 +105,27 @@ namespace Trainer.Admin.BusinessLogic.Services
                 };
 
                 return _mapper.Map<BookRead>(await _mediator.Send(command));
+            }
+            catch (Exception ex)
+            {
+                return new Error();
+            }
+        }
+
+        public async Task<OneOf<int, Error>> DeleteBookAsync(int bookId)
+        {
+            try
+            {
+                var command = new DeleteBookCommand
+                {
+                    Id = bookId
+                };
+
+                var fileName = _mapper.Map<string>(await _mediator.Send(command));
+
+                await _blobService.DeleteFileAsync(fileName);
+
+                return bookId;
             }
             catch (Exception ex)
             {

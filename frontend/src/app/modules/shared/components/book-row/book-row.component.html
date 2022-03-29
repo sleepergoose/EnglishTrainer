@@ -12,6 +12,14 @@
   </div>
 
   <div class="controls">
+    <button class="control-button" mat-raised-button (click)="buttonEditClick()" *ngIf="!editable && !isDescriptionShown">
+      <span>More</span>
+    </button>
+
+    <button class="control-button" mat-raised-button (click)="buttonEditClick()" *ngIf="!editable && isDescriptionShown">
+      <span>Less</span>
+    </button>
+
     <button class="control-button" mat-raised-button (click)="buttonEditClick()" *ngIf="editable && !isDescriptionShown">
       <span>Edit</span>
     </button>
@@ -20,11 +28,11 @@
       <span>Save</span>
     </button>
 
-    <button class="control-button" mat-raised-button (click)="buttonDeleteClick()" *ngIf="editable && isDescriptionShown">
+    <button class="control-button delete" mat-raised-button (click)="buttonDeleteClick()" *ngIf="editable && isDescriptionShown">
       <span>Del</span>
     </button>
 
-    <button class="control-button" mat-raised-button (click)="buttonReadClick()" *ngIf="editable && !isDescriptionShown">
+    <button class="control-button" mat-raised-button (click)="buttonReadClick()" *ngIf="!isDescriptionShown">
       <span>Read</span>
     </button>
 
