@@ -31,7 +31,7 @@
       </div>
 
       <div class="uploaded-books" *ngIf="isUploadedBooksShown">
-        <app-book-row *ngFor="let book of books; let i = index" [book]="book" [number]="i + 1"></app-book-row>
+        <app-book-row *ngFor="let book of books; let i = index" [book]="book" [number]="i + 1"[editable]="true"></app-book-row>
       </div>
       
       <div class="spinner-upload">
