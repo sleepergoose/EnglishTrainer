@@ -42,5 +42,16 @@ namespace Trainer.Admin.Controllers
                 error => BadRequest()
                 );
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteBookAsync(int bookId)
+        {
+            var result = await _booksService.DeleteBookAsync(bookId);
+
+            return result.Match<ActionResult>(
+                success => Ok(result.AsT0),
+                error => BadRequest()
+                );
+        }
     }
 }

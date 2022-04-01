@@ -4,7 +4,9 @@
   </div>
   <div class="books-section">
     <div class="book-list">
-      <app-book-row *ngFor="let book of books" [book]="book" [editable]="isAdmin" (buttonEditEvent)="clickEditButton($event)"></app-book-row>         
+      <app-book-row *ngFor="let book of books; let i = index" [number]="i + 1" [book]="book" [editable]="isAdmin" 
+        (buttonEditEvent)="clickEditButton($event)"
+        (buttonDeleteEvent)="clickDeleteButton($event)"></app-book-row>         
     </div>
   </div>
 </div>

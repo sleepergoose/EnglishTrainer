@@ -22,7 +22,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/admin/Books",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [ "PUT", "DELETE" ]
     }
   ]
 }

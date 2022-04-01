@@ -46,7 +46,7 @@ namespace Trainer.Admin.BusinessLogic.Commands
             var existedWord = (await _dbConnection.QueryAsync<Word>(sql_0, book)).FirstOrDefault();
 
             if (existedWord != null)
-                return book;
+                return null;
 
             const string sql_1 =
                 @"INSERT INTO Books (
