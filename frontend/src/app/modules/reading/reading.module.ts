@@ -5,6 +5,7 @@ import { BooksComponent } from './components/books/books.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReaderComponent } from './components/reader/reader.component';
 import { MaterialComponentsModule } from '../material-components/material-components.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MaterialComponentsModule } from '../material-components/material-compon
     CommonModule,
     ReadingRoutingModule,
     SharedModule,
-    MaterialComponentsModule
+    MaterialComponentsModule,
+    FormsModule
   ]
 })
 export class ReadingModule { }

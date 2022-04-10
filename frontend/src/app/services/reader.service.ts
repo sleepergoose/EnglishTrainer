@@ -21,7 +21,6 @@ export class ReaderService {
 
   prepareBook(text: string) {
     let temp_chapters = text.split(/Chapter [0-9]/gi).filter(ch => ch.trim() !== '');
-    console.log(temp_chapters.length);
 
     for (let chapter of temp_chapters) {
       this.chapters.push(chapter.replace(/[\s]{2,}(?=[a-z]+)/gi, ' ').split(/[\n\r]+/gi));

@@ -17,6 +17,12 @@ export class ReaderComponent implements OnInit {
   
   chaptersAmount: number = 0;
 
+  // style's variables
+  fontSize: string = '18px';
+  lineHeight: string = '1.5rem';
+  fontColor: string = '#dddddd';
+  backgroundColor: string = '#21292D';
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _readerService: ReaderService
@@ -37,7 +43,26 @@ export class ReaderComponent implements OnInit {
           });
       }
     });
-  
+  }
+
+  changeFontSizeValue(event: Event) {
+    const value = +(event.target as HTMLInputElement).value;
+
+    if (value > 13 && value < 31) {
+      if (value > 20) {
+        this.lineHeight = '2.5rem';
+      }
+      this.fontSize = value.toString() + 'px';
+    }
+  }
+
+  changeLineHeightValue(event: Event) {
+    const value = +(event.target as HTMLInputElement).value;
+
+    if (value > 0 && value < 6) {
+      this.lineHeight = value.toString() + 'rem';
+    }
   }
 }
+
 
