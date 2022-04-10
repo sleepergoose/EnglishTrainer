@@ -36,10 +36,10 @@ namespace Processor.Services
             _messageService.SetMessageService(null, _consumerSettings);
             _messageService.MessageReceived += BookReceived;
 
-            Console.WriteLine("Book processing is started...");
+            Console.WriteLine("Book processing is started at {0}", DateTime.Now.ToShortTimeString());
         }
 
-        private async void BookReceived(byte[] body)
+        private void BookReceived(byte[] body)
         {
             var json = Encoding.UTF8.GetString(body);
 
@@ -49,7 +49,7 @@ namespace Processor.Services
 
             var stream = new MemoryStream(data!.BookBody);
 
-            var uri = await _blobService.UploadAsync(stream, data.BookName, data.ContentType);
+            var uri = _blobService.UploadAsync(stream, data.BookBlobId, data.ContentType).Result;
 
             Console.WriteLine($"{data!.BookName} is saved by {uri}");
         }
