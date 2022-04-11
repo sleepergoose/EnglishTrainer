@@ -30,6 +30,14 @@ namespace Trainer.BL.Services
             return _mapper.Map<WordReadExamplesDTO>(word);
         }
 
+        public async Task<WordReadExamplesDTO> GetFullWordByNameAsync(string text)
+        {
+            var word = await _context.Words
+                .Include(w => w.Examples)
+                .FirstOrDefaultAsync(w => w.Text == text);
+            return _mapper.Map<WordReadExamplesDTO>(word);
+        }
+
         public async Task<ICollection<WordDTO>> GetWordsAsync()
         {
             var words = await _context.Words.ToListAsync();

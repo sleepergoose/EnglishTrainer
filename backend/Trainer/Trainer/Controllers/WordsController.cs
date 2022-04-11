@@ -26,6 +26,12 @@ namespace Trainer.Controllers
             return Ok(await _wordsService.GetWordAsync(id));
         }
 
+        [HttpGet("getFullWordByName")]
+        public async Task<IActionResult> GetFullWordByNameAsync(string term)
+        {
+            return Ok(await _wordsService.GetFullWordByNameAsync(term));
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetEntitiesAsync()
         {

@@ -52,7 +52,7 @@
         <h2 [ngStyle]="{'color': fontColor}">Chapter {{currentChapterIndex + 1}}</h2>
 
         <!-- TEXT -->
-        <div class="text" >
+        <div class="text" (dblclick)="dblClickOnWord()">
           <p *ngFor="let paragraph of chapter" 
             [ngStyle]="{'font-size': fontSize, 'line-height': lineHeight, 'color': fontColor}">{{paragraph}}</p>
         </div>

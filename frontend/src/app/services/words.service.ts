@@ -14,6 +14,11 @@ export class WordsService {
     return this._http.getRequest<WordEdit>(`/api/Words/${id}`);
   }
 
+  getFullWordByName(term: string) {
+    const httpParams = { term };
+    return this._http.getRequest<WordEdit>('/api/Words/getFullWordByName', httpParams);
+  }
+
   removeWord(id: number) {
     return this._http.deleteRequest(`/api/Words/${id}`);
   }
