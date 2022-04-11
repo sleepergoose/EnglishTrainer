@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 import { Book } from 'src/app/models/book/book';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,7 +16,8 @@ export class BooksComponent implements OnInit {
 
   constructor(
     private _auth: AuthService,
-    private _booksService: BooksService
+    private _booksService: BooksService,
+    private _router: Router
   ) { }
 
   async ngOnInit() {
@@ -53,5 +55,9 @@ export class BooksComponent implements OnInit {
       .subscribe((id) => {
         this.books = this.books.filter(book => book.id !== id);
       });
+  }
+
+  clickReadButton(book: Book) {
+    this._router.navigate([`main/reading/reader/${book.blobId}`]);
   }
 }

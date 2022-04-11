@@ -23,5 +23,11 @@ namespace Trainer.API.Controllers
         {
             return Ok(await _booksService.GetBooksAsync());
         }
+
+        [HttpGet("{blobId}")]
+        public async Task<IActionResult> GetBookByBlobIdAsync(string blobId)
+        {
+            return Ok(await _booksService.GetBookAsync(blobId));
+        }
     }
 }

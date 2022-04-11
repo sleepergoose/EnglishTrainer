@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Shared.AzureBlobStorage;
 using Trainer.BL.Services;
 using Trainer.Common.MappingProfiles;
 
@@ -18,6 +19,7 @@ namespace Trainer.BL.Extensions
             services.AddScoped<SearchService>();
             services.AddScoped<TrainerService>();
             services.AddScoped<BooksService>();
+            services.AddScoped<IBlobService, BlobService>();
         }
 
         public static void RegisterAutoMapper(this IServiceCollection services)

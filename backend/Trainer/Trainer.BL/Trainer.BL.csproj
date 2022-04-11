@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
     <ProjectReference Include="..\Trainer.Common\Trainer.Common.csproj" />
     <ProjectReference Include="..\Trainer.DAL\Trainer.DAL.csproj" />
   </ItemGroup>

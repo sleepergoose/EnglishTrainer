@@ -1,0 +1,73 @@
+<div class="container">
+  <!-- HEADER -->
+    <div class="header">
+      <div class="name">Pride and Prejudice</div>
+      <div class="author">by Jane Austen</div>
+    </div>
+
+    <!-- SETTINGS PANEL -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Settings
+        </mat-panel-title>
+        <mat-panel-description>
+          Click here to hit the settings
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="controls">
+        <mat-form-field class="">
+          <mat-label>Font size</mat-label>
+          <input type="number" value="18" matInput min="14" max="30" (change)="changeFontSizeValue($event)"/>
+        </mat-form-field>
+
+        <mat-form-field class="">
+          <mat-label>Line height size</mat-label>
+          <input type="number" matInput value="1.5" min="1.5" max="5" step="0.25" (change)="changeLineHeightValue($event)"/>
+        </mat-form-field>
+
+        <mat-form-field class="">
+          <mat-label>Font color</mat-label>
+          <mat-select value="$text-common" [(ngModel)]="fontColor">
+            <mat-option value="white">White</mat-option>
+            <mat-option value="#dddddd">Default</mat-option>
+            <mat-option value="black">Black</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="">
+          <mat-label>Background size</mat-label>
+          <mat-select value="$drk-gray" [(ngModel)]="backgroundColor"> 
+            <mat-option value="white">White</mat-option>
+            <mat-option value="#21292D">Default</mat-option>
+            <mat-option value="black">Black</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>  
+
+    <!-- READER -->
+    <div class="reader-section" [ngStyle]="{'background': backgroundColor}">
+        <!-- TITLE -->
+        <h2 [ngStyle]="{'color': fontColor}">Chapter {{currentChapterIndex + 1}}</h2>
+
+        <!-- TEXT -->
+        <div class="text" >
+          <p *ngFor="let paragraph of chapter" 
+            [ngStyle]="{'font-size': fontSize, 'line-height': lineHeight, 'color': fontColor}">{{paragraph}}</p>
+        </div>
+
+        <!-- PAGGINATOR -->
+        <div class="paggination">
+          <button mat-button (click)="backChapter()">Back</button>
+          <mat-form-field class="">
+            <mat-select [ngModel]="currentChapterIndex" (ngModelChange)="currentChapterIndex=$event; setChapterByIndex()"> 
+              <mat-option *ngFor="let i of chaptersIndexArray" [value]="i">{{i + 1}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button (click)="nextChapter()">Next</button>
+        </div>
+
+    </div>
+  </div>
+  

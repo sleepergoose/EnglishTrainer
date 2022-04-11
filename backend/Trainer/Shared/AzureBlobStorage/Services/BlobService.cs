@@ -3,6 +3,7 @@ using Azure.Storage.Blobs.Models;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Shared.AzureBlobStorage
@@ -27,6 +28,20 @@ namespace Shared.AzureBlobStorage
                 await _blob.UploadAsync(fileStream, new BlobHttpHeaders { ContentType = contentType });
 
                 return _blob.Uri.ToString();
+            }
+            else
+            {
+                throw new Exception("BlobClient can't be null");
+            }
+        }
+
+        public async Task<string> GetBookAsync(string blobId)
+        {
+            _blob = await GetBlobClientAsync(blobId);
+
+            if (_blob != null)
+            {
+                return _blob.DownloadContent().Value.Content.ToString();
             }
             else
             {

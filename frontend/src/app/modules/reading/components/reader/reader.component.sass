@@ -1,0 +1,70 @@
+@import 'src/styles.sass'
+
+.container
+  .header
+    background: $header-gradient
+    padding: 20px 10px 10px 10px
+    color: $text-common
+    .name
+      padding: 5px
+      font-weight: bold
+      font-size: 2rem
+    .author
+      color: $text-gray
+      padding: 5px
+      font-size: 1rem
+  mat-expansion-panel
+    background: transparent
+    .controls
+      display: grid
+      grid-template-columns: 1fr 1fr 1fr 1fr
+      grid-template-rows: 100%
+      justify-items: center
+      .control-group
+        display: inline-block
+        label
+          padding: 3px 5px 3px 0px
+          color: $text-gray
+        input
+          background: transparent
+          border: none
+          text-align: center
+          padding: 3px
+          color: $text-common
+          &:focus
+            outline: none
+          &:hover
+            border-radius: 10px 0px 0px 10px  
+            background: $light-gray
+
+  .reader-section
+    padding: 50px 50px 
+    .text
+      p
+        text-indent: 20px
+        text-align: justify
+        color: $text-common
+        font-size: 1rem
+        line-height: 1.5rem
+    .paggination
+      text-align: center
+      button
+        margin: 3px 10px
+        padding: 0px 15px !important
+        color: $text-gray
+      mat-form-field
+        width: 50px !important
+
+
+// customize select element
+::ng-deep 
+  .mat-select-panel
+    background-color: $light-gray
+    .mat-option
+      color: $text-common   
+      .mat-option-text    
+        color: $text-common !important
+  .mat-select-arrow
+    color: $text-common !important
+    
+
