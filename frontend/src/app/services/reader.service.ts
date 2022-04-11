@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ReaderBook } from '../models/book/reader-book';
 import { HttpInternalService } from './http-internal.service';
@@ -7,9 +8,11 @@ import { HttpInternalService } from './http-internal.service';
   providedIn: 'root'
 })
 export class ReaderService {
-  private currentIndex: number = 0;
-  private currentChapter = [] as string[];
-  private chapters = new Array<string[]>();
+  private _currentIndex: number = 0;
+  private _currentChapter = [] as string[];
+  private _chapters = new Array<string[]>();
+
+  currentIndex$ = new BehaviorSubject<number>(this._currentIndex);
 
   constructor(
     private _http: HttpInternalService
@@ -23,28 +26,32 @@ export class ReaderService {
     let temp_chapters = text.split(/Chapter [0-9]/gi).filter(ch => ch.trim() !== '');
 
     for (let chapter of temp_chapters) {
-      this.chapters.push(chapter.replace(/[\s]{2,}(?=[a-z]+)/gi, ' ').split(/[\n\r]+/gi));
+      this._chapters.push(chapter.replace(/[\s]{2,}(?=[a-z]+)/gi, ' ').split(/[\n\r]+/gi));
     }
 
-    this.currentChapter = this.getChapter(0);
-    return this.currentChapter;
+    this._currentChapter = this.getChapter(0);
+    return this._currentChapter;
   }
 
   getChapter(index: number) {
-    return this.chapters[index];
+    this._currentIndex = index;
+    this.currentIndex$.next(this._currentIndex);
+    return this._chapters[index];
   }
 
   getNextChapter() {
-    this.currentChapter = this.chapters[++this.currentIndex];
-    return this.currentChapter;
+    this._currentChapter = this._chapters[++this._currentIndex];
+    this.currentIndex$.next(this._currentIndex);
+    return this._currentChapter;
   }
 
   getPreviousChapter(): string[] {
-    this.currentChapter = this.chapters[--this.currentIndex];
-    return this.currentChapter;
+    this._currentChapter = this._chapters[--this._currentIndex];
+    this.currentIndex$.next(this._currentIndex);
+    return this._currentChapter;
   }
 
   getChapterAmount(): number {
-    return this.chapters.length;
+    return this._chapters.length;
   }
 }

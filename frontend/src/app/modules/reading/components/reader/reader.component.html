@@ -23,7 +23,7 @@
 
         <mat-form-field class="">
           <mat-label>Line height size</mat-label>
-          <input type="number" matInput value="1.5" min="1.5" max="5" (change)="changeLineHeightValue($event)"/>
+          <input type="number" matInput value="1.5" min="1.5" max="5" step="0.25" (change)="changeLineHeightValue($event)"/>
         </mat-form-field>
 
         <mat-form-field class="">
@@ -48,13 +48,26 @@
 
     <!-- READER -->
     <div class="reader-section" [ngStyle]="{'background': backgroundColor}">
+        <!-- TITLE -->
+        <h2 [ngStyle]="{'color': fontColor}">Chapter {{currentChapterIndex + 1}}</h2>
 
+        <!-- TEXT -->
         <div class="text" >
-          <p *ngFor="let ph of text" [ngStyle]="{'font-size': fontSize, 'line-height': lineHeight, 'color': fontColor}">{{ph}}</p>
+          <p *ngFor="let paragraph of chapter" 
+            [ngStyle]="{'font-size': fontSize, 'line-height': lineHeight, 'color': fontColor}">{{paragraph}}</p>
         </div>
-        <div class="paggination">
 
+        <!-- PAGGINATOR -->
+        <div class="paggination">
+          <button mat-button (click)="backChapter()">Back</button>
+          <mat-form-field class="">
+            <mat-select [ngModel]="currentChapterIndex" (ngModelChange)="currentChapterIndex=$event; setChapterByIndex()"> 
+              <mat-option *ngFor="let i of chaptersIndexArray" [value]="i">{{i + 1}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button (click)="nextChapter()">Next</button>
         </div>
+
     </div>
   </div>
   

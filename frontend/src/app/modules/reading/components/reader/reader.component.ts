@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, take } from 'rxjs';
+import { Subject, switchMap, take, takeUntil } from 'rxjs';
 import { ReaderBook } from 'src/app/models/book/reader-book';
 import { ReaderService } from 'src/app/services/reader.service';
 
@@ -10,18 +9,22 @@ import { ReaderService } from 'src/app/services/reader.service';
   templateUrl: './reader.component.html',
   styleUrls: ['./reader.component.sass']
 })
-export class ReaderComponent implements OnInit {
+export class ReaderComponent implements OnInit, OnDestroy {
   private _blobId: string = '';
   book = {} as ReaderBook;
-  text = [] as string[];
+  chapter = [] as string[];
   
   chaptersAmount: number = 0;
+  chaptersIndexArray = [] as number[];
+  currentChapterIndex: number = 0;
 
   // style's variables
   fontSize: string = '18px';
   lineHeight: string = '1.5rem';
   fontColor: string = '#dddddd';
   backgroundColor: string = '#21292D';
+
+  private _unsubscribe$ = new Subject<void>();
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -38,11 +41,24 @@ export class ReaderComponent implements OnInit {
         this._readerService.getBookFromStorage(this._blobId)
           .pipe(take(1))
           .subscribe((book) => {
-            this.text = this._readerService.prepareBook(book.body)!;
+            this.chapter = this._readerService.prepareBook(book.body)!;
+            // save book to the session storage or transformed book (split & replace)
             this.chaptersAmount = this._readerService.getChapterAmount();
+            this.chaptersIndexArray = [...Array(this.chaptersAmount).keys()];
           });
       }
     });
+
+    this._readerService.currentIndex$
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((value) => {
+        this.currentChapterIndex = value;
+      });
+  }
+
+  public ngOnDestroy() {
+    this._unsubscribe$.next();
+    this._unsubscribe$.complete();
   }
 
   changeFontSizeValue(event: Event) {
@@ -62,6 +78,22 @@ export class ReaderComponent implements OnInit {
     if (value > 0 && value < 6) {
       this.lineHeight = value.toString() + 'rem';
     }
+  }
+
+  nextChapter() {
+    if (this.currentChapterIndex < this._readerService.getChapterAmount()) {
+      this.chapter = this._readerService.getNextChapter();
+    }
+  }
+
+  backChapter() {
+    if (this.currentChapterIndex > 0) {
+      this.chapter = this._readerService.getPreviousChapter();
+    }
+  }
+
+  setChapterByIndex() {
+    this.chapter = this._readerService.getChapter(this.currentChapterIndex);
   }
 }
 
