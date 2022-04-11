@@ -11,6 +11,18 @@
       ],
       "UpstreamPathTemplate": "/api/Words/{id}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Words/getFullWordByName/{term}",
+      "DownstreamScheme": "https",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "localhost",
+          "Port": "5001"
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Words/getFullWordByName/{term}",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ]
 }

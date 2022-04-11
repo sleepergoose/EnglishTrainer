@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, switchMap, take, takeUntil } from 'rxjs';
 import { ReaderBook } from 'src/app/models/book/reader-book';
+import { WordComponent } from 'src/app/modules/shared/components/word/word.component';
 import { ReaderService } from 'src/app/services/reader.service';
 
 @Component({
@@ -11,6 +13,8 @@ import { ReaderService } from 'src/app/services/reader.service';
 })
 export class ReaderComponent implements OnInit, OnDestroy {
   private _blobId: string = '';
+  private _selectedWord: string = '';
+
   book = {} as ReaderBook;
   chapter = [] as string[];
   
@@ -28,7 +32,8 @@ export class ReaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _readerService: ReaderService
+    private _readerService: ReaderService,
+    private _dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -94,6 +99,20 @@ export class ReaderComponent implements OnInit, OnDestroy {
 
   setChapterByIndex() {
     this.chapter = this._readerService.getChapter(this.currentChapterIndex);
+  }
+
+  dblClickOnWord() {
+    this._selectedWord = window?.getSelection()!.toString().trim();
+    this._showWordInDetails(this._selectedWord);
+  }
+
+  _showWordInDetails(text: string) {
+    this._dialog.open(WordComponent, {
+      data: {
+        wordId: undefined,
+        text: text
+      }
+    });
   }
 }
 
