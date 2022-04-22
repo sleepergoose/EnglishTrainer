@@ -13,10 +13,10 @@ export class TrackCardComponent {
   constructor(private _router: Router) { }
 
   showTrack(id: number) {
-    this._router.navigate([`main/trackview/${id}`]);
+    this._router.navigate([`trackview/${id}`]);
   }
 
   goToTrainer(id: number) {
-    this._router.navigate([`main/trainer/${id}`]);
+    this._router.navigate([`trainer/${id}`]);
   }
 }

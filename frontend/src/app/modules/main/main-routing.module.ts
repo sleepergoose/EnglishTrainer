@@ -19,17 +19,6 @@ const routes: Routes = [
       {
         path: '',
         component: MainPageComponent,
-      }
-    ]
-  },
-  {
-    path: 'main',
-    component: ContainerComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: '',
-        component: MainPageComponent,
       },
       {
         path: 'trackview/:id/edit',

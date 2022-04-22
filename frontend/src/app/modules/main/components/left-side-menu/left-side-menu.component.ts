@@ -70,15 +70,15 @@ export class LeftSideMenuComponent implements OnDestroy {
   }
 
   goToTrainer() {
-    this._router.navigate([`main/trainer/${this.createdTracks[0]?.id}`]);
+    this._router.navigate([`trainer/${this.createdTracks[0]?.id}`]);
   }
 
   viewTrackInDetails(track: TrackName) {
     if (track.name.charAt(0) === '•') {
-      this._router.navigate([`main/trackview/pv/${track.id}`]);
+      this._router.navigate([`trackview/pv/${track.id}`]);
     }
     else {
-      this._router.navigate([`main/trackview/${track.id}`]);
+      this._router.navigate([`trackview/${track.id}`]);
     }    
   }
 }

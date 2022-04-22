@@ -11,18 +11,18 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
-    path: '',
-    loadChildren: () => import('./modules/main/main.module').then((m) => m.MainModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'admin',
     loadChildren: () => import('./modules/trainer-admin/trainer-admin.module').then((m) => m.TrainerAdminModule),
     canActivate: [AuthGuard, RoleGuard],
     data: {
       roles: ['admin']
     }
-  }
+  },
+  {
+    path: '',
+    loadChildren: () => import('./modules/main/main.module').then((m) => m.MainModule),
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
