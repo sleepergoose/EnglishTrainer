@@ -23,7 +23,7 @@ export class ReaderService {
   }
 
   prepareBook(text: string) {
-    let temp_chapters = text.split(/Chapter [0-9]/gi).filter(ch => ch.trim() !== '');
+    let temp_chapters = text.split(/Chapter [0-9]+/gi).filter(ch => ch.trim() !== '');
 
     for (let chapter of temp_chapters) {
       this._chapters.push(chapter.replace(/[\s]{2,}(?=[a-z]+)/gi, ' ').split(/[\n\r]+/gi));

@@ -99,7 +99,6 @@ export class TrackEditComponent implements OnInit, OnDestroy {
           next: () => {
             this.foundWords = this.foundWords.filter((s) => s.id !== word.id);
             this.trackWords = [...this.trackWords, word];
-            console.log(this.trackWords);
             this.viewedTrack.words = this.trackWords;
             this.words$.next(this.trackWords);
           }
