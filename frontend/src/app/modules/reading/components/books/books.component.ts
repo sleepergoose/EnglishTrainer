@@ -58,6 +58,6 @@ export class BooksComponent implements OnInit {
   }
 
   clickReadButton(book: Book) {
-    this._router.navigate([`main/reading/reader/${book.blobId}`]);
+    this._router.navigate([`reading/reader/${book.blobId}`]);
   }
 }

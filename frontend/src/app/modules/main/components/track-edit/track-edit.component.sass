@@ -32,7 +32,13 @@
       color: $text-common
       .name
         max-width: 750px
+        display: grid
+        grid-template-columns: max-content auto
+        grid-template-rows: 100%
+        align-items: center
         span, input
+          grid-column: 1
+          height: 55px
           display: inline-block
           font-size: 3rem
           font-weight: 600
@@ -44,10 +50,12 @@
           white-space: nowrap
         input
           width: 90%
+          height: 55px
           background: transparent
           border: none
           border-bottom: 1px solid #a7a7a7
         mat-icon
+          grid-column: 2
           margin-left: 10px
           &:hover
             text-decoration: underline

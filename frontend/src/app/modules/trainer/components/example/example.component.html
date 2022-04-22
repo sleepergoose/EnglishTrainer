@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row" *ngFor="let ex of examples">
     <span class="circle">&#9900;</span>
-    <span class="en" *ngIf="!isEnHidden">{{ex.phrase}}</span>
+    <span class="en" *ngIf="!isEnHidden">
+      <b *ngIf="isBolded">{{ex.phrase}}</b>
+    </span>
     -
     <span class="ru" *ngIf="!isRuHidden">{{ex.translation}}</span>
   </div>

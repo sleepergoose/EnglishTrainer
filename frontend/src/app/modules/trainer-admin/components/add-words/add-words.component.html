@@ -41,8 +41,8 @@
       <mat-form-field>
         <mat-label>Example - press 'Enter' to admit an example</mat-label>
         <input matInput [(ngModel)]="exampleStr" #example="ngModel" name="example" 
-          pattern="^[!?'a-zA-Z\s-,]+ - [ё!?а-яА-Я\s-,]+$" (keyup)="keyupOnExample($event)"> 
-        <button class="btn-suffix" type="button" mat-icon-button matSuffix (click)="addNewExample()">
+          pattern="^[!?a-zA-Z0-9\s-,.]+ - [ё!?а-яА-Я0-9\s-,.]+$" (keyup)="keyupOnExample($event)"> 
+        <button class="btn-suffix" [disabled]="example.invalid" type="button" mat-icon-button matSuffix (click)="addNewExample(example!.invalid!)">
           <mat-icon>add_circle</mat-icon>
         </button>
         <mat-error *ngIf="example.invalid && example.errors?.['pattern']">You should match the pattern: english... - русский...</mat-error>
@@ -55,10 +55,11 @@
     </form>
 
     <div class="added-words">
-      <div class="row" *ngFor="let word of addedWords">
-        <div class="col-1"><span>{{word.text}}</span></div>
-        <div class="col-2"><span>[{{word.transcription}}]</span></div>
-        <div class="col-3"><span>{{word.translation}}</span></div>
+      <div class="row" *ngFor="let word of addedWords; let i = index">
+        <div class="col-1"><span>{{addedWords.length - i}}</span></div>
+        <div class="col-2"><span>{{word.text}}</span></div>
+        <div class="col-3"><span>[{{word.transcription}}]</span></div>
+        <div class="col-4"><span>{{word.translation}}</span></div>
       </div>
     </div>
   </div>

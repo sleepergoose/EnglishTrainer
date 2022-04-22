@@ -10,6 +10,7 @@ export class ExampleComponent {
   @Input() examples = [] as Example[];
   @Input() isRuHidden: boolean = false;
   @Input() isEnHidden: boolean = false;
+  @Input() isBolded: boolean = false;
 
   constructor() { }
 }
